@@ -1,0 +1,50 @@
+.shakaLogo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  margin: 5px 0;
+  background: rgba(105, 102, 102, 0.6) url("../../../images/photoboto.png");
+  background-position: 0px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-blend-mode: darken;
+  text-align: center;
+}
+
+.shakaLogo span {
+  font-family: "Shadows Into Light", cursive;
+  font-size: 600%;
+  font-weight: 900;
+  color: #fff;
+}
+
+.shakaLogo img {
+  padding-left: 34px;
+  rotate: -30deg;
+  color: #fff;
+  width: 10%;
+  height: 35%;
+}
+
+@media screen and (max-width: 678px) {
+  .shakaLogo span {
+    font-family: "Shadows Into Light", cursive;
+    font-size: 200%;
+    font-weight: 900;
+  }
+  .shakaLogo img {
+    padding-left: 34px;
+    rotate: -30deg;
+    width: 5%;
+    height: 25%;
+  }
+}
+/*# sourceMappingURL=ShopHomePage.css.map */

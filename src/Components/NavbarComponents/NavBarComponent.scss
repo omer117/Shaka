@@ -1,11 +1,30 @@
 .navbar{
-    height: 10%;
+    height: 30%;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    background-color: #001D6E;
+    color: #BBE1FA;
+    text-align: center;
+    align-items: center;
 
     
     div{
         width:20%;
+
+    }
+    
+    
+
+    .icons{
+        display: flex;
+justify-content: flex-end;
     }
 }
+
+
+@media screen and (max-width: 600px) {
+
+  }
+  
+  
