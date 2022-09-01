@@ -7,10 +7,10 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import Brightness3Icon from '@mui/icons-material/Brightness3';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 function NavBarComponent(props) {
-
+    
 
     return (
-
+<>
         <div className="navbar">
 
             <div className="about">
@@ -40,10 +40,17 @@ function NavBarComponent(props) {
                 </div>
             </div>
             <div className="menu">
+                <button >
+
                 <DehazeIcon/>
+                </button>
             </div>
         </div>
+        </>
     )
 }
+
+
+
 
 export default NavBarComponent;

@@ -1,8 +1,22 @@
-.shakaLogo {
+@mixin imageStyle {
+    background-position:center center;
+    background-repeat: no-repeat;
+    background-size: fill;
+    background-blend-mode: darken;
+    border-radius: 18px; 
+
+}
+
+@mixin centeringStuff {
     display: flex;
-    align-items: center;
-    width: 100%;
+    align-items: center; 
     justify-content: center;
+    text-align: center;
+}
+
+.shakaLogo {
+    @include centeringStuff;
+    width: 100%;
     height: 100%;
     margin: 5px 0;
     background:rgba(105, 102, 102, 0.6) url("../../../images/photoboto.png");
@@ -10,7 +24,6 @@
     background-repeat: no-repeat;
     background-size: 100%;
     background-blend-mode: darken;
-    text-align: center;
     span{
         font-family: "Shadows Into Light", cursive;
         font-size:600%;
@@ -43,4 +56,46 @@
         height: 25%;
         }
 }
+}
+
+.catagoriesDiv{
+    height: 350px;
+    width: 250px;
+    margin-top: 100px;
+    div{
+        @include centeringStuff;
+        width: 60%;
+        height: 90%;
+        font-size:150%;
+        font-weight: 900;
+        color: rgb(188, 221, 235);
+    }
+
+    .boogi{
+        background:rgba(105, 102, 102, 0.6) url('../../../images/catagoryImages/5833ebaf95efefd0589ba275509092d0--the-beach-summer-vibes.jpg') ;
+        @include imageStyle();
+        background-position: 0px -200px 15px 0;
+    }
+
+    .sup{
+        background:rgba(105, 102, 102, 0.6) url('../../../images/catagoryImages/sup.jpg') ;
+        @include imageStyle();
+        background-position:1px -190px;
+    }
+
+    .soft{
+        background:rgba(105, 102, 102, 0.6) url('../../../images/catagoryImages/soft.jpg') ;
+        @include imageStyle();
+
+    }
+
+    .manSwimsuit{
+        background:rgba(105, 102, 102, 0.6) url('../../../images/catagoryImages/man.jpg') ;
+        @include imageStyle()
+    }
+
+    .womenSwimsuit{
+        background:rgba(105, 102, 102, 0.6) url('../../../images/catagoryImages/women.jpg') ;
+        @include imageStyle()
+    }
 }
