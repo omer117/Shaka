@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom"
 import './NavBarComponent.scss';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
@@ -7,45 +7,54 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import Brightness3Icon from '@mui/icons-material/Brightness3';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 function NavBarComponent(props) {
-    
+
+
+    const responsiveRef = useRef();
+
+    const  responsive = () => {
+        console.log(responsiveRef.current.className);
+        if (responsiveRef.current.className === "topnav") {
+            responsiveRef.current.className += " responsive";
+                } else {
+            responsiveRef.current.className = "topnav";
+                }
+      }
+
+
+    //   function myFunction() {
+    //     var x = document.getElementById("myTopnav");
+    //     if (x.className === "topnav") {
+    //       x.className += " responsive";
+    //     } else {
+    //       x.className = "topnav";
+    //     }
+    //   }
+
+
+
 
     return (
-<>
-        <div className="navbar">
+        <>
 
-            <div className="about">
-                <Link to="/about">About Us</Link>
-            </div>
-            <div className="community">
-                <Link to="/community">The Community</Link>
-            </div>
-            <div className="weather">
-                <Link to="/waveWeather">surfin' today?</Link>
-            </div>
-            <div className="shop">
-                <Link to="/Shop">Shaka Shop</Link>
-            </div>
-            <div className="icons">
-                <div>
-                    <LightModeIcon />
-                    {/* <Brightness3Icon /> */}
-                </div>
-                <div>
-                    <Link to="/mycart">
-                        <ShoppingCartIcon />
-                    </Link>
-                </div>
-                <div>
-                    <FavoriteBorderIcon />
-                </div>
-            </div>
-            <div className="menu">
-                <button >
 
-                <DehazeIcon/>
-                </button>
-            </div>
-        </div>
+<div
+ className="topnav"
+  id="myTopnav"
+  ref={responsiveRef}
+  >
+<Link className="shaka" to="/">SHAKA</Link>
+<Link to="/about">About Us</Link>
+<Link to="/waveWeather">Surfin' today?</Link>
+<Link to="/community">Our community</Link>
+<Link to="/shop">Shop</Link>
+<div 
+className="icon"
+onClick={responsive}>
+    <DehazeIcon/>
+</div>
+    </div>
+
+
         </>
     )
 }

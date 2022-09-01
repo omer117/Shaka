@@ -1,47 +1,110 @@
-.navbar {
+.topnav {
     height: 8vh;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     background-color: #001d6e;
     color: #bbe1fa;
-    text-align: center;
-    align-items: center;
+    
 
-    div {
-        width: 20%;
-    }
 
-    .icons {
-        display: flex;
-        justify-content: flex-end;
-    }
-}
-
-.menu {
-    display: none;
-}
-
-@media screen and (max-width: 650px) {
-    .menu {
-        button {
-            all: unset;
-            cursor: pointer;
-        }
-
-        height: 100%;
+    a {
+        float: left;
         display: block;
+        color: #bbe1fa;
+        text-align: center;
+        padding: 14px 19px;
+        margin: -5px;
+        font-size: 14x;
         &:hover {
-            background-color: #435ca0;
+            background-color: #18368a;
         }
     }
+    .icon {
+        display: none;
+    }
+}
 
-    .navbar {
-        justify-content: flex-end;
-        div {
-            &:not(.menu) {
+@media screen and (max-width: 670px) {
+    .topnav {
+        a {
+            &:not(.shaka) {
                 display: none;
             }
         }
+        .icon {
+            float: right;
+            display: block;
+            padding: 14px 19px;
+            margin: -3px;
+        }
     }
 }
+
+@media screen and (max-width: 670px) {
+    .topnav.responsive {
+        position: relative;
+        
+        .icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+            &:active{
+
+                transition:1s ease;
+            }
+        }
+        
+        a {
+            background-color: #001d6e;
+          float: none;
+          display: block;
+          text-align: left;
+        }}
+}
+
+// .navbar {
+//     height: 8vh;
+//     width: 100%;
+//     display: flex;
+//     justify-content: space-between;
+//     background-color: #001d6e;
+//     color: #bbe1fa;
+//     text-align: center;
+//     align-items: center;
+
+//     div {
+//         width: 20%;
+//     }
+
+//     .icons {
+//         display: flex;
+//         justify-content: flex-end;
+//     }
+// }
+
+// .menu {
+//     display: none;
+// }
+
+// @media screen and (max-width: 650px) {
+//     .menu {
+//         button {
+//             all: unset;
+//             cursor: pointer;
+//         }
+
+//         height: 100%;
+//         display: block;
+//         &:hover {
+//             background-color: #435ca0;
+//         }
+//     }
+
+//     .navbar {
+//         justify-content: flex-end;
+//         div {
+//             &:not(.menu) {
+//                 display: none;
+//             }
+//         }
+//     }
+// }
