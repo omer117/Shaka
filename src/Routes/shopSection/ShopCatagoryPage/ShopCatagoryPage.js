@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
-import ProductCardComponent from "../../Components/CardComponent/ProductCardComponent"
+import ProductCardComponent from "../../../Components/CardComponent/ProductCardComponent"
 import Grid from '@mui/material/Grid';
 
 

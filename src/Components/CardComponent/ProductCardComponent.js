@@ -6,22 +6,25 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./ProductCardComponent.scss"
 import Grid from '@mui/material/Grid';
+import { Link,useParams } from 'react-router-dom';
 
 
 function ProductCardComponent(props) {
 
+    let { catagory } = useParams();
 
+    
 
-    console.log(props.data.image);
+    console.log(catagory);
     return (
         <>
-<Grid item xs={12} sm={6} md={4}>
-
+        <Grid item xs={12} sm={6} md={4}>
+        <Link to={`/shop/${catagory}/${props.data.id}`}>
             <Card className="product-card">
                 <CardMedia
-                className="profuct-image"
-                    component="img"
-                    height="199"
+                className="product-image"
+                component="img"
+                height="199"
                     image={props.data.image}
                 />
                 <CardContent>
@@ -38,6 +41,7 @@ function ProductCardComponent(props) {
                     </Button>
                 </CardActions>
             </Card>
+                </Link>
                 </Grid>
         </>
     )

@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import './App.scss';
 import NavBarComponent from "./Components/NavbarComponents/NavBarComponent";
 import ShopHomePage from "./Routes/shopSection/ShopHomePage/ShopHomePage"
-import ShopCatagoryPage from "./Routes/shopSection/ShopCatagoryPage"
+import ShopCatagoryPage from "./Routes/shopSection/ShopCatagoryPage/ShopCatagoryPage"
 
 function App() {
   return (
