@@ -1,0 +1,27 @@
+.product-card{
+    display: grid;
+    height: 400px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 9px;
+    margin: 0 1.7%  ;
+
+
+.profuct-image{
+    width: 199px;
+    height: 200px;
+    padding-left: 26px ;
+}
+
+@media  screen and (max-width:500px){
+    .product-card{
+    display: block;
+    width: 50%;
+
+
+    }
+
+}
+
+}

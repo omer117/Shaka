@@ -1,32 +1,46 @@
-import {useParams} from "react-router-dom"
-import { useState,useEffect } from "react";
+import { useParams } from "react-router-dom"
+import { useState, useEffect } from "react";
 import axios from "axios";
+import ProductCardComponent from "../../Components/CardComponent/ProductCardComponent"
+import Grid from '@mui/material/Grid';
 
-function ShopCatagoryPage(){
 
-let {catagory} = useParams();
+function ShopCatagoryPage() {
 
-let [products, setProducts] = useState([]);
-useEffect(() => {
-    axios.get(`https://shakaserver2.herokuapp.com/getAll${catagory}`).then((res) => {
-        setProducts(res.data);
+    let { catagory } = useParams();
+
+    let [products, setProducts] = useState([]);
+    useEffect(() => {
+        axios.get(`https://shakaserver2.herokuapp.com/getAll${catagory}`).then((res) => {
+            setProducts(res.data);
+        });
+    }, []);
+
+    console.log(products);
+
+    let productList = products.map((product) => {
+        return (<ProductCardComponent key={product.id} data={product} />);
     });
-}, []);
 
-console.log(products);
+    console.log(productList);
+    return (
 
-// let productList = products.map((product) => {
-//     return (<SockCard key={product.sock_id} data={product} />);
-// });
+        <>
+            <Grid container
+                spacing={6}
+                className="specific-catagory-container"
+                style={{
+                    marginTop: '80px',
+                    alignItems: 'center',
+                }}
+            >
 
-console.log(catagory);
-return(
+                {productList}
 
-<>
 
-<div>hiiiiiiiiiiiiiiiiiiiiiiiii</div>
-</>
-)
+            </Grid>
+        </>
+    )
 }
 
 export default ShopCatagoryPage;
