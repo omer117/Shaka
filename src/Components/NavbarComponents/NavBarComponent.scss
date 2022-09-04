@@ -1,9 +1,13 @@
 .topnav {
     height: 8vh;
     width: 100%;
-    background-color: #001d6e;
+    background-color: #0c266f;
     color: #bbe1fa;
     
+    .cartNavbar{
+        display: block;
+        float: right;
+    }
 
 
     a {
@@ -11,9 +15,10 @@
         display: block;
         color: #bbe1fa;
         text-align: center;
-        padding: 14px 19px;
+        padding: 14px 39px;
         margin: -5px;
         font-size: 14x;
+        height: 50%;
         &:hover {
             background-color: #18368a;
         }
@@ -25,10 +30,19 @@
 
 @media screen and (max-width: 670px) {
     .topnav {
+        height: 10vh;
         a {
             &:not(.shaka) {
-                display: none;
+                &:not(.cartNavbar){
+                    display: none;
+                }
             }
+        }
+        .cartNavbar{
+            float: right;
+            display: block;
+            padding: 14px 19px;
+            
         }
         .icon {
             float: right;
@@ -42,7 +56,8 @@
 @media screen and (max-width: 670px) {
     .topnav.responsive {
         position: relative;
-        
+        height: 10vh;
+
         .icon {
             position: absolute;
             right: 0;
