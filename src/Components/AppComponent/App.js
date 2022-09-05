@@ -1,9 +1,15 @@
 import { _BrowserRouter, Route, Routes } from "react-router-dom"
 import './App.scss';
-import NavBarComponent from "./Components/NavbarComponents/NavBarComponent";
-import ShopHomePage from "./Routes/shopSection/ShopHomePage/ShopHomePage"
-import ShopCatagoryPage from "./Routes/shopSection/ShopCatagoryPage/ShopCatagoryPage"
-import ShopSingleViewPage from "./Routes/shopSection/ShopSingleView/ShopSingleViewPage"
+import NavBarComponent from "../NavbarComponents/NavBarComponent";
+import ShopHomePage from "../../Routes/shopSection/ShopHomePage/ShopHomePage"
+import ShopCatagoryPage from "../../Routes/shopSection/ShopCatagoryPage/ShopCatagoryPage"
+import ShopSingleViewPage from "../../Routes/shopSection/ShopSingleView/ShopSingleViewPage"
+
+
+
+
+
+
 function App() {
   return (
     <>

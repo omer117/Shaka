@@ -11,7 +11,7 @@ function ShopCatagoryPage() {
 
     let [products, setProducts] = useState([]);
     useEffect(() => {
-        axios.get(`https://shakaserver2.herokuapp.com/getAll${catagory}`).then((res) => {
+        axios.get(`/getAll${catagory}`).then((res) => {
             setProducts(res.data);
         });
     }, []);
