@@ -8,7 +8,7 @@ function ShopSingleViewPage(props) {
     const catagory = useParams()
 
     
-    let sqlStr = `SELECT * FROM ${catagory.catagory} WHERE id=${catagory.id}`
+console.log(catagory)
 
     useEffect(() => {        
         axios.post('/getProduct',
@@ -24,7 +24,6 @@ function ShopSingleViewPage(props) {
     console.log(product);
     return (
         <div>
-            {sqlStr}
         </div>
     )
 }

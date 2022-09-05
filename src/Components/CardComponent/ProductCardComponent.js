@@ -7,25 +7,25 @@ import Typography from '@mui/material/Typography';
 import "./ProductCardComponent.scss"
 import Grid from '@mui/material/Grid';
 import { Link, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
+let productAdded = []
 function ProductCardComponent(props) {
-
     let { catagory } = useParams();
-    
 
-    // const addToCart = () => {
+    useEffect(()=>{
+
+        console.log(JSON.parse(localStorage.getItem(`${catagory}productsInCart`)));
+    })
 
 
-    //     let productAdded = {
-    //         name: props.data.title,
-    //         price: props.data.price
-    //     }
-    //     localStorage.setItem('1',JSON.stringify(productAdded));
-    //     console.log(window.localStorage.getItem('1'));
-    //     console.log("added to cart")
-
-    // }
+    const addToCart = () => {
+        productAdded.push(props.data)
+        localStorage.setItem(`${catagory}productsInCart`, JSON.stringify(productAdded));
+        console.log(JSON.parse(localStorage.getItem(`${catagory}productsInCart`)));
+        console.log("added to cart")
+    }
 
 
     // console.log(catagory);
@@ -55,6 +55,7 @@ function ProductCardComponent(props) {
                     </CardContent>
                     <CardActions>
                         <Button
+                            onClick={addToCart}
                             className="addToCartBtn"
                             variant="contained">
                             Add to Cart

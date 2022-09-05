@@ -41,12 +41,12 @@ function ShopHomePage() {
                 </Grid>
                 <Grid item xs={12} md={4}>
                     <div className="womenSwimsuit">
-                        <Link to="/shop/WomanSuit">Women's SwimSuit</Link>
+                        <Link to="/shop/womansuit">Women's SwimSuit</Link>
                     </div>
                 </Grid>
                 <Grid item xs={12} md={4}>
                     <div className="manSwimsuit">
-                        <Link to="/shop/manSuit">Man's SwimSuit</Link>
+                        <Link to="/shop/mansuit">Man's SwimSuit</Link>
                     </div>
                 </Grid>
             </Grid>
