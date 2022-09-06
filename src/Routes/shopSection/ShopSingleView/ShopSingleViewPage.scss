@@ -1,0 +1,14 @@
+.mainContainer{
+ display: flex;
+    
+    .productImage{
+        margin-top: 40px;
+        width: 32%;
+        height: 32%;
+    }
+    
+    .SingleViewContainer{
+        width: 38%;
+        padding: 35px 30px;
+    }
+}
