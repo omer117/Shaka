@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import "./ShopSingleViewPage.scss"
 import ShakaLogoComponent from '../../../Components/ShakaLogoComponent/ShakaLogoComponent'
 import { Button } from "@mui/material";
-import { info } from "sass";
 
+let productAdded = []
 
 function ShopSingleViewPage(props) {
     let [product, setProducts] = useState({ sizes: [] })
@@ -33,19 +33,18 @@ function ShopSingleViewPage(props) {
     
     
     // addToCart function, Pretty self explanatory 
-    let productAdded = []
     const addToCart = () => {
-        if(selectedSize === undefined){
-            alert('Please select Size');
+        if (isNaN(Number(Chosensize))) {
+            alert('Please Select a size')
         }
         else{
             let newProduct = {
                 id: product.id,
                 title: product.title,
                 price: product.price,
-                size: selectedSize
+                size: Chosensize,
+                image: product.image
             }
-            console.log(newProduct)
             productAdded.push(newProduct)
             localStorage.setItem(`productsInCart`, JSON.stringify(productAdded));
             console.log(JSON.parse(localStorage.getItem(`productsInCart`)));
@@ -55,9 +54,9 @@ function ShopSingleViewPage(props) {
     
     
     //function that handle the size of the product
-    let selectedSize;
     const sizeHandle = (e) => {
-        selectedSize = e.target.innerText
+        setSize(e.target.innerText)
+        console.log(Chosensize)
     }
 
 

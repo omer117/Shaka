@@ -7,7 +7,7 @@ import ShopSingleViewPage from "../../Routes/shopSection/ShopSingleView/ShopSing
 import LogInPage from "../../Routes/AuthenticationSection/LogInPage/LogInPage"
 import SignUpPage from "../../Routes/AuthenticationSection/SignUpPage/SignUpPage"
 import HomePage from "../../Routes/HomePage/HomePage"
-
+import MyCart from "../../Routes/shopSection/MyCart/MyCart"
 
 
 
@@ -28,7 +28,7 @@ function App() {
         
         <Route path="/community" element={<div>tn</div>} />
 
-        <Route path="/myCart" element={<div>mokok</div>} />
+        <Route path="/myCart" element={<MyCart/>} />
         <Route path="/wishlist" element={<div>mokok</div>} />
 
 
