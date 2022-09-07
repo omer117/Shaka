@@ -16,13 +16,10 @@ function ShopCatagoryPage() {
         });
     }, []);
 
-    console.log(products);
-
     let productList = products.map((product) => {
         return (<ProductCardComponent key={product.id} data={product} />);
     });
 
-    console.log(productList);
     return (
 
         <>
@@ -34,10 +31,7 @@ function ShopCatagoryPage() {
                     alignItems: 'center',
                 }}
             >
-
                 {productList}
-
-
             </Grid>
         </>
     )

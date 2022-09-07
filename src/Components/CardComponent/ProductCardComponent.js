@@ -15,7 +15,6 @@ function ProductCardComponent(props) {
     let { catagory } = useParams();
 
     useEffect(()=>{
-
         console.log(JSON.parse(localStorage.getItem(`${catagory}productsInCart`)));
     })
 
@@ -28,7 +27,6 @@ function ProductCardComponent(props) {
     }
 
 
-    // console.log(catagory);
     return (
         <>
             <Grid item xs={12} sm={6} md={4}>

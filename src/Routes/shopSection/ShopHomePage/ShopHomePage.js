@@ -1,18 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams} from "react-router-dom";
 import "./ShopHomePage.scss"
 import Grid from '@mui/material/Grid';
+import ShakaLogoComponent from '../../../Components/ShakaLogoComponent/ShakaLogoComponent'
 
 function ShopHomePage() {
 
 
     return (
         <>
-            <div className="shakaLogo">
-                <span>
-                    S H A K A
-                </span>
-            </div>
+            <ShakaLogoComponent class1="ShakaLogoShop"/>
             <div className="whatsHotDiv">
 
             </div>

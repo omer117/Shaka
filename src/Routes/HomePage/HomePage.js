@@ -1,9 +1,72 @@
+import "./HomePage.scss"
+import axios from 'axios';
+import { Link } from "react-router-dom";
+import { Grid } from '@mui/material';
+import { useState, useEffect } from 'react';
+import ShakaLogoComponent from '../../Components/ShakaLogoComponent/ShakaLogoComponent'
+import ProductCardComponent from "../../Components/CardComponent/ProductCardComponent"
+import { Button } from "@mui/material";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
-function HomePage(){
 
-    return(
-        <div></div>
+
+function HomePage() {
+
+    let [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        axios.get(`/sideRequest`).then((res) => {
+            setProducts(res.data);
+        });
+    }, []);
+
+    let productList = products.map((product) => {
+        return (<ProductCardComponent className="id" key={product.id} data={product} />);
+    });
+
+
+    return (
+        <>
+            <ShakaLogoComponent class1="ShakaLogoHome" />
+            <div className="surfingTodayDiv">
+                <h2>The nearest beach -  </h2>
+                <h4>check if it's a good day to surf!</h4>
+                <p>Wave Height</p>
+                <p>wind Direction:</p>
+                <p>Wind Speed:</p>
+                <p>Water temp'(c')</p>
+            </div>
+
+            <div className='HotNowDiv'>
+                <h1>Hot Now!</h1>
+                <Grid container
+                    spacing={6}
+                    className="specific-catagory-container"
+                    style={{
+                        marginTop: '20px',
+                        marginBottom: '20px',
+                        alignItems: 'center',
+                    }}
+                >
+                    {productList}
+                </Grid>
+            </div>
+            <div className="forMore">
+
+                <Button
+                    variant="outlined"
+                    endIcon={<ArrowForwardIcon />}
+                >
+                    <Link to="/shop">For more </Link>
+                </Button>
+            </div>
+            <div className="community-container">
+                <h1>Join Our Community Today!</h1>
+
+            </div>
+
+        </>
     )
 }
 

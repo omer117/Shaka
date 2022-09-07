@@ -4,8 +4,9 @@
     background-size: fill;
     background-blend-mode: darken;
     border-radius: 18px; 
-
 }
+
+
 
 @mixin centeringStuff {
     display: flex;
@@ -30,14 +31,6 @@
         font-weight: 900;
         color: #fff;
     }
-
-    img{
-    padding-left: 34px;
-    rotate:(-30deg);
-    color:#fff;
-    width: 10%;
-    height: 35%;
-    }
 }
 
 @media screen and (max-width: 678px) {
@@ -48,13 +41,6 @@
         font-weight: 900;
     }
 
-    img{
-        padding-left: 34px;
-        rotate:(-30deg);
-    
-        width: 5%;
-        height: 25%;
-        }
 }
 }
 
