@@ -33,6 +33,7 @@ function NavBarComponent(props) {
                 <Link to="/waveWeather">Surfin' today?</Link>
                 <Link to="/community">Our community</Link>
                 <Link to="/shop">Shop</Link>
+                <Link to="/login">Log In</Link>
                 <div
                     className="icon"
                     onClick={responsive}>

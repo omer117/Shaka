@@ -10,15 +10,21 @@ function ShopSingleViewPage(props) {
 
 
     console.log(catagory)
-
     useEffect(() => {
-        axios.post('/getProduct',
-            [catagory.id, catagory.catagory]
-        ).then((response) => {
-            setProducts(JSON.parse(response.data));
-        }).then((err) => {
-            console.log(err);
-        })
+        if (isNaN(Number(catagory.id))) {
+            alert('fuckk offff')
+            window.location.href = "/"
+        }
+        else {
+            axios.post('/getProduct',
+                [catagory.id, catagory.catagory]
+            ).then((response) => {
+                setProducts(JSON.parse(response.data));
+            }
+            ).then((err) => {
+                console.log(err);
+            })
+        }
     }, [])
 
     console.log(product);

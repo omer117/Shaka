@@ -4,8 +4,9 @@ import NavBarComponent from "../NavbarComponents/NavBarComponent";
 import ShopHomePage from "../../Routes/shopSection/ShopHomePage/ShopHomePage"
 import ShopCatagoryPage from "../../Routes/shopSection/ShopCatagoryPage/ShopCatagoryPage"
 import ShopSingleViewPage from "../../Routes/shopSection/ShopSingleView/ShopSingleViewPage"
-
-
+import LogInPage from "../../Routes/AuthenticationSection/LogInPage/LogInPage"
+import SignUpPage from "../../Routes/AuthenticationSection/SignUpPage/SignUpPage"
+import HomePage from "../../Routes/HomePage/HomePage"
 
 
 
@@ -15,7 +16,7 @@ function App() {
     <>
       <NavBarComponent />
       <Routes>
-        <Route path="/" element={<div>asdf</div>} />
+        <Route path="/" element={<HomePage/>} />
         
         <Route path="/waveWeather" element={<div>hjkh</div>} />
 
@@ -29,6 +30,12 @@ function App() {
 
         <Route path="/myCart" element={<div>mokok</div>} />
         <Route path="/wishlist" element={<div>mokok</div>} />
+
+
+
+
+        <Route path="/signup" element={<SignUpPage/>} />
+        <Route path="/login" element={<LogInPage/>} />
       </Routes>
 
     </>
