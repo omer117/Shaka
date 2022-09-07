@@ -9,7 +9,7 @@ const pageSelector = useRef();
 
     return(
         <div 
-        className={props.class1}
+        className={`ShakaLogoShop ${props.class1}`}
         >
                 <span>
                     S H A K A

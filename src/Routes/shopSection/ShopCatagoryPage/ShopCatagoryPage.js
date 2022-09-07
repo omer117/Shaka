@@ -11,9 +11,9 @@ function ShopCatagoryPage() {
 
     let [products, setProducts] = useState([]);
     useEffect(() => {
-        axios.get(`/getAll${catagory}`).then((res) => {
-            setProducts(res.data);
-        });
+        axios.get(`/getAll${catagory}`)
+        .then((res) => setProducts(res.data))
+        .catch((err) => console.log(err));
     }, []);
 
     let productList = products.map((product) => {

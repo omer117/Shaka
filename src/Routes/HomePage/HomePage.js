@@ -16,9 +16,9 @@ function HomePage() {
     let [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get(`/sideRequest`).then((res) => {
-            setProducts(res.data);
-        });
+        axios.get(`/sideRequest`)
+        .then((res) => setProducts(res.data))
+        .catch((err) => console.log(err));
     }, []);
 
     let productList = products.map((product) => {
@@ -28,7 +28,7 @@ function HomePage() {
 
     return (
         <>
-            <ShakaLogoComponent class1="ShakaLogoHome" />
+            <ShakaLogoComponent class1="Home" />
             <div className="surfingTodayDiv">
                 <h2>The nearest beach -  </h2>
                 <h4>check if it's a good day to surf!</h4>
