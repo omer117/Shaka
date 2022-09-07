@@ -1,13 +1,17 @@
 import { useParams } from "react-router-dom"
 import axios from "axios"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./ShopSingleViewPage.scss"
 import ShakaLogoComponent from '../../../Components/ShakaLogoComponent/ShakaLogoComponent'
+import { Button } from "@mui/material";
+import { info } from "sass";
 
 
 function ShopSingleViewPage(props) {
-    let [product, setProducts] = useState({})
+    let [product, setProducts] = useState({ sizes: [] })
+    let [Chosensize, setSize] = useState({})
     const catagory = useParams()
+
 
     useEffect(() => {
         if (isNaN(Number(catagory.id))) {
@@ -19,19 +23,82 @@ function ShopSingleViewPage(props) {
             axios.post('/getProduct',
                 [catagory.id, catagory.catagory])
                 .then((response) => setProducts(JSON.parse(response.data)))
-                .catch((err) => console.log(err));
+                .catch((err) => console.log(err))
         }
+
     }, [])
+
+
+    
+    
+    
+    // addToCart function, Pretty self explanatory 
+    let productAdded = []
+    const addToCart = () => {
+        if(selectedSize === undefined){
+            alert('Please select Size');
+        }
+        else{
+            let newProduct = {
+                id: product.id,
+                title: product.title,
+                price: product.price,
+                size: selectedSize
+            }
+            console.log(newProduct)
+            productAdded.push(newProduct)
+            localStorage.setItem(`productsInCart`, JSON.stringify(productAdded));
+            console.log(JSON.parse(localStorage.getItem(`productsInCart`)));
+            console.log("added to cart")
+        }
+    }
+    
+    
+    //function that handle the size of the product
+    let selectedSize;
+    const sizeHandle = (e) => {
+        selectedSize = e.target.innerText
+    }
+
+
+    let sizeList = product.sizes.map((size) => {
+        return (
+            <Button
+                variant="outlined"
+                key={size}
+                onClick={sizeHandle}
+            >{size}
+            </Button>)
+    })
+
 
     return (
         <>
-        <ShakaLogoComponent class1="SingleView"/>
+            <ShakaLogoComponent class1="SingleView" />
             <div className="mainContainer">
                 <img className="productImage" src={product.image} />
-                <div className="SingleViewContainer">
-                    sdfg
+                <div className="productInfo">
+                    <h1>{product.title}</h1>
+                    <p>{product.info}</p>
                 </div>
-
+            </div>
+            <div className="productMoreInfo">
+                <h2>{product.price}$</h2>
+                <div className="productSizes">
+                    <p>
+                        please choose a size:
+                    </p>
+                    {sizeList}
+                </div>
+            </div>
+                <Button
+                    onClick={addToCart}
+                    className="addToCartBtn"
+                    variant="contained">
+                    Add to Cart
+                </Button>
+            <div className="youMayDiv">
+            <p>Things you may like</p>
             </div>
         </>
     )

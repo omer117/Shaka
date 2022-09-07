@@ -6,25 +6,60 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./ProductCardComponent.scss"
 import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import { Link, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { log } from 'util';
+
+
 
 
 let productAdded = []
 function ProductCardComponent(props) {
     let { catagory } = useParams();
+    const [size, setSize] = useState({});
 
-    useEffect(()=>{
-        console.log(JSON.parse(localStorage.getItem(`${catagory}productsInCart`)));
+
+    //here we are handeling the size of the product
+    //by 2 functions
+    let sizeList = props.data.sizes.map((size) => {
+        return (
+            <MenuItem value={size} key={size}>{size}</MenuItem>
+        )
     })
 
+    const handleChange = (event) => {
+        setSize(event.target.value);
+        console.log(size)
+    };
 
+
+
+    //add to cart function 
     const addToCart = () => {
-        productAdded.push(props.data)
-        localStorage.setItem(`${catagory}productsInCart`, JSON.stringify(productAdded));
-        console.log(JSON.parse(localStorage.getItem(`${catagory}productsInCart`)));
-        console.log("added to cart")
+        if (isNaN(Number(size))) {
+            alert('Please Select a size')
+        }
+        else {
+            let newProduct = {
+                id: props.data.id,
+                title: props.data.title,
+                price: props.data.price,
+                size: size
+            }
+            productAdded.push(newProduct)
+            console.log(productAdded.length)
+            localStorage.setItem(`productsInCart`, JSON.stringify(productAdded));
+            console.log(JSON.parse(localStorage.getItem(`productsInCart`)));
+            console.log("added to cart")
+        }
     }
+
+
+
 
 
     return (
@@ -65,6 +100,18 @@ function ProductCardComponent(props) {
                                 More Info
                             </Link>
                         </Button>
+                        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                            <InputLabel id="demo-simple-select-standard-label">size</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-standard-label"
+                                id="demo-simple-select-standard"
+                                value={props.data.sizes[1]}
+                                onChange={handleChange}
+                                label="Age"
+                            >
+                                {sizeList}
+                            </Select>
+                        </FormControl>
                     </CardActions>
                 </Card>
             </Grid>

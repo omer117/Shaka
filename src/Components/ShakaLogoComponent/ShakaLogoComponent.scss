@@ -35,10 +35,17 @@
 
 .SingleView{
     background:rgba(105, 102, 102, 0.6) url("../../images/pexels-lucas-meneses-4712714.jpg") !important;
+    background-position: 0px;
+    background-repeat: no-repeat;
+    background-size: 106%;
+    background-blend-mode: darken;
 }
 
 .Home{
-    background-size: 110% !important;
-    background:rgba(105, 102, 102, 0.6) url("../../images/mighty-ocean-waves-from-above-aerial-photography-jenny-rainbow.jpg") !important; 
+    background:rgba(135, 135, 135, 0.6) url("../../images/mighty-ocean-waves-from-above-aerial-photography-jenny-rainbow.jpg") !important; 
+    background-position: 0px;
+    background-repeat: no-repeat;
+    background-size:106%;
+    background-blend-mode: darken;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
