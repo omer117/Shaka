@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import { Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { Button } from "@mui/material";
-import ShakaLogoComponent from '../../Components/ShakaLogoComponent/ShakaLogoComponent'
 import ProductCardComponent from "../../Components/CardComponent/ProductCardComponent"
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
 
 
 

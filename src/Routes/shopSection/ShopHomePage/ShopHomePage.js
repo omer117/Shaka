@@ -12,7 +12,7 @@ function ShopHomePage() {
             <div className="whatsHotDiv">
             </div>
             <Grid container
-                spacing={7}
+                spacing={0.4}
                 className="catagoriesDiv"
                 style={{
                     marginTop: '80px',

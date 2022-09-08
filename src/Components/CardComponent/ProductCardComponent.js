@@ -79,27 +79,14 @@ function ProductCardComponent(props) {
                             component="div">
                             {props.data.title}
                         </Typography>
+                    </CardContent>
+                    <CardContent className="priceAndSizeDiv">
                         <Typography
                             className="product-price"
                             variant="body1">
-                            {`$${props.data.price}`}
+                            {`price: $${props.data.price}`}
                         </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button
-                            onClick={addToCart}
-                            className="addToCartBtn"
-                            variant="contained">
-                            Add to Cart
-                        </Button>
-                        <Button
-                            className="moreInfoButton"
-                        >
-                            <Link to={`/shop/${catagory}/${props.data.id}`}>
-                                More Info
-                            </Link>
-                        </Button>
-                        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                        <FormControl variant="standard" sx={{ m: 1, minWidth: 70 }}>
                             <InputLabel id="demo-simple-select-standard-label">size</InputLabel>
                             <Select
                                 labelId="demo-simple-select-standard-label"
@@ -111,6 +98,26 @@ function ProductCardComponent(props) {
                                 {sizeList}
                             </Select>
                         </FormControl>
+                    </CardContent>
+                    <CardActions className='card-actions'>
+                        <Button
+                            onClick={addToCart}
+                            className="addToCartBtn"
+                            style={{
+                                backgroundColor: '#173885'
+                            }}
+                            variant="contained">
+
+                            Add to Cart
+                        </Button>
+                        <Button
+                            variant='outlined'
+                            className="moreInfoButton"
+                        >
+                            <Link to={`/shop/${catagory}/${props.data.id}`}>
+                                More Info
+                            </Link>
+                        </Button>
                     </CardActions>
                 </Card>
             </Grid>

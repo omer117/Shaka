@@ -5,6 +5,13 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    background-color: #324f89;
+    padding: 30px;    
+    color: #e1ebf1;
+    border-radius: 3px;
+    border: 1px solid rgb(145, 141, 141);
+    -webkit-box-shadow: 1px 0px 12px -1px rgba(0, 0, 0, 0.88);
+    box-shadow: 1px 0px 12px -3px rgba(0, 0, 0, 0.88);
 
     .productImage {
         width: 40%;
@@ -15,12 +22,7 @@
     .productInfo {
         padding: 1.8%;
         margin: 30px 0;
-        background-color: #549ac9;
-        color: #e1ebf1;
-        border-radius: 3px;
-        border: 1px solid rgb(145, 141, 141);
-        -webkit-box-shadow: 1px 0px 12px -1px rgba(0, 0, 0, 0.88);
-        box-shadow: 1px 0px 12px -3px rgba(0, 0, 0, 0.88);
+
     }
 }
 
