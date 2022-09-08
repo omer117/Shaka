@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom"
 import './NavBarComponent.scss';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
@@ -9,6 +9,7 @@ import DehazeIcon from '@mui/icons-material/Dehaze';
 
 
 function NavBarComponent(props) {
+    let [productNumber,setProduct] = useState(0)
 
 
     const responsiveRef = useRef();
@@ -19,6 +20,11 @@ function NavBarComponent(props) {
             responsiveRef.current.className = "topnav";
         }
     }
+
+
+
+
+
 
 
     return (
@@ -40,7 +46,10 @@ function NavBarComponent(props) {
                     <DehazeIcon />
                 </div>
 
-                <Link className="cartNavbar" to="/myCart"><ShoppingCartIcon/></Link>
+                <Link className="cartNavbar" to="/myCart">
+                    <ShoppingCartIcon/>
+                    <div className="littleBubble">{productNumber}</div>
+                </Link>
             </div>
         </>
     )

@@ -52,9 +52,7 @@ function ProductCardComponent(props) {
                 image: props.data.image
             }
             productAdded.push(newProduct)
-            console.log(productAdded.length)
             localStorage.setItem(`productsInCart`, JSON.stringify(productAdded));
-            console.log(JSON.parse(localStorage.getItem(`productsInCart`)));
             console.log("added to cart")
         }
     }

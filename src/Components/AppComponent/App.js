@@ -8,7 +8,7 @@ import LogInPage from "../../Routes/AuthenticationSection/LogInPage/LogInPage"
 import SignUpPage from "../../Routes/AuthenticationSection/SignUpPage/SignUpPage"
 import HomePage from "../../Routes/HomePage/HomePage"
 import MyCart from "../../Routes/shopSection/MyCart/MyCart"
-
+import ShakaLogoComponent from "../ShakaLogoComponent/ShakaLogoComponent"
 
 let user = JSON.parse(localStorage.getItem("user"));
 console.log(user);
@@ -25,6 +25,7 @@ function App() {
   return (
     <>
       <NavBarComponent />
+      <ShakaLogoComponent/>
       <UserGreeting/>
       <Routes>
         <Route path="/" element={<HomePage/>} />

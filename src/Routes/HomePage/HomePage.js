@@ -3,9 +3,9 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import { Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
+import { Button } from "@mui/material";
 import ShakaLogoComponent from '../../Components/ShakaLogoComponent/ShakaLogoComponent'
 import ProductCardComponent from "../../Components/CardComponent/ProductCardComponent"
-import { Button } from "@mui/material";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
@@ -28,7 +28,6 @@ function HomePage() {
 
     return (
         <>
-            <ShakaLogoComponent class1="Home" />
             <div className="surfingTodayDiv">
                 <h2>The nearest beach -  </h2>
                 <h4>check if it's a good day to surf!</h4>
@@ -41,11 +40,11 @@ function HomePage() {
             <div className='HotNowDiv'>
                 <h1>Hot Now!</h1>
                 <Grid container
-                    spacing={6}
+                    spacing={4}
                     className="specific-catagory-container"
                     style={{
-                        marginTop: '20px',
-                        marginBottom: '20px',
+                        marginTop: '10px',
+                        marginBottom: '10px',
                         alignItems: 'center',
                     }}
                 >

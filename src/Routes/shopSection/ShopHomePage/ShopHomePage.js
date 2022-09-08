@@ -1,17 +1,15 @@
-import React from "react";
-import { Link, useParams} from "react-router-dom";
 import "./ShopHomePage.scss"
+import { Link, useParams} from "react-router-dom";
+import React from "react";
 import Grid from '@mui/material/Grid';
-import ShakaLogoComponent from '../../../Components/ShakaLogoComponent/ShakaLogoComponent'
+
 
 function ShopHomePage() {
 
 
     return (
         <>
-            <ShakaLogoComponent class1="ShakaLogoShop"/>
             <div className="whatsHotDiv">
-
             </div>
             <Grid container
                 spacing={7}
