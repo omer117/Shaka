@@ -10,8 +10,9 @@ let productAdded = []
 function ShopSingleViewPage(props) {
     let [product, setProducts] = useState({ sizes: [] })
     let [Chosensize, setSize] = useState({})
+    let [moreProducts, setMoreProducts] = useState({})
     const catagory = useParams()
-
+console.log(catagory.catagory);
 
     useEffect(() => {
         if (isNaN(Number(catagory.id))) {
@@ -25,9 +26,15 @@ function ShopSingleViewPage(props) {
                 .then((response) => setProducts(JSON.parse(response.data)))
                 .catch((err) => console.log(err))
         }
-
     }, [])
+console.log(moreProducts);
 
+useEffect(()=>{
+    axios.post('/youMayLike', [catagory.catagory])
+    .then((response) => setMoreProducts(JSON.parse(response.data)))
+    .catch((err) => console.log(err))
+
+},[])
 
     
     
@@ -51,12 +58,9 @@ function ShopSingleViewPage(props) {
             console.log("added to cart")
         }
     }
-    
-    
     //function that handle the size of the product
     const sizeHandle = (e) => {
         setSize(e.target.innerText)
-        console.log(Chosensize)
     }
 
 

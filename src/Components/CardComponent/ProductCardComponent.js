@@ -48,7 +48,8 @@ function ProductCardComponent(props) {
                 id: props.data.id,
                 title: props.data.title,
                 price: props.data.price,
-                size: size
+                size: size,
+                image: props.data.image
             }
             productAdded.push(newProduct)
             console.log(productAdded.length)
