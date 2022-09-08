@@ -10,11 +10,22 @@ import HomePage from "../../Routes/HomePage/HomePage"
 import MyCart from "../../Routes/shopSection/MyCart/MyCart"
 
 
+let user = JSON.parse(localStorage.getItem("user"));
+console.log(user);
+
+
+function UserGreeting(){
+  return(
+    user !== null ? <h2>Hello {user.username}</h2> : <div className="nothing"> </div>
+  )
+}
 
 function App() {
+
   return (
     <>
       <NavBarComponent />
+      <UserGreeting/>
       <Routes>
         <Route path="/" element={<HomePage/>} />
         
