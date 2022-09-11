@@ -12,10 +12,9 @@ function ShopCatagoryPage() {
     let [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.post('/addAll', {
-            details: [catagory]
-        }).then((res) => {
-            console.log(res)//TODO:add handle succes edit
+        axios.post('/getAll', [catagory])
+        .then((res) => {
+            setProducts(JSON.parse(res.data))//TODO:add handle succes edit
         });
     }, []);
 
@@ -24,7 +23,6 @@ function ShopCatagoryPage() {
     });
 
     return (
-
         <>
             <Grid container
                 spacing={6}
