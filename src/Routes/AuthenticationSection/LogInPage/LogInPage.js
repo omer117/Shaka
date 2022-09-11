@@ -1,25 +1,39 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { log } from 'util';
-
-
 
 
 function LogInPage() {
 const [user, setUser] = useState({})
+const [usersDetails, setDetails] = useState([])
+
+useEffect(()=>{
+axios.get('/getMailUser')
+.then((res)=>setDetails(res.data))
+.catch((err)=>console.log(err));
+},[])
 
 
+let passwordValidation = (password) => {
+    const specialCharsForPassowrd = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
-
-let passwordValidation =  (password) =>{
-    if(password.length<=8) return false
+    if (password.length < 8 || specialCharsForPassowrd.test(password)) return false
     else return true
 }
 
+let emailValidation = (email) => {
+    const specialCharsForEmail = /[`!#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/;
 
-
-console.log(passwordValidation('asdfds8978321'))
+    for (let i = 0; i < usersDetails.length; i++) {
+        if (email === usersDetails[i].email || !specialCharsForEmail.test(email)) {
+            return true
+        }
+        else {
+            return false;
+        }
+    }
+}
+console.log(usersDetails);
     
 
 const onFormSubmit = async (event) => {
@@ -29,19 +43,19 @@ const onFormSubmit = async (event) => {
         formData.mailAddress = formData.mailAddress;
         formData.password = formData.password;
 
-        if(passwordValidation(formData.password)){
-            console.log(formData);
+        if(emailValidation(formData.mailAddress)&& passwordValidation(formData.password)){
+            await axios.post('/CheckLogIn', {
+                userDetails: formData
+            }).then((res) => {
+                setUser(res.data)
+            }).catch((err) => {
+    console.log(err);
+            });
+            window.location.reload();
+            window.location.href = "/"
         }else{
-            alert("Please enter a valid password");
+            alert("Password or email validation failed");
         }
-        await axios.post('/CheckLogIn', {
-            userDetails: formData
-        }).then((res) => {
-            setUser(res.data)
-        }).catch((err) => {
-console.log(err);
-        });
-        // window.location.href = "/"
     }
 
     useEffect(() =>{
