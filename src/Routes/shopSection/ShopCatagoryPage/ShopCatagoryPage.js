@@ -10,10 +10,13 @@ function ShopCatagoryPage() {
     let { catagory } = useParams();
 
     let [products, setProducts] = useState([]);
+
     useEffect(() => {
-        axios.get(`/getAll${catagory}`)
-        .then((res) => setProducts(res.data))
-        .catch((err) => console.log(err));
+        axios.post('/addAll', {
+            details: [catagory]
+        }).then((res) => {
+            console.log(res)//TODO:add handle succes edit
+        });
     }, []);
 
     let productList = products.map((product) => {

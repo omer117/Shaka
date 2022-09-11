@@ -9,6 +9,7 @@ import SignUpPage from "../../Routes/AuthenticationSection/SignUpPage/SignUpPage
 import HomePage from "../../Routes/HomePage/HomePage"
 import MyCart from "../../Routes/shopSection/MyCart/MyCart"
 import ShakaLogoComponent from "../ShakaLogoComponent/ShakaLogoComponent"
+import AddPageComponent from "../../Routes/AdminFunctions/AddPage/AddPageComponent"
 
 let user = JSON.parse(localStorage.getItem("user"));
 console.log(user);
@@ -37,7 +38,7 @@ function App() {
         <Route path="/shop/:catagory" element={<ShopCatagoryPage />} />
         <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage />} />
         <Route path="/shop/:catagory/:id/EditProduct" element={<div>sadf</div>}/>
-        <Route path="/addProduct" element={<div>sadf</div>}/>
+        <Route path="/addProduct" element={<AddPageComponent/>}/>
 
         <Route path="/about" element={<div>asfasf</div>} />
 

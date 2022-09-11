@@ -92,7 +92,7 @@ function SignUpPage(props) {
             </div>
             <div>
                 <p>please insert a valid letters only! </p>
-                <p>no:<b>  !#$%^&*()_+\- </b> </p>
+                <p>no:<b>  !#$%^&*()_+\-'' </b> </p>
                 <p>password greater then 8 letters only </p>
             </div>
         </>

@@ -90,7 +90,6 @@ function ProductCardComponent(props) {
                             <Select
                                 labelId="demo-simple-select-standard-label"
                                 id="demo-simple-select-standard"
-                                value={props.data.sizes[1]}
                                 onChange={handleChange}
                                 label="Age"
                             >
