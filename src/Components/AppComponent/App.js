@@ -10,6 +10,9 @@ import HomePage from "../../Routes/HomePage/HomePage"
 import MyCart from "../../Routes/shopSection/MyCart/MyCart"
 import ShakaLogoComponent from "../ShakaLogoComponent/ShakaLogoComponent"
 import AddPageComponent from "../../Routes/AdminFunctions/AddPage/AddPageComponent"
+import EditPageComponent from "../../Routes/AdminFunctions/EditPage/EditPageComponent"
+
+
 
 let user = JSON.parse(localStorage.getItem("user"));
 console.log(user);
@@ -31,14 +34,14 @@ function App() {
       <UserGreeting />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        
+
         <Route path="/waveWeather" element={<div>hjkh</div>} />
 
-        <Route path="/shop" element={<ShopHomePage />} />
-        <Route path="/shop/:catagory" element={<ShopCatagoryPage />} />
+        <Route path="shop" element={<ShopHomePage />} />
+        <Route path="shop/:catagory" element={<ShopCatagoryPage />} />
         <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage />} />
-        <Route path="/shop/:catagory/:id/EditProduct" element={<div>sadf</div>}/>
-        <Route path="/addProduct" element={<AddPageComponent/>}/>
+        <Route path="/shop/:catagory/:id/EditProduct" element={<EditPageComponent/>} />
+        <Route path="/addProduct" element={<AddPageComponent />} />
 
         <Route path="/about" element={<div>asfasf</div>} />
 

@@ -6,9 +6,7 @@ import Grid from '@mui/material/Grid';
 
 
 function ShopCatagoryPage() {
-
     let { catagory } = useParams();
-
     let [products, setProducts] = useState([]);
 
     useEffect(() => {
