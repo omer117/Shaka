@@ -14,40 +14,43 @@ let user = JSON.parse(localStorage.getItem("user"));
 console.log(user);
 
 
-function UserGreeting(){
-  return(
+function UserGreeting() {
+  return (
     user !== null ? <h2>Hello {user.username}</h2> : <div className="nothing"> </div>
   )
 }
+
 
 function App() {
 
   return (
     <>
       <NavBarComponent />
-      <ShakaLogoComponent/>
-      <UserGreeting/>
+      <ShakaLogoComponent />
+      <UserGreeting />
       <Routes>
-        <Route path="/" element={<HomePage/>} />
+        <Route path="/" element={<HomePage />} />
         
         <Route path="/waveWeather" element={<div>hjkh</div>} />
 
-        <Route path="/shop" element={<ShopHomePage/>} />
-        <Route path="/shop/:catagory" element={<ShopCatagoryPage/>} />
-        <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage/>} />
-        
+        <Route path="/shop" element={<ShopHomePage />} />
+        <Route path="/shop/:catagory" element={<ShopCatagoryPage />} />
+        <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage />} />
+        <Route path="/shop/:catagory/:id/EditProduct" element={<div>sadf</div>}/>
+        <Route path="/addProduct" element={<div>sadf</div>}/>
+
         <Route path="/about" element={<div>asfasf</div>} />
-        
+
         <Route path="/community" element={<div>tn</div>} />
 
-        <Route path="/myCart" element={<MyCart/>} />
+        <Route path="/myCart" element={<MyCart />} />
         <Route path="/wishlist" element={<div>mokok</div>} />
 
 
 
 
-        <Route path="/signup" element={<SignUpPage/>} />
-        <Route path="/login" element={<LogInPage/>} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/login" element={<LogInPage />} />
       </Routes>
 
     </>
