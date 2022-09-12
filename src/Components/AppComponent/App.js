@@ -20,7 +20,7 @@ console.log(user);
 
 function UserGreeting() {
   return (
-    user !== null ? <h2>Hello {user.username}</h2> : <div className="nothing"> </div>
+    user !== null || user !== undefined ? <h2>Hello {user.username}</h2> : <div className="nothing"> </div>
   )
 }
 
@@ -37,11 +37,11 @@ function App() {
 
         <Route path="/waveWeather" element={<div>hjkh</div>} />
 
-        <Route path="shop" element={<ShopHomePage />} />
-        <Route path="shop/:catagory" element={<ShopCatagoryPage />} />
-        <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage />} />
-        <Route path="/shop/:catagory/:id/EditProduct" element={<EditPageComponent/>} />
-        <Route path="/addProduct" element={<AddPageComponent />} />
+        <Route path="shop" element={<ShopHomePage />}/>
+          <Route path="shop/:catagory" element={<ShopCatagoryPage />} />
+          <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage />} />
+          <Route path="/shop/:catagory/:id/EditProduct" element={<EditPageComponent />} />
+          <Route path="/addProduct" element={<AddPageComponent />} />
 
         <Route path="/about" element={<div>asfasf</div>} />
 

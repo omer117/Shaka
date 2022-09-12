@@ -76,6 +76,7 @@ function ShopSingleViewPage(props) {
     let sizeList = product.sizes.map((size) => {
         return (
             <Button
+                className="sizeBtn"
                 variant="outlined"
                 key={size}
                 onClick={sizeHandle}
@@ -94,7 +95,7 @@ function ShopSingleViewPage(props) {
                 </div>
             </div>
             <div className="productMoreInfo">
-                <h2>{product.price}$</h2>
+                <h2>price: {product.price}$</h2>
                 <div className="productSizes">
                     <p>
                         please choose a size:

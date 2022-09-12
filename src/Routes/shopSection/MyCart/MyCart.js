@@ -1,19 +1,26 @@
 import "./MyCart.scss"
-import {useEffect} from 'react'
+import { useEffect } from 'react'
 import { Button } from "@mui/material";
 import ClearIcon from '@mui/icons-material/Clear';
 
 function MyCart() {
 
     let products = JSON.parse(localStorage.getItem('productsInCart'));
-    console.log(products.length);
+    console.log(products);
 
-useEffect(()=>{
-    console.log('dsa')
-    
-})
+    useEffect(() => {
+        console.log('dsa')
 
-    
+    })
+
+    function OverAllPrice() {
+        let price = 0;
+        for (let i = 0; i < products.length; i++) {
+            price += products[i].price;
+        }
+        return <h1>price: {price}$</h1>
+    }
+
 
     let productsElement = products.map((product) => {
         return (
@@ -43,8 +50,11 @@ useEffect(()=>{
                 {productsElement}
             </div>
             <div className="dealFinishing">
-                {/* <h2>price: {overAllPrice} </h2> */}
-                <Button>Buy Now</Button>
+                <div><OverAllPrice /> </div>
+                <Button
+                    variant="contained"
+                    className="buyBtn"
+                >Buy Now</Button>
             </div>
         </>
     )

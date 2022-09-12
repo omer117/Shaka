@@ -1,4 +1,10 @@
+.productsInCart{
+
+}
+
+
 .mainProductDiv {
+    height: 200px;
     margin-top: 9%;
     display: flex;
     justify-content: space-between;
@@ -7,7 +13,7 @@
     -webkit-box-shadow: 1px 0px 12px -1px rgba(0, 0, 0, 0.88);
     box-shadow: 1px 0px 12px -3px rgba(0, 0, 0, 0.88);
     img {
-        width: 23%;
+        width: 30% !important;
     }
     .productInfo {
         display: flex;
@@ -36,4 +42,12 @@ button{
         background-color: rgb(94, 86, 86) !important;
     }
 }
+}
+.buyBtn{
+    margin: 30px 0 !important;
+    width: 18%;
+    font-size: large !important;
+    background-color: #0F4C75 !important;
+
+
 }

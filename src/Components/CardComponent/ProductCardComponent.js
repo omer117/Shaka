@@ -87,6 +87,7 @@ function ProductCardComponent(props) {
                             <Select
                                 labelId="demo-simple-select-standard-label"
                                 id="demo-simple-select-standard"
+                                defaultValue={""}
                                 onChange={handleChange}
                                 label="Age"
                             >
