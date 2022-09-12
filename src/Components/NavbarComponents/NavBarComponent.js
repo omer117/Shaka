@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom"
 import './NavBarComponent.scss';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
@@ -9,7 +9,15 @@ import DehazeIcon from '@mui/icons-material/Dehaze';
 
 
 function NavBarComponent(props) {
-    let [productNumber,setProduct] = useState(0)
+    let [numberOfProducts,setNumber] = useState()
+
+    let products = (JSON.parse(localStorage.getItem('productsInCart')).length);
+    console.log(products)
+
+    useEffect(()=>{
+        setNumber(products)
+    },[numberOfProducts])
+
 
 
     const responsiveRef = useRef();
@@ -20,6 +28,7 @@ function NavBarComponent(props) {
             responsiveRef.current.className = "topnav";
         }
     }
+
 
 
 
@@ -47,8 +56,8 @@ function NavBarComponent(props) {
                 </div>
 
                 <Link className="cartNavbar" to="/myCart">
-                    <ShoppingCartIcon/>
-                    <div className="littleBubble">{productNumber}</div>
+                    <ShoppingCartIcon />
+                    <div className="littleBubble">{numberOfProducts}</div>
                 </Link>
             </div>
         </>

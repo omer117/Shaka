@@ -9,11 +9,21 @@ function ShopCatagoryPage() {
     let { catagory } = useParams();
     let [products, setProducts] = useState([]);
 
+
+    function isValidParams(name) {
+        const specialCharsForName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        return !specialCharsForName.test(name)
+    }
+
     useEffect(() => {
-        axios.post('/getAll', [catagory])
-        .then((res) => {
-            setProducts(JSON.parse(res.data))//TODO:add handle succes edit
-        });
+        if (isValidParams(catagory)) {
+            axios.post('/getAll', [catagory])
+                .then((res) => {
+                    setProducts(JSON.parse(res.data))//TODO:add handle succes edit
+                });
+        }else{
+            alert('no sqli here boi')
+        }
     }, []);
 
     let productList = products.map((product) => {

@@ -12,14 +12,18 @@ function ShopSingleViewPage(props) {
     let [Chosensize, setSize] = useState({})
     let [moreProducts, setMoreProducts] = useState({})
     const catagory = useParams()
-console.log(catagory.catagory);
+
+    function isValidParams(name) {
+        const specialCharsForName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        return specialCharsForName.test(name)
+    }
+
 
     useEffect(() => {
-        if (isNaN(Number(catagory.id))) {
+        if (isNaN(Number(catagory.id)) && isValidParams(catagory.catagory)) {
             alert('no sqli in here sryyy')
             window.location.href = "/"
         }
-        //to add another chack for sqli in catagory params
         else {
             axios.post('/getProduct',
                 [catagory.id, catagory.catagory])
@@ -27,24 +31,26 @@ console.log(catagory.catagory);
                 .catch((err) => console.log(err))
         }
     }, [])
-console.log(moreProducts);
 
-useEffect(()=>{
-    axios.post('/youMayLike', [catagory.catagory])
-    .then((response) => setMoreProducts(JSON.parse(response.data)))
-    .catch((err) => console.log(err))
+    console.log(moreProducts);
 
-},[])
+    useEffect(() => {
+        if (!isValidParams(catagory.catagory)) {
+            axios.post('/youMayLike', [catagory.catagory])
+                .then((response) => setMoreProducts(JSON.parse(response.data)))
+                .catch((err) => console.log(err))
+        }
+    }, [])
 
-    
-    
-    
+
+
+
     // addToCart function, Pretty self explanatory 
     const addToCart = () => {
         if (isNaN(Number(Chosensize))) {
             alert('Please Select a size')
         }
-        else{
+        else {
             let newProduct = {
                 id: product.id,
                 title: product.title,
@@ -58,6 +64,9 @@ useEffect(()=>{
             console.log("added to cart")
         }
     }
+
+
+
     //function that handle the size of the product
     const sizeHandle = (e) => {
         setSize(e.target.innerText)
@@ -77,7 +86,6 @@ useEffect(()=>{
 
     return (
         <>
-            <ShakaLogoComponent class1="SingleView" />
             <div className="mainContainer">
                 <img className="productImage" src={product.image} />
                 <div className="productInfo">
@@ -94,14 +102,14 @@ useEffect(()=>{
                     {sizeList}
                 </div>
             </div>
-                <Button
-                    onClick={addToCart}
-                    className="addToCartBtn"
-                    variant="contained">
-                    Add to Cart
-                </Button>
+            <Button
+                onClick={addToCart}
+                className="addToCartBtn"
+                variant="contained">
+                Add to Cart
+            </Button>
             <div className="youMayDiv">
-            <p>Things you may like</p>
+                <p>Things you may like</p>
             </div>
         </>
     )

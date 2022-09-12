@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react'
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import "./SignUpPage.scss";
 
 
 function SignUpPage(props) {
@@ -75,25 +78,61 @@ function SignUpPage(props) {
 
     return (
         <>
-            <div>
-                {/* <Link to={'/'}>Home</Link> */}
-                <form onSubmit={onFormSubmit} id="addForm">
-                    <label htmlFor="userName">user name</label><br />
-                    <input type="text" name="userName" /><br />
+            <div className="container">
+                <div className="signUpHeader">Sign Up</div>
+                <div className='logInForm'>
 
-                    <label htmlFor="mailAddress">mail address</label><br />
-                    <input type="text" name="mailAddress" /><br />
+                    <form onSubmit={onFormSubmit} id="signUpForm">
+                        <TextField
+                            className="form"
+                            label="Outlined"
+                            variant="outlined"
+                            htmlFor="userName"
+                            type="text"
+                            name="userName"
+                        />
 
-                    <label htmlFor="password">password</label><br />
-                    <input type="text" name="password" /><br />
-                </form>
-                <br />
-                <button type="submit" form="addForm" value="Submit">register</button>
-            </div>
-            <div>
+                        <TextField
+
+                            className="form"
+                            id="outlined-basic"
+                            label="mail address"
+                            variant="outlined"
+                            htmlFor="mailAddress"
+                            type="text"
+                            name="mailAddress"
+                        />
+
+
+                        <TextField
+
+                            className="form"
+                            id="password"
+                            label="password"
+                            variant="outlined"
+                            htmlFor="password"
+                            type="password"
+                            autoComplete="current-password"
+                            name="password"
+                        />
+
+                    </form>
+                </div>
+            <div className='instructionsDiv'>
                 <p>please insert a valid letters only! </p>
                 <p>no:<b>  !#$%^&*()_+\-'' </b> </p>
                 <p>password greater then 8 letters only </p>
+            </div>
+                <div className="formActions">
+
+                    <Button
+                        className="joinUs"
+                        variant="contained"
+                        type="submit"
+                        form="addForm"
+                        value="Submit"
+                    >Join Shaka!</Button>
+                </div>
             </div>
         </>
 

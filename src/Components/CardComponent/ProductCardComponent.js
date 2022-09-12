@@ -39,10 +39,7 @@ function ProductCardComponent(props) {
 
     //add to cart function 
     const addToCart = () => {
-        if (isNaN(Number(size))) {
-            alert('Please Select a size')
-        }
-        else {
+        
             let newProduct = {
                 id: props.data.id,
                 title: props.data.title,
@@ -53,7 +50,7 @@ function ProductCardComponent(props) {
             productAdded.push(newProduct)
             localStorage.setItem(`productsInCart`, JSON.stringify(productAdded));
             console.log("added to cart")
-        }
+        
     }
 
 
@@ -101,9 +98,6 @@ function ProductCardComponent(props) {
                         <Button
                             onClick={addToCart}
                             className="addToCartBtn"
-                            style={{
-                                backgroundColor: '#173885'
-                            }}
                             variant="contained">
 
                             Add to Cart

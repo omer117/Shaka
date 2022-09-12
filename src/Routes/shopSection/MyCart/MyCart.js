@@ -1,13 +1,20 @@
 import "./MyCart.scss"
-
+import {useEffect} from 'react'
 import { Button } from "@mui/material";
 import ClearIcon from '@mui/icons-material/Clear';
 
 function MyCart() {
+
     let products = JSON.parse(localStorage.getItem('productsInCart'));
     console.log(products.length);
 
-        
+useEffect(()=>{
+    console.log('dsa')
+    
+})
+
+    
+
     let productsElement = products.map((product) => {
         return (
             <div className="mainProductDiv" key={product.id}>
@@ -20,18 +27,18 @@ function MyCart() {
                     </div>
                 </div>
                 <div className="deleteBtn">
-                <Button
-                    variant="contained"
+                    <Button
+                        variant="contained"
                     // onClick={deleteProduct}
                     ><ClearIcon /></Button>
-                    </div>
+                </div>
             </div>
         )
     })
 
     return (
         <>
-        <h1>My cart:</h1>
+            <h1>My cart:</h1>
             <div className="productsInCart">
                 {productsElement}
             </div>

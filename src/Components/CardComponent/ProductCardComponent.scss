@@ -22,6 +22,7 @@
     align-items: center;
     text-align: center;
     padding: 0 !important;
+    
     .product-price {
         padding-top: 9.9%;
         font-weight: 700;
@@ -31,10 +32,15 @@
 .card-actions {
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 2px;
 
-    .moreInfoButton{
-        border-color: #173885;
-        color: #173885;
+    .addToCartBtn {
+        background-color: #0f4c75 !important;
+    }
+    .moreInfoButton {
+        border-color: #0f4c75;
+        color: #0f4c75;
+        padding-bottom: 2%;
     }
 }
