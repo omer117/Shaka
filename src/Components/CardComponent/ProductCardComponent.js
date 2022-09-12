@@ -14,12 +14,12 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 
+let productAdded = [...JSON.parse(localStorage.getItem('productsInCart'))]
 
-
-let productAdded = []
 function ProductCardComponent(props) {
     let { catagory } = useParams();
     const [size, setSize] = useState({});
+
 
 
     //here we are handeling the size of the product
@@ -50,8 +50,9 @@ function ProductCardComponent(props) {
             productAdded.push(newProduct)
             localStorage.setItem(`productsInCart`, JSON.stringify(productAdded));
             console.log("added to cart")
-        
-    }
+            props.myCartFunction(productAdded.length)
+            
+        }
 
 
 

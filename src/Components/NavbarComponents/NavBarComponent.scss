@@ -3,25 +3,6 @@
     width: 100%;
     background-color: #0c266f;
     color: #bbe1fa;
-    
-    .cartNavbar{
-        display: block;
-        float: right;
-        
-        .littleBubble{
-        position: absolute;
-        right: 70px;
-        top: 3px;
-        color: black;
-        font-size: x-small;
-        font-weight: 400;
-        border-radius: 50px;
-        width: 14px;
-        height: 14px;
-        background-color: rgb(162, 220, 201);
-        }
-    }
-
 
     a {
         float: left;
@@ -46,18 +27,9 @@
         height: 10vh;
         a {
             &:not(.shaka) {
-                &:not(.cartNavbar){
+                &:not(.cartNavbar) {
                     display: none;
                 }
-            }
-        }
-        .cartNavbar{
-            float: right;
-            display: block;
-            padding: 14px 19px;
-            
-            .littleBubble{
-            right: 80px;
             }
         }
         .icon {
@@ -78,64 +50,58 @@
             position: absolute;
             right: 0;
             top: 0;
-            &:active{
-
-                transition:1s ease;
+            &:active {
+                transition: 1s ease;
             }
         }
-        
+
         a {
             background-color: #001d6e;
-          float: none;
-          display: block;
-          text-align: left;
-        }}
+            float: none;
+            display: block;
+            text-align: left;
+        }
+    }
 }
 
-// .navbar {
-//     height: 8vh;
-//     width: 100%;
-//     display: flex;
-//     justify-content: space-between;
-//     background-color: #001d6e;
-//     color: #bbe1fa;
-//     text-align: center;
-//     align-items: center;
+.bottomNavBar {
+    width: 100%;
+    background-color: black;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    height: 35px;
 
-//     div {
-//         width: 20%;
-//     }
+.userLinks{
+    display: flex;
+    justify-content: space-around;
+    width: 16%;   
+    align-items: center;
+    
+}
 
-//     .icons {
-//         display: flex;
-//         justify-content: flex-end;
-//     }
-// }
+.cartLink{
+display: flex;
+padding-top: 3px;
 
-// .menu {
-//     display: none;
-// }
+.cartNavbar{
+padding-top: 7px;
+}
 
-// @media screen and (max-width: 650px) {
-//     .menu {
-//         button {
-//             all: unset;
-//             cursor: pointer;
-//         }
 
-//         height: 100%;
-//         display: block;
-//         &:hover {
-//             background-color: #435ca0;
-//         }
-//     }
+.littleBubble {
+    display: inline;            
+    color: black;
+    font-size: x-small;
+    font-weight: 400;
+    border-radius: 10px;
+    width: 13px;
+    height: 14px;
+    text-align: center;
+    background-color: rgb(162, 220, 201);
+}
+}
+    }
 
-//     .navbar {
-//         justify-content: flex-end;
-//         div {
-//             &:not(.menu) {
-//                 display: none;
-//             }
-//         }
-//     }
-// }

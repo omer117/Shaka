@@ -11,36 +11,31 @@ import MyCart from "../../Routes/shopSection/MyCart/MyCart"
 import ShakaLogoComponent from "../ShakaLogoComponent/ShakaLogoComponent"
 import AddPageComponent from "../../Routes/AdminFunctions/AddPage/AddPageComponent"
 import EditPageComponent from "../../Routes/AdminFunctions/EditPage/EditPageComponent"
+import { useState,useEffect } from "react";
 
 
-
-let user = JSON.parse(localStorage.getItem("user"));
-console.log(user);
-
-
-function UserGreeting() {
-  return (
-    user !== null ? <h2>Hello {user.username}</h2> : <div className="nothing"> </div>
-    // <div>he</div>
-  )
-}
-
+let productAdded = [...JSON.parse(localStorage.getItem('productsInCart'))]
 
 function App() {
+let [numberOfProducts, setNumberOfProducts] = useState(0)
+
+console.log(productAdded)
+useEffect(() => {
+setNumberOfProducts(productAdded.length)
+},[])
 
   return (
     <>
-      <NavBarComponent />
+      <NavBarComponent numberOfProducts={numberOfProducts} />
       <ShakaLogoComponent />
-      <UserGreeting />
       <Routes>
         <Route path="/" element={<HomePage />} />
 
         <Route path="/waveWeather" element={<div>hjkh</div>} />
 
         <Route path="shop" element={<ShopHomePage />}/>
-        <Route path="shop/:catagory" element={<ShopCatagoryPage />} />
-        <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage />} />
+        <Route path="shop/:catagory" element={<ShopCatagoryPage myCartFunction={setNumberOfProducts}/>} />
+        <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage myCartFunction={setNumberOfProducts}/>} />
         <Route path="/shop/:catagory/:id/EditProduct" element={<EditPageComponent />} />
         <Route path="/addProduct" element={<AddPageComponent />} />
 

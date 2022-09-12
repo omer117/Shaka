@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import { Button } from "@mui/material";
 
 
-function ShopCatagoryPage() {
+function ShopCatagoryPage(props) {
     let { catagory } = useParams();
     let [products, setProducts] = useState([]);
     let [productsElements, setProductsElements] = useState([])
@@ -27,6 +27,8 @@ function ShopCatagoryPage() {
         } else {
             alert('no sqli here boi')
         }
+
+
     }, []);
 
 
@@ -35,8 +37,6 @@ function ShopCatagoryPage() {
         products.sort((a, b) => {
             return a.price - b.price;
         })
-        setProducts(products)
-        console.log(products)
     }
 
     let priceHighTo = () => {
@@ -48,10 +48,10 @@ function ShopCatagoryPage() {
 
     useEffect(() => {
         let productList = products.map((product) => {
-            return (<ProductCardComponent key={product.id} data={product} />);
+            return (<ProductCardComponent myCartFunction={props.myCartFunction} key={product.id} data={product} />);
         });
         setProductsElements(productList)
-    })
+    },[productsElements])
 
 
 

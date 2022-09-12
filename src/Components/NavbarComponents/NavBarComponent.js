@@ -5,19 +5,21 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 
+ console.log(localStorage);
+// console.log(user!==null)
+// console.log(user!==undefined)
 
 
+
+
+// function UserGreeting() {
+//     return (
+//          user !== null ? <h3>Hello {user.username}</h3> : <div className="nothing"> </div>
+//         // <div>he</div>
+//     )
+// }
 
 function NavBarComponent(props) {
-    let [numberOfProducts,setNumber] = useState()
-
-    let products = (JSON.parse(localStorage.getItem('productsInCart')).length);
-    console.log(products)
-
-    useEffect(()=>{
-        setNumber(products)
-    },[numberOfProducts])
-
 
 
     const responsiveRef = useRef();
@@ -28,12 +30,6 @@ function NavBarComponent(props) {
             responsiveRef.current.className = "topnav";
         }
     }
-
-
-
-
-
-
 
 
     return (
@@ -48,17 +44,25 @@ function NavBarComponent(props) {
                 <Link to="/waveWeather">Surfin' today?</Link>
                 <Link to="/community">Our community</Link>
                 <Link to="/shop">Shop</Link>
-                <Link to="/login">Log In</Link>
                 <div
                     className="icon"
                     onClick={responsive}>
                     <DehazeIcon />
                 </div>
 
-                <Link className="cartNavbar" to="/myCart">
-                    <ShoppingCartIcon />
-                    <div className="littleBubble">{numberOfProducts}</div>
-                </Link>
+            </div>
+            <div className="bottomNavBar">
+                {/* <UserGreeting /> */}
+                <div className="userLinks">
+                    <Link to="/login">Log In</Link>
+                    <div className="cartLink">
+                    <Link className="cartNavbar" to="/myCart">
+                        <ShoppingCartIcon />
+                    </Link>
+                    <div className="littleBubble">{props.numberOfProducts}</div>
+                    </div>
+                </div>
+
             </div>
         </>
     )

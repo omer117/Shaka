@@ -5,7 +5,8 @@ import "./ShopSingleViewPage.scss"
 import ShakaLogoComponent from '../../../Components/ShakaLogoComponent/ShakaLogoComponent'
 import { Button } from "@mui/material";
 
-let productAdded = []
+let productAdded = [...JSON.parse(localStorage.getItem('productsInCart'))]
+
 
 function ShopSingleViewPage(props) {
     let [product, setProducts] = useState({ sizes: [] })
@@ -47,10 +48,6 @@ function ShopSingleViewPage(props) {
 
     // addToCart function, Pretty self explanatory 
     const addToCart = () => {
-        if (isNaN(Number(Chosensize))) {
-            alert('Please Select a size')
-        }
-        else {
             let newProduct = {
                 id: product.id,
                 title: product.title,
@@ -60,9 +57,9 @@ function ShopSingleViewPage(props) {
             }
             productAdded.push(newProduct)
             localStorage.setItem(`productsInCart`, JSON.stringify(productAdded));
-            console.log(JSON.parse(localStorage.getItem(`productsInCart`)));
             console.log("added to cart")
-        }
+            props.myCartFunction(productAdded.length)
+        
     }
 
 
