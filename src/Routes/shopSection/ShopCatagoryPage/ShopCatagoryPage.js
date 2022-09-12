@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ProductCardComponent from "../../../Components/CardComponent/ProductCardComponent"
 import Grid from '@mui/material/Grid';
+import { Button } from "@mui/material";
 
 
 function ShopCatagoryPage() {
     let { catagory } = useParams();
     let [products, setProducts] = useState([]);
+    let [productsElements, setProductsElements] = useState([])
 
 
     function isValidParams(name) {
@@ -21,26 +23,53 @@ function ShopCatagoryPage() {
                 .then((res) => {
                     setProducts(JSON.parse(res.data))//TODO:add handle succes edit
                 });
-        }else{
+            //set loading = false
+        } else {
             alert('no sqli here boi')
         }
     }, []);
 
-    let productList = products.map((product) => {
-        return (<ProductCardComponent key={product.id} data={product} />);
-    });
+
+
+    let priceLowTo = () => {
+        products.sort((a, b) => {
+            return a.price - b.price;
+        })
+        setProducts(products)
+        console.log(products)
+    }
+
+    let priceHighTo = () => {
+        products.sort((a, b) => {
+            return b.price - a.price;
+        })
+    }
+
+
+    useEffect(() => {
+        let productList = products.map((product) => {
+            return (<ProductCardComponent key={product.id} data={product} />);
+        });
+        setProductsElements(productList)
+    })
+
+
 
     return (
         <>
+            <div className="filterActions">
+                <Button onClick={priceLowTo} >low to high</Button>
+                <Button onClick={priceHighTo}>high to low</Button>
+            </div>
             <Grid container
                 spacing={6}
                 className="specific-catagory-container"
                 style={{
-                    marginTop: '80px',
+                    marginTop: '30px',
                     alignItems: 'center',
                 }}
             >
-                {productList}
+                {productsElements}
             </Grid>
         </>
     )

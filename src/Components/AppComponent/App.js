@@ -20,7 +20,8 @@ console.log(user);
 
 function UserGreeting() {
   return (
-    user !== null || user !== undefined ? <h2>Hello {user.username}</h2> : <div className="nothing"> </div>
+    user !== null ? <h2>Hello {user.username}</h2> : <div className="nothing"> </div>
+    // <div>he</div>
   )
 }
 
@@ -38,10 +39,10 @@ function App() {
         <Route path="/waveWeather" element={<div>hjkh</div>} />
 
         <Route path="shop" element={<ShopHomePage />}/>
-          <Route path="shop/:catagory" element={<ShopCatagoryPage />} />
-          <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage />} />
-          <Route path="/shop/:catagory/:id/EditProduct" element={<EditPageComponent />} />
-          <Route path="/addProduct" element={<AddPageComponent />} />
+        <Route path="shop/:catagory" element={<ShopCatagoryPage />} />
+        <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage />} />
+        <Route path="/shop/:catagory/:id/EditProduct" element={<EditPageComponent />} />
+        <Route path="/addProduct" element={<AddPageComponent />} />
 
         <Route path="/about" element={<div>asfasf</div>} />
 
@@ -49,9 +50,6 @@ function App() {
 
         <Route path="/myCart" element={<MyCart />} />
         <Route path="/wishlist" element={<div>mokok</div>} />
-
-
-
 
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LogInPage />} />
