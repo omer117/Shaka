@@ -15,8 +15,8 @@ function HomePage() {
 
     useEffect(() => {
         axios.get(`/sideRequest`)
-        .then((res) => setProducts(res.data))
-        .catch((err) => console.log(err));
+            .then((res) => setProducts(res.data))
+            .catch((err) => console.log(err));
     }, []);
 
     let productList = products.map((product) => {
@@ -60,9 +60,7 @@ function HomePage() {
             </div>
             <div className="community-container">
                 <h1>Join Our Community Today!</h1>
-
             </div>
-
         </>
     )
 }

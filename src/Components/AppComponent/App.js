@@ -11,6 +11,7 @@ import MyCart from "../../Routes/shopSection/MyCart/MyCart"
 import ShakaLogoComponent from "../ShakaLogoComponent/ShakaLogoComponent"
 import AddPageComponent from "../../Routes/AdminFunctions/AddPage/AddPageComponent"
 import EditPageComponent from "../../Routes/AdminFunctions/EditPage/EditPageComponent"
+import WaveSectionPage from "../../Routes/WaveSection/WaveSectionPage" 
 import { useState,useEffect } from "react";
 
 
@@ -31,7 +32,7 @@ setNumberOfProducts(productAdded.length)
       <Routes>
         <Route path="/" element={<HomePage />} />
 
-        <Route path="/waveWeather" element={<div>hjkh</div>} />
+        <Route path="/waveWeather" element={<WaveSectionPage/>} />
 
         <Route path="shop" element={<ShopHomePage />}/>
         <Route path="shop/:catagory" element={<ShopCatagoryPage myCartFunction={setNumberOfProducts}/>} />
@@ -44,7 +45,7 @@ setNumberOfProducts(productAdded.length)
         <Route path="/community" element={<div>tn</div>} />
 
         <Route path="/myCart" element={<MyCart />} />
-        <Route path="/wishlist" element={<div>mokok</div>} />
+        <Route path="/wishlist" element={<WaveSectionPage/>} />
 
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LogInPage />} />
