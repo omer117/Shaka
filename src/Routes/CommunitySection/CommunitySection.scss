@@ -1,13 +1,9 @@
-.Links{
-    display: flex;
-    justify-content: space-between;
-}
-
 .LoadingDiv {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
     .ring {
-        margin-top: 170px;
-        margin-left: 180px;
         transform: translate(-50%, -50%);
         width: 150px;
         height: 150px;

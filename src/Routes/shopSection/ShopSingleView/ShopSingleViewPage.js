@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom"
 import axios from "axios"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./ShopSingleViewPage.scss"
-import ShakaLogoComponent from '../../../Components/ShakaLogoComponent/ShakaLogoComponent'
+import ProductCardComponent from "../../../Components/CardComponent/ProductCardComponent"
 import { Button } from "@mui/material";
+import { Grid } from '@mui/material';
 
 let productAdded = [...JSON.parse(localStorage.getItem('productsInCart'))]
 
@@ -12,6 +13,8 @@ function ShopSingleViewPage(props) {
     let [product, setProducts] = useState({ sizes: [] })
     let [Chosensize, setSize] = useState({})
     let [moreProducts, setMoreProducts] = useState({})
+    let [extraproducts, setExtraProducts] = useState({})
+
     const catagory = useParams()
 
     function isValidParams(name) {
@@ -33,7 +36,6 @@ function ShopSingleViewPage(props) {
         }
     }, [])
 
-    console.log(moreProducts);
 
     useEffect(() => {
         if (!isValidParams(catagory.catagory)) {
@@ -43,23 +45,31 @@ function ShopSingleViewPage(props) {
         }
     }, [])
 
-
-
+    useEffect(() => {
+        if (moreProducts.length > 0) {
+            let productList = moreProducts.map((moreProduct) => {
+                return (<ProductCardComponent className="id" key={moreProduct.id} data={moreProduct} />);
+            });
+            setExtraProducts(productList) 
+        }
+    }, [moreProducts])
+    
+    console.log(extraproducts.length !== undefined);
 
     // addToCart function, Pretty self explanatory 
     const addToCart = () => {
-            let newProduct = {
-                id: product.id,
-                title: product.title,
-                price: product.price,
-                size: Chosensize,
-                image: product.image
-            }
-            productAdded.push(newProduct)
-            localStorage.setItem(`productsInCart`, JSON.stringify(productAdded));
-            console.log("added to cart")
-            props.myCartFunction(productAdded.length)
-        
+        let newProduct = {
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            size: Chosensize,
+            image: product.image
+        }
+        productAdded.push(newProduct)
+        localStorage.setItem(`productsInCart`, JSON.stringify(productAdded));
+        console.log("added to cart")
+        props.myCartFunction(productAdded.length)
+
     }
 
 
@@ -107,8 +117,19 @@ function ShopSingleViewPage(props) {
                 Add to Cart
             </Button>
             <div className="youMayDiv">
-                <p>Things you may like</p>
-            </div>
+                <h2>Things you may like</h2>
+                <Grid container
+                    spacing={4}
+                    className="specific-catagory-container"
+                    style={{
+                        marginTop: '10px',
+                        marginBottom: '10px',
+                        alignItems: 'center',
+                    }}
+                >
+                {extraproducts.length !== undefined ? extraproducts : <div>s</div>}
+                </Grid>
+                </div>
         </>
     )
 }

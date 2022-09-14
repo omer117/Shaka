@@ -12,8 +12,8 @@ import ShakaLogoComponent from "../ShakaLogoComponent/ShakaLogoComponent"
 import AddPageComponent from "../../Routes/AdminFunctions/AddPage/AddPageComponent"
 import EditPageComponent from "../../Routes/AdminFunctions/EditPage/EditPageComponent"
 import WaveSectionPage from "../../Routes/WaveSection/WaveSectionPage" 
+import CommunitySection from "../../Routes/CommunitySection/CommunitySection"
 import { useState,useEffect } from "react";
-
 
 let productAdded = [...JSON.parse(localStorage.getItem('productsInCart'))]
 
@@ -42,7 +42,7 @@ setNumberOfProducts(productAdded.length)
 
         <Route path="/about" element={<div>asfasf</div>} />
 
-        <Route path="/community" element={<div>tn</div>} />
+        <Route path="/community" element={<CommunitySection/>} />
 
         <Route path="/myCart" element={<MyCart />} />
         <Route path="/wishlist" element={<WaveSectionPage/>} />
