@@ -32,15 +32,18 @@ let catagorys = ['boogi','mansuit','sup','soft','womansuit']
         formData.title = formData.title;
         formData.price = Number(formData.price);
         formData.info = formData.info;
-        formData.sizes = (formData.sizes).split(",");
+        formData.sizes = (formData.sizes);
         formData.imgLink = formData.imgLink;
             console.log(formData)
-        // await axios.post('/addUser', {
-        //     userDetails: formData
-        // }).then((res) => {
-        //     console.log(res)//TODO:add handle succes edit
-        // });
-        // window.location.href = "/login"
+            
+        await axios.post('/addProduct', {
+            sqlString: `
+            INSERT INTO ${formData.catagory} (title,price,info,sizes,image)
+            VAlUES ('${formData.title}', ${formData.price},'${formData.info}','{${formData.sizes}}','${formData.imgLink}');                            
+            `,
+        }).then((res) => {
+            console.log(res)//TODO:add handle succes edit
+        });
     }
 
 

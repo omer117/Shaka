@@ -24,7 +24,7 @@ function EditPageComponent(props) {
             [details.id, details.catagory])
             .then((response) => setProduct(JSON.parse(response.data)))
             .catch((err) => console.log(err))
-    },[])
+    }, [])
 
     console.log(product);
 
@@ -36,20 +36,31 @@ function EditPageComponent(props) {
         formData.title = formData.title;
         formData.price = Number(formData.price);
         formData.info = formData.info;
-        formData.sizes = (formData.sizes).split(",");
+        formData.sizes = (formData.sizes);
         formData.imgLink = formData.imgLink;
         console.log(formData)
-        // await axios.post('/addUser', {
-        //     userDetails: formData
-        // }).then((res) => {
-        //     console.log(res)//TODO:add handle succes edit
-        // });
-        // window.location.href = "/login"
+
+        await axios.post('/deleteProduct', {
+            sqlString: `DELETE FROM ${details.catagory} WHERE id=${details.id}`,
+        }).then((res) => {
+            console.log(res)//TODO:add handle succes edit
+        });
+    
+
+        await axios.post('/addProduct', {
+            sqlString: `
+            INSERT INTO ${formData.catagory} (title,price,info,sizes,image)
+            VAlUES ('${formData.title}', ${formData.price},'${formData.info}','{${formData.sizes}}','${formData.imgLink}');                            
+            `,
+        }).then((res) => {
+            console.log(res)//TODO:add handle succes edit
+        });
     }
 
- let deleteHandler = () =>{
-    
- }
+
+    let deleteHandler = () => {
+
+    }
 
 
     return (
