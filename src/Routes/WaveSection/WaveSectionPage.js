@@ -27,7 +27,7 @@ function distanceBetweenBeaches(lat1, lon1, lat2, lon2, unit) {
 
 
 function WaveSectionPage() {
-    // let [beaches, setBeaches] = useState([])
+    let [beaches, setBeaches] = useState([])
     // let [myLocation, setLocation] = useState([])
     // let [distances, setDistances] = useState([])
     // let [closestBeach, setClosest] = useState({})
@@ -39,16 +39,18 @@ function WaveSectionPage() {
     // let endDate = (date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate() + 1) + 'T' + '00:00:00.552Z')
 
     // console.log(startDate);
-    // useEffect(() => {
-    //     axios.get(`/getBeaches`)
-    //         .then((res) => setBeaches(res.data))
-    //         .catch((err) => console.log(err));
+    useEffect(() => {
+        axios.get(`/getBeaches`)
+            .then((res) => setBeaches(res.data))
+            .catch((err) => console.log(err));
 
-    //     navigator.geolocation.getCurrentPosition((position) => {
-    //         setLocation([position.coords.latitude, position.coords.longitude]);
-    //     })
+        // navigator.geolocation.getCurrentPosition((position) => {
+        //     setLocation([position.coords.latitude, position.coords.longitude]);
+        // })
 
-    // }, []);
+    }, []);
+
+    console.log(beaches);
 
     // useEffect(() => {
     //     let distances = beaches.map((beach) => ({

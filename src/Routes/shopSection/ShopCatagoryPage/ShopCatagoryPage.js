@@ -1,24 +1,11 @@
-import { useParams, Link } from "react-router-dom"
 import "./ShopCatagoryPage.scss"
-import { useState, useEffect } from "react";
 import axios from "axios";
-import ProductCardComponent from "../../../Components/CardComponent/ProductCardComponent"
-import Grid from '@mui/material/Grid';
+import { useParams, Link } from "react-router-dom"
+import { useState, useEffect } from "react";
+import  Grid from '@mui/material/Grid';
 import { Button } from "@mui/material";
-
-
-
-function LoadingComponent() {
-    
-    return (<div className="LoadingDiv">
-
-        <div className="ring">Loading
-            <span className="loading"></span>
-        </div>
-    </div>)
-}
-
-
+import ProductCardComponent from "../../../Components/CardComponent/ProductCardComponent"
+import LoadingComponent from "../../../Components/LoadingComponent/LoadingComponent"
 
 function ShopCatagoryPage(props) {
     let [loading,setLoading] = useState({loading: true});

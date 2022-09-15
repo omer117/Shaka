@@ -44,7 +44,7 @@ let catagorys = ['boogi','mansuit','sup','soft','womansuit']
         }).then((res) => {
             console.log(res)//TODO:add handle succes edit
         }).catch((err)=>{
-            conosle.log(err);
+            console.log(err);
         });
 
         window.location.href= "/";

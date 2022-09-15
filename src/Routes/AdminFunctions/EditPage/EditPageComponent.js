@@ -48,6 +48,8 @@ function EditPageComponent(props) {
             sqlString: `DELETE FROM ${details.catagory} WHERE id=${details.id}`,
         }).then((res) => {
             console.log(res)//TODO:add handle succes edit
+        }).catch((err)=>{
+            console.log(err);
         });
 
 
@@ -58,8 +60,8 @@ function EditPageComponent(props) {
             `,
         }).then((res) => {
             console.log(res)//TODO:add handle succes edit
-        }).catch((err) => {
-            conosle.log(err);
+        }).catch((err)=>{
+            console.log(err);
         });
 
         window.location.href = "/";

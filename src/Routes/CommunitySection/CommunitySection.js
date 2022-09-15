@@ -1,16 +1,13 @@
 import "./CommunitySection.scss"
-
+import LoadingComponent from "../../Components/LoadingComponent/LoadingComponent"
 
 function CommunitySection() {
     return (
         <>
             <p>sadfasdfa</p>
-        <div className="LoadingDiv">
-
-            <div class="ring">Loading
-                <span class="loading"></span>
+            <div className="LoadingDiv">
+                <LoadingComponent />
             </div>
-        </div>
         </>
     )
 }
