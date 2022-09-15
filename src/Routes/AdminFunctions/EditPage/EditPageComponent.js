@@ -7,26 +7,30 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useParams } from 'react-router-dom';
 
-
+function isValidParams(name) {
+    const specialCharsForName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    return specialCharsForName.test(name)
+}
 
 
 
 function EditPageComponent(props) {
     let [product, setProduct] = useState({})
-
-
     let details = useParams()
 
 
     useEffect(() => {
 
-        axios.post('/getProduct',
-            [details.id, details.catagory])
-            .then((response) => setProduct(JSON.parse(response.data)))
-            .catch((err) => console.log(err))
+        if (isNaN(Number(details.id)) && isValidParams(details.catagory)) {
+            axios.post('/getProduct',
+                [details.id, details.catagory])
+                .then((response) => setProduct(JSON.parse(response.data)))
+                .catch((err) => console.log(err))
+        } else {
+            alert('nope')
+        }
     }, [])
 
-    console.log(product);
 
     const onFormSubmit = async (event) => {
         event.preventDefault();
@@ -45,7 +49,7 @@ function EditPageComponent(props) {
         }).then((res) => {
             console.log(res)//TODO:add handle succes edit
         });
-    
+
 
         await axios.post('/addProduct', {
             sqlString: `
@@ -54,7 +58,11 @@ function EditPageComponent(props) {
             `,
         }).then((res) => {
             console.log(res)//TODO:add handle succes edit
+        }).catch((err) => {
+            conosle.log(err);
         });
+
+        window.location.href = "/";
     }
 
 
