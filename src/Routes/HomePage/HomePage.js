@@ -10,8 +10,14 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
 function HomePage() {
-
     let [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        axios.get('/checkAndUpdateForecast').then((res)=>{
+            console.log(res)
+        })
+    }, [])
+
 
     useEffect(() => {
         axios.get(`/sideRequest`)
@@ -67,3 +73,4 @@ function HomePage() {
 
 
 export default HomePage;
+
