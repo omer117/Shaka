@@ -46,10 +46,7 @@ function App() {
 
         <Route path="/about" element={<div>asfasf</div>} />
 
-        <Route path="/community" element={<CommunitySection />} />
-
         <Route path="/myCart" element={<MyCart />} />
-        <Route path="/wishlist" element={<WaveSectionPage />} />
 
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LogInPage />} />
