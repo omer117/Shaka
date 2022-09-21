@@ -1,5 +1,5 @@
-import { _BrowserRouter, Route, Routes } from "react-router-dom"
 import './App.scss';
+import { Route, Routes } from "react-router-dom"
 import NavBarComponent from "../NavbarComponents/NavBarComponent";
 import ShopHomePage from "../../Routes/shopSection/ShopHomePage/ShopHomePage"
 import ShopCatagoryPage from "../../Routes/shopSection/ShopCatagoryPage/ShopCatagoryPage"
@@ -13,6 +13,7 @@ import AddPageComponent from "../../Routes/AdminFunctions/AddPage/AddPageCompone
 import EditPageComponent from "../../Routes/AdminFunctions/EditPage/EditPageComponent"
 import WaveSectionPage from "../../Routes/WaveSection/WaveSectionPage"
 import { useState, useEffect } from "react";
+import axios from 'axios';
 
 
 
@@ -21,6 +22,13 @@ function App() {
   let [Products, setProducts] = useState([])
 
   
+useEffect(() => {
+axios.get('/new')
+.then((res)=>{console.log(res.data);})
+.catch((err) => console.log(err))
+},[])
+
+
   useEffect(() => {
     setNumberOfProducts(Products.length)
   }, [Products])

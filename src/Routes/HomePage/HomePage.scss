@@ -9,10 +9,28 @@
     margin: 40px auto;
     width: 85%;
     text-align: start;
-    background-color: #0f2a6e;
-    color: #e1ebf1;
+    border: 3px solid black;
     padding: 1.9% 20px;
     border-radius: 1.3%;
+
+    .beachDetails{
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+        
+        div{
+            display: flex;
+            text-align: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .detail{
+            width: 20%;
+            height: 30%;
+
+        }
+    }
 }
 
 .HotNowDiv {
@@ -42,4 +60,14 @@
         font-weight: 900;
         color: rgb(188, 221, 235);
     }
+}
+
+
+.loading{
+    margin: 110px auto;
+    padding-left: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }

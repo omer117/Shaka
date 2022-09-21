@@ -41,8 +41,6 @@ function NavBarComponent(props) {
             >
                 <Link className="shaka" to="/">SHAKA</Link>
                 <Link to="/about">About Us</Link>
-                <Link to="/waveWeather">Surfin' today?</Link>
-                <Link to="/community">Our community</Link>
                 <Link to="/shop">Shop</Link>
                 <div
                     className="icon"
