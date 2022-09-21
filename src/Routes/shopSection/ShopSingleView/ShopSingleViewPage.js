@@ -6,7 +6,7 @@ import ProductCardComponent from "../../../Components/CardComponent/ProductCardC
 import { Button } from "@mui/material";
 import { Grid } from '@mui/material';
 
-let productAdded = [...JSON.parse(localStorage.getItem('productsInCart'))]
+// let productAdded = [...JSON.parse(localStorage.getItem('productsInCart'))]
 
 
 function ShopSingleViewPage(props) {
@@ -65,10 +65,8 @@ function ShopSingleViewPage(props) {
             size: Chosensize,
             image: product.image
         }
-        productAdded.push(newProduct)
-        localStorage.setItem(`productsInCart`, JSON.stringify(productAdded));
+        props.addProducts([...props.productsInCart,newProduct])
         console.log("added to cart")
-        props.myCartFunction(productAdded.length)
 
     }
 

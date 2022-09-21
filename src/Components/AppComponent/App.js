@@ -12,20 +12,18 @@ import ShakaLogoComponent from "../ShakaLogoComponent/ShakaLogoComponent"
 import AddPageComponent from "../../Routes/AdminFunctions/AddPage/AddPageComponent"
 import EditPageComponent from "../../Routes/AdminFunctions/EditPage/EditPageComponent"
 import WaveSectionPage from "../../Routes/WaveSection/WaveSectionPage"
-import CommunitySection from "../../Routes/CommunitySection/CommunitySection"
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 
-let productAdded = [...JSON.parse(localStorage.getItem('productsInCart'))]
 
 function App() {
   let [numberOfProducts, setNumberOfProducts] = useState(0)
+  let [Products, setProducts] = useState([])
 
-  console.log(productAdded)
+  
   useEffect(() => {
-    setNumberOfProducts(productAdded.length)
-  }, [])
+    setNumberOfProducts(Products.length)
+  }, [Products])
 
 
 
@@ -39,14 +37,14 @@ function App() {
         <Route path="/waveWeather" element={<WaveSectionPage />} />
 
         <Route path="shop" element={<ShopHomePage />} />
-        <Route path="shop/:catagory" element={<ShopCatagoryPage myCartFunction={setNumberOfProducts} />} />
-        <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage myCartFunction={setNumberOfProducts} />} />
+        <Route path="shop/:catagory" element={<ShopCatagoryPage productsInCart={Products} addProducts={setProducts}  />} />
+        <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage productsInCart={Products} addProducts={setProducts}/>} />
         <Route path="/shop/:catagory/:id/EditProduct" element={<EditPageComponent />} />
         <Route path="/addProduct" element={<AddPageComponent />} />
 
         <Route path="/about" element={<div>asfasf</div>} />
 
-        <Route path="/myCart" element={<MyCart />} />
+        <Route path="/myCart" element={<MyCart addProducts={setProducts} productsInCart={Products} />} />
 
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LogInPage />} />

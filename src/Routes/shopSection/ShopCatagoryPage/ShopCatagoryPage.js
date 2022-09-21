@@ -2,16 +2,14 @@ import "./ShopCatagoryPage.scss"
 import axios from "axios";
 import { useParams, Link } from "react-router-dom"
 import { useState, useEffect } from "react";
-import  Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid';
 import { Button } from "@mui/material";
 import ProductCardComponent from "../../../Components/CardComponent/ProductCardComponent"
 import LoadingComponent from "../../../Components/LoadingComponent/LoadingComponent"
 
 function ShopCatagoryPage(props) {
-    let [loading,setLoading] = useState({loading: true});
     let { catagory } = useParams();
     let [products, setProducts] = useState([]);
-    let [productsElements, setProductsElements] = useState([])
 
 
     function isValidParams(name) {
@@ -30,33 +28,26 @@ function ShopCatagoryPage(props) {
         } else {
             alert('no sqli here boi')
         }
-
     }, []);
-    
-    
+
+
 
     let priceLowTo = () => {
         products.sort((a, b) => {
             return a.price - b.price;
         })
     }
-    
+
     let priceHighTo = () => {
         products.sort((a, b) => {
             return b.price - a.price;
         })
     }
-    
-    
-    useEffect(() => {
-        let productList = products.map((product) => {
-            return (<ProductCardComponent myCartFunction={props.myCartFunction} key={product.id} data={product} />);
-        });
-        setProductsElements(productList)
-        setLoading(false);
-    }, [productsElements])
 
 
+    let productList = products.map((product) => {
+        return (<ProductCardComponent productsInCart={props.productsInCart} addProducts={props.addProducts} myCartFunction={props.myCartFunction} key={product.id} data={product} />);
+    });
 
     return (
         <>
@@ -80,7 +71,7 @@ function ShopCatagoryPage(props) {
                     alignItems: 'center',
                 }}
             >
-                {loading ? <LoadingComponent /> : productsElements}
+                {productList.length > 0 ? productList :  <LoadingComponent />}
             </Grid>
         </>
     )
