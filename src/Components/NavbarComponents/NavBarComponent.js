@@ -5,7 +5,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 
- console.log(localStorage);
+console.log(localStorage);
 // console.log(user!==null)
 // console.log(user!==undefined)
 
@@ -42,25 +42,18 @@ function NavBarComponent(props) {
                 <Link className="shaka" to="/">SHAKA</Link>
                 <Link to="/about">About Us</Link>
                 <Link to="/shop">Shop</Link>
+                    <Link to="/login">Log In</Link>
+                    <div className="cartLink">
+                        <Link className="cartNavbar" to="/myCart">
+                            <ShoppingCartIcon />
+                        </Link>
+                        <div className="littleBubble">{props.numberOfProducts}</div>
+                </div>
                 <div
                     className="icon"
                     onClick={responsive}>
                     <DehazeIcon />
                 </div>
-
-            </div>
-            <div className="bottomNavBar">
-                {/* <UserGreeting /> */}
-                <div className="userLinks">
-                    <Link to="/login">Log In</Link>
-                    <div className="cartLink">
-                    <Link className="cartNavbar" to="/myCart">
-                        <ShoppingCartIcon />
-                    </Link>
-                    <div className="littleBubble">{props.numberOfProducts}</div>
-                    </div>
-                </div>
-
             </div>
         </>
     )

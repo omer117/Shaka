@@ -1,9 +1,31 @@
 .topnav {
     height: 8vh;
     width: 100%;
-    background-color: #0c266f;
+    background-color: black;
     color: #bbe1fa;
 
+    .cartLink {
+        display: flex;
+        padding-top: 3px;
+
+        .cartNavbar {
+            padding-top: 7px;
+            padding: 11px 3px 11px 24px!important;
+        }
+
+        .littleBubble {
+            display: inline;
+            color: black;
+            font-size: x-small;
+            font-weight: 400;
+            border-radius: 10px;
+            margin-right: 2%;
+            width: 13px;
+            height: 14px;
+            text-align: center;
+            background-color: rgb(162, 220, 201);
+        }
+    }
     a {
         float: left;
         display: block;
@@ -14,9 +36,8 @@
         font-size: 14x;
         height: 50%;
         &:hover {
-            background-color: #18368a;
+            background-color: black;
             height: 40%;
-
         }
     }
     .icon {
@@ -32,9 +53,17 @@
                     display: none;
             }
         }
+        
+        .cartNavbar{
+            display: inherit !important;
+        }
+
         .icon {
             float: right;
             display: block;
+            position: absolute;
+            right: 35px;
+            top: 3px;
             padding: 14px 19px;
             margin: -6px;
         }
@@ -47,64 +76,23 @@
         height: 10vh;
 
         .icon {
-            position: absolute;
-            right: 0;
-            top: 0;
-            &:active {
-                transition: 1s ease;
-            }
+            position: absolute ;
+            right: 2px;
+            top: 5px;
         }
-
         a {
-            background-color: #001d6e;
-            float: none;
-            display: block;
-            text-align: left;
-            &:hover{
-                background-color: #406ce5;
-            }
+                background-color: black;
+                float: none;
+                display: block;
+                text-align: left;
+                &:hover {
+                    background-color: rgb(69, 71, 76)
+                }
+        }
+
+        .cartLink{
+            width: 900px ;
         }
     }
 }
-
-.bottomNavBar {
-    width: 100%;
-    background-color: black;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    align-items: center;
-    height: 35px;
-
-.userLinks{
-    display: flex;
-    justify-content: space-around;
-    width: 16%;   
-    align-items: center;
-    
-}
-
-.cartLink{
-display: flex;
-padding-top: 3px;
-
-.cartNavbar{
-padding-top: 7px;
-}
-
-
-.littleBubble {
-    display: inline;            
-    color: black;
-    font-size: x-small;
-    font-weight: 400;
-    border-radius: 10px;
-    width: 13px;
-    height: 14px;
-    text-align: center;
-    background-color: rgb(162, 220, 201);
-}
-}
-    }
 

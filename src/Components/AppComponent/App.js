@@ -11,7 +11,6 @@ import MyCart from "../../Routes/shopSection/MyCart/MyCart"
 import ShakaLogoComponent from "../ShakaLogoComponent/ShakaLogoComponent"
 import AddPageComponent from "../../Routes/AdminFunctions/AddPage/AddPageComponent"
 import EditPageComponent from "../../Routes/AdminFunctions/EditPage/EditPageComponent"
-import WaveSectionPage from "../../Routes/WaveSection/WaveSectionPage"
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
@@ -41,8 +40,6 @@ axios.get('/new')
       <ShakaLogoComponent />
       <Routes>
         <Route path="/" element={<HomePage />} />
-
-        <Route path="/waveWeather" element={<WaveSectionPage />} />
 
         <Route path="shop" element={<ShopHomePage />} />
         <Route path="shop/:catagory" element={<ShopCatagoryPage productsInCart={Products} addProducts={setProducts}  />} />
