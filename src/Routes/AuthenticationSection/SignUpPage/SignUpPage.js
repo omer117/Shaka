@@ -17,6 +17,9 @@ function SignUpPage(props) {
     }, [])
 
 
+    useEffect(() => {
+        console.log(usersDetails);
+    }, [usersDetails])
 
     let passwordValidation = (password) => {
         const specialCharsForPassowrd = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
@@ -54,25 +57,25 @@ function SignUpPage(props) {
 
 
     const onFormSubmit = async (event) => {
+
         event.preventDefault();
         let formData = new FormData(event.target);
         formData = Object.fromEntries(formData)
         formData.userName = formData.userName;
         formData.mailAddress = formData.mailAddress;
         formData.password = formData.password;
-
         if (passwordValidation(formData.password) && userValidation(formData.userName)
             && emailValidation(formData.mailAddress)) {
             console.log(formData);
+            await axios.post('/addUser', {
+                userDetails: formData
+            }).then((res) => {
+                console.log(res)//TODO:add handle succes edit
+            }).catch((err) => console.log(err));
+            window.location.href = "/login"
         } else {
             alert("Please enter a valid password");
         }
-        await axios.post('/addUser', {
-            userDetails: formData
-        }).then((res) => {
-            console.log(res)//TODO:add handle succes edit
-        });
-        window.location.href = "/login"
     }
 
 
@@ -85,15 +88,13 @@ function SignUpPage(props) {
                     <form onSubmit={onFormSubmit} id="signUpForm">
                         <TextField
                             className="form"
-                            label="Outlined"
+                            label="user name"
                             variant="outlined"
                             htmlFor="userName"
                             type="text"
                             name="userName"
                         />
-
                         <TextField
-
                             className="form"
                             id="outlined-basic"
                             label="mail address"
@@ -103,9 +104,7 @@ function SignUpPage(props) {
                             name="mailAddress"
                         />
 
-
                         <TextField
-
                             className="form"
                             id="password"
                             label="password"
@@ -118,18 +117,18 @@ function SignUpPage(props) {
 
                     </form>
                 </div>
-            <div className='instructionsDiv'>
-                <p>please insert a valid letters only! </p>
-                <p>no:<b>  !#$%^&*()_+\-'' </b> </p>
-                <p>password greater then 8 letters only </p>
-            </div>
+                <div className='instructionsDiv'>
+                    <p>please insert a valid letters only! </p>
+                    <p>no:<b>  !#$%^&*()_+\-'' </b> </p>
+                    <p>password greater then 8 letters only </p>
+                </div>
                 <div className="formActions">
 
                     <Button
                         className="joinUs"
                         variant="contained"
                         type="submit"
-                        form="addForm"
+                        form="signUpForm"
                         value="Submit"
                     >Join Shaka!</Button>
                 </div>

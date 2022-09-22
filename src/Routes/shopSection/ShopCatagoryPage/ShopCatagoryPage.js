@@ -36,12 +36,16 @@ function ShopCatagoryPage(props) {
         products.sort((a, b) => {
             return a.price - b.price;
         })
+
+        console.log(products);
     }
 
     let priceHighTo = () => {
         products.sort((a, b) => {
             return b.price - a.price;
         })
+        console.log(products);
+
     }
 
 
@@ -70,8 +74,8 @@ function ShopCatagoryPage(props) {
                     marginTop: '30px',
                     alignItems: 'center',
                 }}
-            >
-                {productList.length > 0 ? productList :  <LoadingComponent />}
+                >
+                {productList.length > 0 ? productList :  <div className="loading"><LoadingComponent /> </div>}
             </Grid>
         </>
     )

@@ -40,7 +40,7 @@ function NavBarComponent(props) {
                 ref={responsiveRef}
             >
                 <Link className="shaka" to="/">SHAKA</Link>
-                <Link to="/about">About Us</Link>
+                <Link to="/surfingToday">Surfing Today? </Link>
                 <Link to="/shop">Shop</Link>
                     <Link to="/login">Log In</Link>
                     <div className="cartLink">
