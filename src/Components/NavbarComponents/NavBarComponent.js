@@ -43,12 +43,12 @@ function NavBarComponent(props) {
                 <Link to="/surfingToday">Surfing Today? </Link>
                 <Link to="/shop">Shop</Link>
                     <Link to="/login">Log In</Link>
-                    <div className="cartLink">
                         <Link className="cartNavbar" to="/myCart">
+                    <div className="cartLink">
                             <ShoppingCartIcon />
-                        </Link>
                         <div className="littleBubble">{props.numberOfProducts}</div>
                 </div>
+                        </Link>
                 <div
                     className="icon"
                     onClick={responsive}>
