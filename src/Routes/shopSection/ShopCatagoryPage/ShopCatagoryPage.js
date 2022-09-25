@@ -21,7 +21,7 @@ function ShopCatagoryPage(props) {
     useEffect(() => {
 
         if (isValidParams(catagory)) {
-            axios.post('/getAll', [catagory])
+            axios.post('https://shakaserver2.herokuapp.com/getAll', [catagory])
                 .then((res) => {
                     setProducts(JSON.parse(res.data))//TODO:add handle succes edit
                 });

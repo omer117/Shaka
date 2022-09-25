@@ -19,14 +19,14 @@ function SurfingTodayComponent() {
 
 
     useEffect(() => {
-        axios.get(`/getBeaches`)
+        axios.get(`https://shakaserver2.herokuapp.com/getBeaches`)
             .then((res) => setBeaches(res.data))
             .catch((err) => console.log(err))
     }, [])
 
 
     useEffect(() => {
-        axios.post('/everyDayGet',
+        axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
             { sqlString: `SELECT * FROM daily_forecast WHERE beach_id=${selectedBeach}` })
             .then((res) => setSelectedBeachDetails(res.data))
             .catch((err) => console.log(err));

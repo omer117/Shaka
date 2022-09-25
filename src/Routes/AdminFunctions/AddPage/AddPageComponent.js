@@ -36,7 +36,7 @@ let catagorys = ['boogi','mansuit','sup','soft','womansuit']
         formData.imgLink = formData.imgLink;
             console.log(formData)
             
-        await axios.post('/addProduct', {
+        await axios.post('https://shakaserver2.herokuapp.com/addProduct', {
             sqlString: `
             INSERT INTO ${formData.catagory} (title,price,info,sizes,image)
             VAlUES ('${formData.title}', ${formData.price},'${formData.info}','{${formData.sizes}}','${formData.imgLink}');                            

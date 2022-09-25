@@ -43,7 +43,7 @@ function HomePage() {
     let [myLocation, setLocation] = useState([])
 
     useEffect(() => {
-        axios.get(`/getBeaches`)
+        axios.get(`https://shakaserver2.herokuapp.com/getBeaches`)
             .then((res) => setBeaches(res.data))
             .catch((err) => console.log(err));
 
@@ -71,7 +71,7 @@ function HomePage() {
 
     useEffect(() => {
         if (distances.length > 0) {
-            axios.post('/everyDayGet',
+            axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
                 { sqlString: `SELECT * FROM daily_forecast WHERE beach_id=${distances[0].id}` })
                 .then((res) => setClosestBeacheDetails(res.data))
                 .catch((err) => console.log(err));
@@ -83,7 +83,7 @@ function HomePage() {
 
 
     useEffect(() => {
-        axios.get(`/sideRequest`)
+        axios.get(`https://shakaserver2.herokuapp.com/sideRequest`)
             .then((res) => setProducts(res.data))
             .catch((err) => console.log(err));
     }, []);

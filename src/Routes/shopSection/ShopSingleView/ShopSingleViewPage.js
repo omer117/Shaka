@@ -29,7 +29,7 @@ function ShopSingleViewPage(props) {
             window.location.href = "/"
         }
         else {
-            axios.post('/getProduct',
+            axios.post('https://shakaserver2.herokuapp.com/getProduct',
                 [catagory.id, catagory.catagory])
                 .then((response) => setProducts(JSON.parse(response.data)))
                 .catch((err) => console.log(err))
@@ -39,7 +39,7 @@ function ShopSingleViewPage(props) {
 
     useEffect(() => {
         if (!isValidParams(catagory.catagory)) {
-            axios.post('/youMayLike', [catagory.catagory])
+            axios.post('https://shakaserver2.herokuapp.com/youMayLike', [catagory.catagory])
                 .then((response) => setMoreProducts(JSON.parse(response.data)))
                 .catch((err) => console.log(err))
         }

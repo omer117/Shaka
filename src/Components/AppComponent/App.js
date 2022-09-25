@@ -23,7 +23,7 @@ function App() {
 
 
   useEffect(() => {
-    axios.get('/new')
+    axios.get('https://shakaserver2.herokuapp.com/new')
       .then((res) => { console.log(res.data); })
       .catch((err) => console.log(err))
   }, [])

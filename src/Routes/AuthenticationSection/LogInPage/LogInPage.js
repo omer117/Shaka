@@ -10,7 +10,7 @@ function LogInPage() {
     const [usersDetails, setDetails] = useState([])
 
     useEffect(() => {
-        axios.get('/getMailUser')
+        axios.get('https://shakaserver2.herokuapp.com/getMailUser')
             .then((res) => setDetails(res.data))
             .catch((err) => console.log(err));
     }, [])
@@ -45,7 +45,7 @@ function LogInPage() {
         formData.mailAddress = formData.mailAddress;
         formData.password = formData.password;
         if (emailValidation(formData.mailAddress) && passwordValidation(formData.password)) {
-            await axios.post('/CheckLogIn', {
+            await axios.post('https://shakaserver2.herokuapp.com/CheckLogIn', {
                 userDetails: formData
             }).then((res) => {
                 setUser(res.data)

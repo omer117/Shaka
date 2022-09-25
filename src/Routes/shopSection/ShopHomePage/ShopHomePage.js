@@ -1,5 +1,5 @@
 import "./ShopHomePage.scss"
-import { Link, useParams} from "react-router-dom";
+import { Link } from "react-router-dom";
 import React from "react";
 import Grid from '@mui/material/Grid';
 
@@ -36,9 +36,9 @@ function ShopHomePage() {
                         <Link to="/shop/womansuit">Women's SwimSuit</Link>
                     </div>
                 </Grid>
-                    <div className="manSwimsuit">
-                        <Link to="/shop/mansuit">Man's SwimSuit</Link>
-                    </div>
+                <div className="manSwimsuit">
+                    <Link to="/shop/mansuit">Man's SwimSuit</Link>
+                </div>
             </Grid>
 
         </>

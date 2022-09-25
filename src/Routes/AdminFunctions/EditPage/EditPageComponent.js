@@ -22,7 +22,7 @@ function EditPageComponent(props) {
     useEffect(() => {
 
         if (isNaN(Number(details.id)) && isValidParams(details.catagory)) {
-            axios.post('/getProduct',
+            axios.post('https://shakaserver2.herokuapp.com/getProduct',
                 [details.id, details.catagory])
                 .then((response) => setProduct(JSON.parse(response.data)))
                 .catch((err) => console.log(err))

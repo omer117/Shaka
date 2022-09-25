@@ -9,7 +9,7 @@ function SignUpPage(props) {
     const [usersDetails, setDetails] = useState([])
 
     useEffect(() => {
-        axios.get('/getMailUser')
+        axios.get('https://shakaserver2.herokuapp.com/getMailUser')
             .then((res) => setDetails(res.data))
             .catch((err) => console.log(err));
 
@@ -67,7 +67,7 @@ function SignUpPage(props) {
         if (passwordValidation(formData.password) && userValidation(formData.userName)
             && emailValidation(formData.mailAddress)) {
             console.log(formData);
-            await axios.post('/addUser', {
+            await axios.post('https://shakaserver2.herokuapp.com/addUser', {
                 userDetails: formData
             }).then((res) => {
                 console.log(res)//TODO:add handle succes edit
