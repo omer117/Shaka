@@ -1,4 +1,5 @@
 import axios from "axios"
+import LoadingComponent from "../../Components/LoadingComponent/LoadingComponent";
 import { useEffect, useState } from "react"
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -40,28 +41,36 @@ function SurfingTodayComponent() {
     })
 
     function WeatherDiv() {
-        if(selectedBeachDetails.length > 0){
+        if (selectedBeachDetails.length > 0) {
 
             return (<div className="surfingTodayDiv">
-            <h2>The nearest beach - {selectedBeachDetails[0].beach_name} </h2>
-            <div className="beachDetails">
-                <div>
-                    <h4>wind Speed</h4>
-                    <AirIcon className="detail" />
-                    <p>{selectedBeachDetails[0].wind_speed}</p>
+                <h2>The chosen beach - {selectedBeachDetails[0].beach_name} </h2>
+                <div className="beachDetails">
+                    <div>
+                        <h4>wind Speed</h4>
+                        <AirIcon className="detail" />
+                        <p>{selectedBeachDetails[0].wind_speed}</p>
+                    </div>
+                    <div>
+                        <h4>wave height</h4>
+                        <SurfingIcon className="detail" />
+                        <p>{selectedBeachDetails[0].wave_height}</p>
+                    </div>
+                    <div>
+                        <h4>water temperature</h4>
+                        <ThermostatIcon className="detail" />
+                        <p>{selectedBeachDetails[0].water_temperature}</p>
+                    </div>
                 </div>
-                <div>
-                    <h4>wave height</h4>
-                    <SurfingIcon className="detail" />
-                    <p>{selectedBeachDetails[0].wave_height}</p>
-                </div>
-                <div>
-                    <h4>water temperature</h4>
-                    <ThermostatIcon className="detail" />
-                    <p>{selectedBeachDetails[0].water_temperature}</p>
-                </div>
-            </div>
-        </div>)
+            </div>)
+        }
+        else {
+            return (
+
+               <div className="loading">
+                   <LoadingComponent />
+               </div>
+            )
         }
     }
 
@@ -85,7 +94,7 @@ function SurfingTodayComponent() {
                         </Select>
                     </FormControl>
                 </div>
-                {selectedBeachDetails === undefined ? <div>loading...</div> : <WeatherDiv details={selectedBeachDetails[0]}/>}
+                 <WeatherDiv details={selectedBeachDetails[0]}/>
             </div>
         </>
     )

@@ -5,12 +5,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
 import { useParams } from 'react-router-dom';
 
-function isValidParams(name) {
-    const specialCharsForName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    return specialCharsForName.test(name)
-}
 
 
 
@@ -21,14 +18,10 @@ function EditPageComponent(props) {
 
     useEffect(() => {
 
-        if (isNaN(Number(details.id)) && isValidParams(details.catagory)) {
-            axios.post('https://shakaserver2.herokuapp.com/getProduct',
-                [details.id, details.catagory])
-                .then((response) => setProduct(JSON.parse(response.data)))
-                .catch((err) => console.log(err))
-        } else {
-            alert('nope')
-        }
+        axios.post('https://shakaserver2.herokuapp.com/getProduct',
+            [details.id, details.catagory])
+            .then((response) => setProduct(JSON.parse(response.data)))
+            .catch((err) => console.log(err))
     }, [])
 
 
@@ -48,7 +41,7 @@ function EditPageComponent(props) {
             sqlString: `DELETE FROM ${details.catagory} WHERE id=${details.id}`,
         }).then((res) => {
             console.log(res)//TODO:add handle succes edit
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log(err);
         });
 
@@ -60,7 +53,7 @@ function EditPageComponent(props) {
             `,
         }).then((res) => {
             console.log(res)//TODO:add handle succes edit
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log(err);
         });
 
@@ -77,6 +70,62 @@ function EditPageComponent(props) {
         <>
             <div>
                 {/* <Link to={'/'}>Home</Link> */}
+
+                <TextField
+                    className='text-field'
+                    label="Title"
+                    variant="outlined"
+                    htmlFor="Title"
+                    type="text"
+                    name="Title"
+                    multiline
+                    maxRows={2}
+                    value={product.title || ""}
+                />
+
+                <TextField
+                    className='text-field'
+                    label="price"
+                    variant="outlined"
+                    htmlFor="price"
+                    type="number"
+                    name="price"
+                    defaultValue={product.price || ""}
+                />
+
+                <TextField
+                    className='text-field'
+                    label="info"
+                    variant="outlined"
+                    htmlFor="info"
+                    type="text"
+                    name="info"
+                    multiline
+                    maxRows={5}
+                    defaultValue={product.info || ""}
+                />
+
+
+                <TextField
+                    className='text-field'
+                    label="sizes"
+                    variant="outlined"
+                    htmlFor="sizes"
+                    type="text"
+                    name="sizes"
+                    defaultValue={product.sizes || ""}
+                />
+
+
+                <TextField
+                    defaultValue={product.image || ""}
+                    className='text-field'
+                    label="imgLink"
+                    variant="outlined"
+                    htmlFor="imgLink"
+                    type="text"
+                    name="imgLink"
+                />
 
                 <form onSubmit={onFormSubmit} id="EditProductForm">
                     <label htmlFor="title">Title</label><br />

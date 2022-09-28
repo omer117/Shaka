@@ -9,27 +9,31 @@
     margin: 40px auto;
     width: 85%;
     text-align: start;
-    border: 3px solid black;
+    border: #4984ac 3px solid ; 
     padding: 1.9% 20px;
     border-radius: 1.3%;
+    -webkit-box-shadow: 1px 0px 12px -1px rgba(0, 0, 0, 0.88);
+    box-shadow: 1px 0px 12px -3px rgba(0, 0, 0, 0.88);
 
-    .beachDetails{
+    .beachDetails {
         display: flex;
-        justify-content:space-around;
+        justify-content: space-around;
         align-items: center;
         // flex-wrap: wrap;
         
-        div{
+
+        div {
             display: flex;
             text-align: center;
             align-items: center;
             flex-direction: column;
         }
-
-        .detail{
+            p{
+                font-weight: 700;
+            }
+        .detail {
             width: 20%;
             height: 30%;
-
         }
     }
 }
@@ -46,7 +50,7 @@
 .forMore {
     display: flex;
     justify-content: end;
-    button{
+    button {
         border-color: #0f4c75;
         color: #0f4c75 !important;
     }
@@ -66,7 +70,7 @@
     }
 }
 
-.community-container{
+.community-container {
     margin-top: 6%;
     display: flex;
     justify-content: center;
@@ -76,31 +80,33 @@
     width: 100%;
     height: 300px;
     color: #fff;
+    -webkit-box-shadow: 1px 0px 12px -1px rgba(0, 0, 0, 0.88);
+    box-shadow: 1px 0px 12px -3px rgba(0, 0, 0, 0.88);
 
-    background-position:center right;
+    background-position: center right;
     background-repeat: no-repeat;
     background-size: fill;
     background-blend-mode: darken;
-    background-color:rgba(105, 102, 102, 0.6); 
-    background-image: url('../../images/community.jpg');
+    background-color: rgba(105, 102, 102, 0.6);
+    background-image: url("../../images/community.jpg");
 
-    button{
-        background-color: #0f4c75 ;
+    button {
+        background-color: #0f4c75;
     }
 }
 
-
-.loading{
+.loading {
     margin: 110px auto;
     padding-left: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
-@media screen  and (max-width: 548px){
-    .beachDetails{
-    flex-wrap: wrap;
+@media screen and (max-width: 548px) {
+    .beachDetails {
+        flex-wrap: wrap;
+
+
     }
 }

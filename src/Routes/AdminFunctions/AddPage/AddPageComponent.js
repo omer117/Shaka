@@ -1,18 +1,20 @@
+import './AddPageComponent.scss'
 import axios from 'axios';
-import { useEffect, useState } from 'react'
-import Grid from '@mui/material/Grid';
+import { useState } from 'react'
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 function AddPageComponent(props) {
-const [catagory, setCatgory] = useState({})
-let catagorys = ['boogi','mansuit','sup','soft','womansuit']
+    const [catagory, setCatgory] = useState({})
+    let catagorys = ['boogi', 'mansuit', 'sup', 'soft', 'womansuit']
 
     let catagoryList = catagorys.map((catagory) => {
         return (
-            <MenuItem value={catagory||""} key={catagory}>{catagory}</MenuItem>
+            <MenuItem value={catagory || ""} key={catagory}>{catagory}</MenuItem>
         )
     })
 
@@ -34,8 +36,8 @@ let catagorys = ['boogi','mansuit','sup','soft','womansuit']
         formData.info = formData.info;
         formData.sizes = (formData.sizes);
         formData.imgLink = formData.imgLink;
-            console.log(formData)
-            
+        console.log(formData)
+
         await axios.post('https://shakaserver2.herokuapp.com/addProduct', {
             sqlString: `
             INSERT INTO ${formData.catagory} (title,price,info,sizes,image)
@@ -43,17 +45,17 @@ let catagorys = ['boogi','mansuit','sup','soft','womansuit']
             `,
         }).then((res) => {
             console.log(res)//TODO:add handle succes edit
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log(err);
         });
 
-        window.location.href= "/";
+        window.location.href = "/";
     }
 
 
     return (
         <>
-            <div>
+            <div >
                 {/* <Link to={'/'}>Home</Link> */}
                 <FormControl variant="standard" sx={{ m: 1, minWidth: 70 }}>
                     <InputLabel id="demo-simple-select-standard-label">catagory</InputLabel>
@@ -66,25 +68,70 @@ let catagorys = ['boogi','mansuit','sup','soft','womansuit']
                         {catagoryList}
                     </Select>
                 </FormControl>
-                <form onSubmit={onFormSubmit} id="addProductForm">
-                    <label htmlFor="title">Title</label><br />
-                    <input type="text" name="title" /><br />
+                <form onSubmit={onFormSubmit} id="addProductForm" className='addProductFormDiv'>
+                    <TextField
+                        className='text-field'
+                        label="Title"
+                        variant="outlined"
+                        htmlFor="Title"
+                        type="text"
+                        name="Title"
+                        multiline
+                        maxRows={2}
+                    />
 
-                    <label htmlFor="price">Price</label><br />
-                    <input type="number" name="price" /><br />
+                    <TextField
+                        className='text-field'
+                        label="price"
+                        variant="outlined"
+                        htmlFor="price"
+                        type="number"
+                        name="price"
 
-                    <label htmlFor="info">Info</label><br />
-                    <input type="text" name="info" /><br />
+                    />
 
-                    <label htmlFor="sizes">Sizes</label><br />
-                    <input type="text" name="sizes" /><br />
+                    <TextField
+                        className='text-field'
+                        label="info"
+                        variant="outlined"
+                        htmlFor="info"
+                        type="text"
+                        name="info"
+                        multiline
+                        maxRows={5}
+                    />
 
-                    <label htmlFor="imgLink">Image Link</label><br />
-                    <input type="text" name="imgLink" /><br />
+
+                    <TextField
+                        className='text-field'
+                        label="sizes"
+                        variant="outlined"
+                        htmlFor="sizes"
+                        type="text"
+                        name="sizes"
+                    />
+
+
+                    <TextField
+                        className='text-field'
+                        label="imgLink"
+                        variant="outlined"
+                        htmlFor="imgLink"
+                        type="text"
+                        name="imgLink"
+                    />
 
                 </form>
                 <br />
-                <button type="submit" form="addProductForm" value="Submit">add Product!</button>
+
+                <Button
+                className='add-btn'
+                    variant="contained"
+                    type="submit"
+                    form="addProductForm"
+                    value="Submit"
+                >add Product!
+                </Button>
             </div>
         </>
 

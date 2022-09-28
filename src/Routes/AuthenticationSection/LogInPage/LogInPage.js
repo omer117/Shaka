@@ -1,12 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHref } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import "./LogInPage.scss"
 
-function LogInPage() {
-    const [user, setUser] = useState({})
+function LogInPage(props) {
     const [usersDetails, setDetails] = useState([])
 
     useEffect(() => {
@@ -48,21 +47,17 @@ function LogInPage() {
             await axios.post('https://shakaserver2.herokuapp.com/CheckLogIn', {
                 userDetails: formData
             }).then((res) => {
-                setUser(res.data)
+                window.sessionStorage.setItem("user",res.data)
+                // console.log(res.data)
             }).catch((err) => {
                 console.log(err);
             });
-            window.location.reload();
-            window.location.href = "/"
+            window.location.href = '/'
         } else {
             alert("Password or email validation failed");
         }
     }
 
-    useEffect(() => {
-        localStorage.setItem("user", JSON.stringify(user))
-        console.log(JSON.parse(localStorage.getItem("user")));
-    })
 
     return (
         <>

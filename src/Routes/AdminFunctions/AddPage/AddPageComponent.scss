@@ -1,0 +1,17 @@
+.addProductFormDiv{
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    
+    width: 60% !important;
+    .text-field{
+        padding-bottom: 5%;
+    }
+
+
+}
+
+.add-btn{
+   background-color:  #0F4C75 !important;
+}

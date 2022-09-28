@@ -31,21 +31,24 @@ function ShopCatagoryPage(props) {
     }, []);
 
 
+    useEffect(() => {
+        setProducts(products)
+    }, [products])
+
 
     let priceLowTo = () => {
-        products.sort((a, b) => {
+        let LTH = products.sort((a, b) => {
             return a.price - b.price;
         })
-
-        console.log(products);
+        setProducts(LTH);
     }
 
+
     let priceHighTo = () => {
-        products.sort((a, b) => {
+        let HTL = products.sort((a, b) => {
             return b.price - a.price;
         })
-        console.log(products);
-
+        setProducts(HTL);
     }
 
 
@@ -53,19 +56,20 @@ function ShopCatagoryPage(props) {
         return (<ProductCardComponent productsInCart={props.productsInCart} addProducts={props.addProducts} myCartFunction={props.myCartFunction} key={product.id} data={product} />);
     });
 
+    console.log(products);
     return (
         <>
             <div className="Links">
-                <Link to="/shop/boogi">Boogi</Link>
-                <Link to="/shop/sup">sup</Link>
-                <Link to="/shop/soft">soft</Link>
-                <Link to="/shop/womansuit">Women's SwimSuit</Link>
-                <Link to="/shop/mansuit">Man's SwimSuit</Link>
+                <a href="/shop/boogi">Boogi</a>
+                <a href="/shop/sup">sup</a>
+                <a href="/shop/soft">soft</a>
+                <a href="/shop/womansuit">Women's SwimSuit</a>
+                <a href="/shop/mansuit">Man's SwimSuit</a>
 
             </div>
             <div className="filterActions">
-                <Button onClick={priceLowTo} >low to high</Button>
-                <Button onClick={priceHighTo}>high to low</Button>
+                <Button onClick={() => priceLowTo()} >low to high</Button>
+                <Button onClick={() => priceHighTo()}>high to low</Button>
             </div>
             <Grid container
                 spacing={6}
@@ -74,8 +78,8 @@ function ShopCatagoryPage(props) {
                     marginTop: '30px',
                     alignItems: 'center',
                 }}
-                >
-                {productList.length > 0 ? productList :  <div className="loading"><LoadingComponent /> </div>}
+            >
+                {productList.length > 0 ? productList : <div className="loading"><LoadingComponent /> </div>}
             </Grid>
         </>
     )

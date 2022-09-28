@@ -1,12 +1,11 @@
-import { useParams } from "react-router-dom"
-import axios from "axios"
-import { useEffect, useState } from "react";
 import "./ShopSingleViewPage.scss"
+import axios from "axios"
 import ProductCardComponent from "../../../Components/CardComponent/ProductCardComponent"
+import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { Grid } from '@mui/material';
 
-// let productAdded = [...JSON.parse(localStorage.getItem('productsInCart'))]
 
 
 function ShopSingleViewPage(props) {
@@ -54,7 +53,6 @@ function ShopSingleViewPage(props) {
         }
     }, [moreProducts])
     
-    console.log(extraproducts.length !== undefined);
 
     // addToCart function, Pretty self explanatory 
     const addToCart = () => {

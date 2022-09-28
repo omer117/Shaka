@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom"
 import './NavBarComponent.scss';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 
 console.log(localStorage);
@@ -20,6 +19,25 @@ console.log(localStorage);
 // }
 
 function NavBarComponent(props) {
+
+function cleanStorage(){
+    window.sessionStorage.removeItem('user')
+    window.location.reload()
+}
+
+    function IfUserLoggedIn() {
+        if (props.user !== null) {
+            return (
+                <a onClick={cleanStorage}>
+                        Log Out
+                </a>
+            )
+        } else {
+            return (
+                <Link to="/login">Log In</Link>
+            )
+        }
+    }
 
 
     const responsiveRef = useRef();
@@ -42,13 +60,13 @@ function NavBarComponent(props) {
                 <Link className="shaka" to="/">SHAKA</Link>
                 <Link to="/surfingToday">Surfing Today? </Link>
                 <Link to="/shop">Shop</Link>
-                    <Link to="/login">Log In</Link>
-                        <Link className="cartNavbar" to="/myCart">
+                <IfUserLoggedIn />
+                <Link className="cartNavbar" to="/myCart">
                     <div className="cartLink">
-                            <ShoppingCartIcon />
+                        <ShoppingCartIcon />
                         <div className="littleBubble">{props.numberOfProducts}</div>
-                </div>
-                        </Link>
+                    </div>
+                </Link>
                 <div
                     className="icon"
                     onClick={responsive}>
