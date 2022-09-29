@@ -45,11 +45,13 @@
 }
 
 .catagoriesDiv{
-    margin-top: 20px;
+    margin-top: 20px !important;
+    height: fit-content !important;
     div{
         @include centeringStuff;
-        // width: 60% !;
-        // height: 90%;
+        
+        height: 300px !important;
+        margin-top: 39px !important;
         // font-size:150%;
         // font-weight: 900;
         // color: rgb(188, 221, 235);
@@ -84,14 +86,18 @@
     }
 }
 
-.manSwimsuitDiv
-{
+.manSwimsuitDiv{
 margin-left: 25% !important;
 }
 
+
 @media screen and (max-width:900px) {
-    .manSwimsuitDiv
-{
-    margin-left: 0 !important;
+    .manSwimsuitDiv{
+        margin-left: 0% !important;
+    }
+    
 }
+
+@media screen and (min-width:400px) {
+
 }

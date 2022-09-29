@@ -10,14 +10,12 @@ function ShopHomePage(props) {
 
     return (
         <>
-            {props.user == 'admin' ? <Button className="adminFunctionsBtn"><Link to="/addProduct">Add product</Link> </Button> : <></>}
-            <div className="whatsHotDiv">
-            </div>
+            {props.user === 'admin' ? <Button className="adminFunctionsBtn"><Link to="/addProduct">Add product</Link> </Button> : <></>}
+            <div>
+                
             <Grid container
-                spacing={0}
-                rowSpacing={1}
-                className="catagoriesDiv"
-            >
+className="catagoriesDiv"
+>
                 <Grid item xs={12} md={6}>
                     <div className="boogi">
                         <Link to="/shop/boogi">Boogi</Link>
@@ -44,6 +42,7 @@ function ShopHomePage(props) {
                     </div>
                 </Grid>
             </Grid>
+                </div>
         </>
     )
 }

@@ -48,7 +48,7 @@ function HomePage() {
             .catch((err) => console.log(err));
 
 
-        navigator.geolocation.getCurrentPosition((position) => {
+        navigator.geolocation.getCurrentPosition(async(position) => {
             setLocation([position.coords.latitude, position.coords.longitude]);
 
         })
