@@ -67,11 +67,11 @@ console.log(user);
 
         <Route path="/surfingToday" element={<SurfingTodayComponent />} />
 
-        <Route path="shop" element={<ShopHomePage />} />
+        <Route path="shop" element={<ShopHomePage user={user} />} /> 
         <Route path="shop/:catagory" element={<ShopCatagoryPage productsInCart={Products} addProducts={setProducts} />} />
-        <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage productsInCart={Products} addProducts={setProducts} />} />
-        <Route path="/shop/:catagory/:id/editProduct" element={<EditPageComponent />} />
-        <Route path="/addProduct" element={<AddPageComponent />} />
+        <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage productsInCart={Products} addProducts={setProducts} user={user} />} />
+        <Route path="/shop/:catagory/:id/editProduct" element={<EditPageComponent user={user}/>} />
+        <Route path="/addProduct" element={<AddPageComponent user={user} />} />
 
         <Route path="/myCart" element={<MyCart addProducts={setProducts} productsInCart={Products} />} />
 
@@ -80,7 +80,7 @@ console.log(user);
       </Routes>
       <FooterComponent />
     </>
-  );
+  )
 }
 
 export default App;

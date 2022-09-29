@@ -1,7 +1,7 @@
 import "./ShopSingleViewPage.scss"
 import axios from "axios"
 import ProductCardComponent from "../../../Components/CardComponent/ProductCardComponent"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { Grid } from '@mui/material';
@@ -49,10 +49,10 @@ function ShopSingleViewPage(props) {
             let productList = moreProducts.map((moreProduct) => {
                 return (<ProductCardComponent className="id" key={moreProduct.id} data={moreProduct} />);
             });
-            setExtraProducts(productList) 
+            setExtraProducts(productList)
         }
     }, [moreProducts])
-    
+
 
     // addToCart function, Pretty self explanatory 
     const addToCart = () => {
@@ -63,7 +63,7 @@ function ShopSingleViewPage(props) {
             size: Chosensize,
             image: product.image
         }
-        props.addProducts([...props.productsInCart,newProduct])
+        props.addProducts([...props.productsInCart, newProduct])
         console.log("added to cart")
 
     }
@@ -90,6 +90,7 @@ function ShopSingleViewPage(props) {
 
     return (
         <>
+            {props.user == 'admin' ? <Button className="adminFunctionsBtn"><Link to={`/shop/${catagory.catagory}/${catagory.id}/editProduct`}>Edit!</Link></Button> : <></>}
             <div className="mainContainer">
                 <img className="productImage" src={product.image} />
                 <div className="productInfo">
@@ -108,7 +109,7 @@ function ShopSingleViewPage(props) {
             </div>
             <Button
                 onClick={addToCart}
-                className="addToCartBtn"
+                className="adminFunctionsBtn"
                 variant="contained">
                 Add to Cart
             </Button>
@@ -123,9 +124,9 @@ function ShopSingleViewPage(props) {
                         alignItems: 'center',
                     }}
                 >
-                {extraproducts.length !== undefined ? extraproducts : <div>s</div>}
+                    {extraproducts.length !== undefined ? extraproducts : <div>s</div>}
                 </Grid>
-                </div>
+            </div>
         </>
     )
 }

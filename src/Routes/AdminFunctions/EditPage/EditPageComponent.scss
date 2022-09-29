@@ -1,0 +1,15 @@
+
+
+    #EditProductForm{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 5%;
+        .text-field{
+            padding-bottom: 5%;
+        }
+    }
+
+    .adminFunctionsBtn{
+        margin-right: 3% !important;
+    }

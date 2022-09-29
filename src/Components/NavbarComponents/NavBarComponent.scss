@@ -3,15 +3,12 @@
     width: 100%;
     background-color: black;
     color: #bbe1fa;
-
     .cartLink {
         display: flex;
         padding-top: 3px;
-
         .cartNavbar {
             padding-top: 7px;
             padding: 11px 3px 11px 24px!important;
-
         }
 
         .littleBubble {
@@ -44,7 +41,7 @@
 
 @media screen and (max-width: 708px) {
     .topnav {
-        height: 10vh;
+        height: 8vh;
         a {
             &:not(.shaka) {
                     display: none;
@@ -86,4 +83,11 @@
         }
     }
 
-
+@media screen and (max-width:390px) and (max-width:857px){
+    .topnav{
+        height: 6vh;
+    }
+}
+.logOut{
+    cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import './AddPageComponent.scss'
 import axios from 'axios';
 import { useState } from 'react'
+import {Link} from 'react-router-dom'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -23,7 +24,9 @@ function AddPageComponent(props) {
         setCatgory(event.target.value);
     };
 
-
+    if(props.user!== 'admin'){
+        window.location.href='/'
+    }
 
 
     const onFormSubmit = async (event) => {
@@ -52,18 +55,15 @@ function AddPageComponent(props) {
         window.location.href = "/";
     }
 
+   if( props.user== 'admin'){
 
-    return (
-        <>
-            <div >
-                {/* <Link to={'/'}>Home</Link> */}
-                <FormControl variant="standard" sx={{ m: 1, minWidth: 70 }}>
-                    <InputLabel id="demo-simple-select-standard-label">catagory</InputLabel>
+       return (
+           <>
+            <div className='formDiv'>
+                <FormControl  id="catagorySelect" variant="standard" sx={{ m: 1, minWidth: 70 }}>
+                    <InputLabel>catagory</InputLabel>
                     <Select
-                        labelId="demo-simple-select-standard-label"
-                        id="demo-simple-select-standard"
                         onChange={handleChange}
-                        label="Age"
                     >
                         {catagoryList}
                     </Select>
@@ -78,48 +78,48 @@ function AddPageComponent(props) {
                         name="Title"
                         multiline
                         maxRows={2}
-                    />
+                        />
 
                     <TextField
                         className='text-field'
-                        label="price"
+                        label="Price"
                         variant="outlined"
                         htmlFor="price"
                         type="number"
                         name="price"
-
-                    />
+                        
+                        />
 
                     <TextField
                         className='text-field'
-                        label="info"
+                        label="Info"
                         variant="outlined"
                         htmlFor="info"
                         type="text"
                         name="info"
                         multiline
                         maxRows={5}
-                    />
+                        />
 
 
                     <TextField
                         className='text-field'
-                        label="sizes"
+                        label="Sizes"
                         variant="outlined"
                         htmlFor="sizes"
                         type="text"
                         name="sizes"
-                    />
+                        />
 
 
                     <TextField
                         className='text-field'
-                        label="imgLink"
+                        label="Image Link"
                         variant="outlined"
                         htmlFor="imgLink"
                         type="text"
                         name="imgLink"
-                    />
+                        />
 
                 </form>
                 <br />
@@ -135,7 +135,12 @@ function AddPageComponent(props) {
             </div>
         </>
 
-    )
+)
+}else{
+    return <>
+    nope
+    </>
+}
 }
 
 export default AddPageComponent;

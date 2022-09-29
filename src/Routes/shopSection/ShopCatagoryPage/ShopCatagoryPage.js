@@ -31,21 +31,21 @@ function ShopCatagoryPage(props) {
     }, []);
 
 
-    useEffect(() => {
-        setProducts(products)
-    }, [products])
+    // useEffect(() => {
+    //     setProducts(products)
+    // }, [products])
 
 
     let priceLowTo = () => {
-        let LTH = products.sort((a, b) => {
+        let LTH = products.sort( (a, b) => {
             return a.price - b.price;
         })
-        setProducts(LTH);
+         setProducts(LTH);
     }
 
 
-    let priceHighTo = () => {
-        let HTL = products.sort((a, b) => {
+    const priceHighTo = () => {
+        const HTL = products.sort((a, b) => {
             return b.price - a.price;
         })
         setProducts(HTL);
@@ -68,8 +68,8 @@ function ShopCatagoryPage(props) {
 
             </div>
             <div className="filterActions">
-                <Button onClick={() => priceLowTo()} >low to high</Button>
-                <Button onClick={() => priceHighTo()}>high to low</Button>
+                <Button className="adminFunctionsBtn" onClick={() => priceLowTo()} >low to high</Button>
+                <Button className="adminFunctionsBtn" onClick={() => priceHighTo()}>high to low</Button>
             </div>
             <Grid container
                 spacing={6}

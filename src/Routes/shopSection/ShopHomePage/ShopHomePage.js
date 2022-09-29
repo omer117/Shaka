@@ -2,13 +2,15 @@ import "./ShopHomePage.scss"
 import { Link } from "react-router-dom";
 import React from "react";
 import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 
 
-function ShopHomePage() {
-
+function ShopHomePage(props) {
+ 
 
     return (
         <>
+    {props.user =='admin' ?<Button className="adminFunctionsBtn"><Link to="/addProduct">Add product</Link> </Button>: <></>}
             <div className="whatsHotDiv">
             </div>
             <Grid container

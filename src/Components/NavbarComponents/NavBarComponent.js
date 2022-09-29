@@ -1,23 +1,10 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom"
 import './NavBarComponent.scss';
+import { useRef } from "react";
+import { Link } from "react-router-dom"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import DehazeIcon from '@mui/icons-material/Dehaze';
 
 console.log(localStorage);
-// console.log(user!==null)
-// console.log(user!==undefined)
-
-
-
-
-// function UserGreeting() {
-//     return (
-//          user !== null ? <h3>Hello {user.username}</h3> : <div className="nothing"> </div>
-//         // <div>he</div>
-//     )
-// }
-
 function NavBarComponent(props) {
 
 function cleanStorage(){
@@ -28,7 +15,7 @@ function cleanStorage(){
     function IfUserLoggedIn() {
         if (props.user !== null) {
             return (
-                <a onClick={cleanStorage}>
+                <a className='logOut' onClick={cleanStorage}>
                         Log Out
                 </a>
             )

@@ -4,6 +4,7 @@ import { Link, useHref } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import "./LogInPage.scss"
+import { getLinearProgressUtilityClass } from '@mui/material';
 
 function LogInPage(props) {
     const [usersDetails, setDetails] = useState([])
@@ -47,7 +48,11 @@ function LogInPage(props) {
             await axios.post('https://shakaserver2.herokuapp.com/CheckLogIn', {
                 userDetails: formData
             }).then((res) => {
-                window.sessionStorage.setItem("user",res.data)
+                if(res.data==='no email like this bro sorry'){
+                    console.log('nope');
+                }else{
+                    window.sessionStorage.setItem("user",res.data)
+                }
                 // console.log(res.data)
             }).catch((err) => {
                 console.log(err);

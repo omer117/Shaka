@@ -103,17 +103,17 @@ function HomePage() {
                 <h2>The nearest beach - {closestBeachDetails[0].beach_name} </h2>
                 <div className="beachDetails">
                     <div>
-                        <h4>wind Speed</h4>
+                        <h4>Wind Speed</h4>
                         <AirIcon className="detail" />
                         <p>{closestBeachDetails[0].wind_speed} kts</p>
                     </div>
                     <div>
-                        <h4>wave height</h4>
+                        <h4>Wave Height</h4>
                         <SurfingIcon className="detail" />
                         <p>{closestBeachDetails[0].wave_height} m</p>
                     </div>
                     <div>
-                        <h4>water temperature</h4>
+                        <h4>Water Temperature</h4>
                         <ThermostatIcon className="detail" />
                         <p>{closestBeachDetails[0].water_temperature} °C</p>
                     </div>
