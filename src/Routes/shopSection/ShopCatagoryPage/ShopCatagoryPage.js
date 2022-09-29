@@ -56,17 +56,16 @@ function ShopCatagoryPage(props) {
         return (<ProductCardComponent productsInCart={props.productsInCart} addProducts={props.addProducts} myCartFunction={props.myCartFunction} key={product.id} data={product} />);
     });
 
-    console.log(products);
     return (
         <>
-            <div className="Links">
+            {/* <div className="Links">
                 <a href="/shop/boogi">Boogi</a>
                 <a href="/shop/sup">sup</a>
                 <a href="/shop/soft">soft</a>
                 <a href="/shop/womansuit">Women's SwimSuit</a>
                 <a href="/shop/mansuit">Man's SwimSuit</a>
 
-            </div>
+            </div> */}
             <div className="filterActions">
                 <Button className="adminFunctionsBtn" onClick={() => priceLowTo()} >low to high</Button>
                 <Button className="adminFunctionsBtn" onClick={() => priceHighTo()}>high to low</Button>

@@ -43,3 +43,35 @@
         padding-bottom: 2%;
     }
 }
+
+
+@media screen and (max-width: 600px) {
+    .product-card{
+        padding:0
+    }
+
+    .priceAndSizeDiv{
+        
+        .product-price{
+            padding-top: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 653px) {
+
+    .card-actions{
+        font-size: 6px !important;
+        
+        button{
+            padding: 10px !important;
+        }
+    }
+
+    .priceAndSizeDiv{
+        
+        .product-price{
+            padding-top: 20px;
+        }
+    } 
+}

@@ -1,7 +1,7 @@
 .container {
     background-color: rgb(251, 253, 255);
-    width: 40%;
-    margin:40px auto;
+    width: 47%;
+    margin: 40px auto;
     border-radius: 1px;
 
     .signUpHeader {
@@ -9,11 +9,11 @@
         padding-top: 5%;
         font-weight: 700;
         font-size: x-large;
-        background:rgba(105, 102, 102, 0.6) url("../../../images/backgroundImg2.png");
+        background: rgba(105, 102, 102, 0.6) url("../../../images/backgroundImg2.png");
         background-position: 0px;
         background-repeat: no-repeat;
         background-size: 106%;
-        background-blend-mode: darken;        
+        background-blend-mode: darken;
         width: 100%;
         height: 50px;
         color: rgb(251, 253, 255);
@@ -21,19 +21,23 @@
     }
 
     #signUpForm {
-        padding: 8%;
+        padding: 10%;
         display: flex;
         margin: auto;
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
 
-        .form{
-            &:not(:last-child){
+        .form {
+            &:not(:last-child) {
                 margin-bottom: 5%;
             }
         }
+    }
 
+    .instructionsDiv{
+        padding: 4%;
+        text-align: start;
     }
 
     .formActions {
@@ -43,16 +47,22 @@
         margin: auto;
         justify-content: center;
 
-        button{
-            background-color:#0F4C75 ;
+        button {
+            background-color: #0f4c75;
             margin-bottom: 3%;
         }
     }
 
-    .instructionsDiv{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    .instructionsDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 558px) {
+    .container {
+        width: 79% !important;
     }
 }

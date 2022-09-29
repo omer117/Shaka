@@ -6,11 +6,11 @@ import Button from '@mui/material/Button';
 
 
 function ShopHomePage(props) {
- 
+
 
     return (
         <>
-    {props.user =='admin' ?<Button className="adminFunctionsBtn"><Link to="/addProduct">Add product</Link> </Button>: <></>}
+            {props.user == 'admin' ? <Button className="adminFunctionsBtn"><Link to="/addProduct">Add product</Link> </Button> : <></>}
             <div className="whatsHotDiv">
             </div>
             <Grid container
@@ -38,13 +38,13 @@ function ShopHomePage(props) {
                         <Link to="/shop/womansuit">Women's SwimSuit</Link>
                     </div>
                 </Grid>
-                <div className="manSwimsuit">
-                    <Link to="/shop/mansuit">Man's SwimSuit</Link>
-                </div>
+                <Grid className="manSwimsuitDiv" item xs={12} md={6}>
+                    <div className="manSwimsuit">
+                        <Link to="/shop/mansuit">Man's SwimSuit</Link>
+                    </div>
+                </Grid>
             </Grid>
-
         </>
-
     )
 }
 

@@ -29,7 +29,7 @@
         align-items: center;
 
         .form {
-            margin-bottom: 2%;
+            margin-bottom: 7%;
         }
     }
 
@@ -44,4 +44,25 @@
             margin-left: 1%;
         }
     }
+}
+
+@media screen and (max-width: 575px) {
+
+    .container{
+        width: 72% !important;
+        margin-top: 19%   !important;
+        margin-bottom: 19%   !important;
+    }
+//     .logInForm{
+// padding: 3%;
+//     }
+// .formActions{
+// justify-content: space-between;
+// padding: 5% !important;
+
+// .register{
+//     margin-left: 7% !important;
+// }
+// }
+
 }

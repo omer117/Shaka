@@ -76,17 +76,22 @@
     .manSwimsuit{
         background:rgba(105, 102, 102, 0.6) url('../../../images/catagoryImages/man.jpg') ;
         @include imageStyle();
-        width: 30%;
-        @include centeringStuff();
-        margin: 2.5% auto;
-        height: 90%;
-        font-size:150%;
-        font-weight: 900;
-        color: rgb(188, 221, 235);
     }
 
     .womenSwimsuit{
         background:rgba(105, 102, 102, 0.6) url('../../../images/catagoryImages/women.jpg') ;
-        @include imageStyle()
+        @include imageStyle();
     }
+}
+
+.manSwimsuitDiv
+{
+margin-left: 25% !important;
+}
+
+@media screen and (max-width:900px) {
+    .manSwimsuitDiv
+{
+    margin-left: 0 !important;
+}
 }
