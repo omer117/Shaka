@@ -11,7 +11,6 @@ function ShopHomePage(props) {
     return (
         <>
             {props.user === 'admin' ? <Button className="adminFunctionsBtn"><Link to="/addProduct">Add product</Link> </Button> : <></>}
-            <div>
                 
             <Grid container
 className="catagoriesDiv"
@@ -42,7 +41,6 @@ className="catagoriesDiv"
                     </div>
                 </Grid>
             </Grid>
-                </div>
         </>
     )
 }

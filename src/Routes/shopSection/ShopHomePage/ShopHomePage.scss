@@ -1,16 +1,14 @@
 @mixin imageStyle {
-    background-position:center center;
+    background-position: center center;
     background-repeat: no-repeat;
     background-size: fill;
     background-blend-mode: darken;
-    border-radius: 18px; 
+    border-radius: 18px;
 }
-
-
 
 @mixin centeringStuff {
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
     text-align: center;
 }
@@ -20,36 +18,37 @@
     width: 100%;
     height: 100%;
     margin: 5px 0;
-    background:rgba(105, 102, 102, 0.6) url("../../../images/photoboto.png");
+    background: rgba(105, 102, 102, 0.6) url("../../../images/photoboto.png");
     background-position: 0px;
     background-repeat: no-repeat;
     background-size: 100%;
     background-blend-mode: darken;
-    span{
+    span {
         font-family: "Shadows Into Light", cursive;
-        font-size:600%;
+        font-size: 600%;
         font-weight: 900;
         color: #fff;
     }
 }
 
 @media screen and (max-width: 678px) {
-    .shakaLogo{
-    span{
-        font-family: "Shadows Into Light", cursive;
-        font-size:200%;
-        font-weight: 900;
+    .shakaLogo {
+        span {
+            font-family: "Shadows Into Light", cursive;
+            font-size: 200%;
+            font-weight: 900;
+        }
     }
-
-}
 }
 
-.catagoriesDiv{
+.catagoriesDiv {
     margin-top: 20px !important;
     height: fit-content !important;
-    div{
+    margin-bottom: 15vh !important;
+
+    div {
         @include centeringStuff;
-        
+
         height: 300px !important;
         margin-top: 39px !important;
         // font-size:150%;
@@ -57,47 +56,44 @@
         // color: rgb(188, 221, 235);
     }
 
-    .boogi{
-        background:rgba(105, 102, 102, 0.6) url('../../../images/catagoryImages/5833ebaf95efefd0589ba275509092d0--the-beach-summer-vibes.jpg') ;
+    .boogi {
+        background: rgba(105, 102, 102, 0.6)
+            url("../../../images/catagoryImages/5833ebaf95efefd0589ba275509092d0--the-beach-summer-vibes.jpg");
         @include imageStyle();
         background-position: 0px -200px 15px 0;
     }
 
-    .sup{
-        background:rgba(105, 102, 102, 0.6) url('../../../images/catagoryImages/sup.jpg') ;
+    .sup {
+        background: rgba(105, 102, 102, 0.6) url("../../../images/catagoryImages/sup.jpg");
         @include imageStyle();
-        background-position:1px -190px;
+        background-position: 1px -190px;
     }
 
-    .soft{
-        background:rgba(105, 102, 102, 0.6) url('../../../images/catagoryImages/soft.jpg') ;
-        @include imageStyle();
-
-    }
-
-    .manSwimsuit{
-        background:rgba(105, 102, 102, 0.6) url('../../../images/catagoryImages/man.jpg') ;
+    .soft {
+        background: rgba(105, 102, 102, 0.6) url("../../../images/catagoryImages/soft.jpg");
         @include imageStyle();
     }
 
-    .womenSwimsuit{
-        background:rgba(105, 102, 102, 0.6) url('../../../images/catagoryImages/women.jpg') ;
+    .manSwimsuit {
+        background: rgba(105, 102, 102, 0.6) url("../../../images/catagoryImages/man.jpg");
+        @include imageStyle();
+    }
+
+    .womenSwimsuit {
+        background: rgba(105, 102, 102, 0.6) url("../../../images/catagoryImages/women.jpg");
         @include imageStyle();
     }
 }
 
-.manSwimsuitDiv{
-margin-left: 25% !important;
+.manSwimsuitDiv {
+    margin-left: 25% !important;
 }
 
-
-@media screen and (max-width:900px) {
-    .manSwimsuitDiv{
+@media screen and (max-width: 900px) {
+    .manSwimsuitDiv {
         margin-left: 0% !important;
     }
-    
 }
 
-@media screen and (min-width:400px) {
-
+@media screen and (min-width: 400px) {
 }
