@@ -3,6 +3,17 @@
     justify-content: space-between;
 }
 
+.filterActions{
+    margin-top: 50px;
+    margin-bottom: 0;
+}
+
+.filterBtn{
+    margin-right: 7% !important;
+    background-color: rgba(3 72 107) !important;
+    color: rgb(188, 221, 235) !important;
+}
+
 .loading {
     margin: 110px auto;
     padding-left: 150px;
@@ -12,8 +23,3 @@
 
 }
 
-.adminFunctionsBtn{
-    margin-top: 3% !important;
-    margin-bottom: -7% !important;
-    z-index: -1;
-}

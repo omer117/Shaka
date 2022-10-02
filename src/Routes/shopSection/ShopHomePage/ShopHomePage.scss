@@ -13,6 +13,12 @@
     text-align: center;
 }
 
+
+.ToAdd{
+    background-color: rgba(3 72 107) !important;
+    color: rgb(188, 221, 235) !important;
+}
+
 .shakaLogo {
     @include centeringStuff;
     width: 100%;

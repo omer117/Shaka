@@ -26,8 +26,8 @@ function MyCart(props) {
                     <img src={product.image} alt={product.title} />
                     <div className="productInfoSpecific">
                         <p className="title">{product.title}</p>
-                        <p>{product.size}</p>
-                        <p>{product.price}</p>
+                        <p>size: {product.size}</p>
+                        <p>price: {product.price}</p>
                     </div>
                 </div>
                 <div className="deleteBtn" >

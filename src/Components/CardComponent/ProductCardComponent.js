@@ -61,8 +61,7 @@ function ProductCardComponent(props) {
                     />
                     <CardContent>
                         <Typography
-                            gutterBottom
-                            variant="h7"
+                            variant="h1"
                             className="product-title"
                             component="div">
                             {props.data.title}

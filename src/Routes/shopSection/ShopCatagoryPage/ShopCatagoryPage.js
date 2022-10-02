@@ -17,7 +17,7 @@ function ShopCatagoryPage(props) {
         return !specialCharsForName.test(name)
     }
 
-
+console.log(catagory);
     useEffect(() => {
 
         if (isValidParams(catagory)) {
@@ -37,18 +37,21 @@ function ShopCatagoryPage(props) {
 
 
     let priceLowTo = () => {
-        let LTH = products.sort( (a, b) => {
-            return a.price - b.price;
+        axios.post('/everyDayGet',
+        {sqlString:  `SELECT * FROM ${catagory} ORDER BY price DESC`})
+        .then((res)=>{
+        setProducts((res.data));
         })
-         setProducts(LTH);
     }
 
 
     const priceHighTo = () => {
-        const HTL = products.sort((a, b) => {
-            return b.price - a.price;
+        axios.post('/everyDayGet',
+        {sqlString:  `SELECT * FROM ${catagory} ORDER BY price ASC`})
+        .then((res)=>{
+            setProducts((res.data));
         })
-        setProducts(HTL);
+
     }
 
 
@@ -58,23 +61,15 @@ function ShopCatagoryPage(props) {
 
     return (
         <>
-            {/* <div className="Links">
-                <a href="/shop/boogi">Boogi</a>
-                <a href="/shop/sup">sup</a>
-                <a href="/shop/soft">soft</a>
-                <a href="/shop/womansuit">Women's SwimSuit</a>
-                <a href="/shop/mansuit">Man's SwimSuit</a>
-
-            </div> */}
             <div className="filterActions">
-                <Button className="adminFunctionsBtn" onClick={() => priceLowTo()} >low to high</Button>
-                <Button className="adminFunctionsBtn" onClick={() => priceHighTo()}>high to low</Button>
+                <Button className="filterBtn" onClick={priceLowTo} >high to low</Button>
+                <Button className="filterBtn" onClick={priceHighTo}>low to high</Button>
             </div>
             <Grid container
                 spacing={6}
                 className="specific-catagory-container"
                 style={{
-                    marginTop: '30px',
+                    marginTop: '20px',
                     alignItems: 'center',
                 }}
             >

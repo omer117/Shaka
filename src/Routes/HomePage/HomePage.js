@@ -42,19 +42,28 @@ function HomePage() {
     let [closestBeachDetails, setClosestBeacheDetails] = useState([])
     let [myLocation, setLocation] = useState([])
 
+
+
     useEffect(() => {
+
+
+
+
         axios.get(`https://shakaserver2.herokuapp.com/getBeaches`)
             .then((res) => setBeaches(res.data))
             .catch((err) => console.log(err));
 
-
-        navigator.geolocation.getCurrentPosition(async(position) => {
+        navigator.geolocation.getCurrentPosition(async (position) => {
             setLocation([position.coords.latitude, position.coords.longitude]);
-
         })
 
-
-
+        navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+            if (result.state === 'prompt') {
+                alert('please allow location sharing and restart the browser');
+            } else if (result.state === 'denied') {
+                alert('please allow location sharing and restart the browser');
+            }
+        })
     }, [])
 
     useEffect(() => {
@@ -70,15 +79,19 @@ function HomePage() {
 
 
     useEffect(() => {
-        if (distances.length > 0) {
-            axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
-                { sqlString: `SELECT * FROM daily_forecast WHERE beach_id=${distances[0].id}` })
-                .then((res) => setClosestBeacheDetails(res.data))
-                .catch((err) => console.log(err));
-        }
+        navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+            if (result.state === 'granted') {
+                if (distances.length > 0) {
+                    axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
+                        { sqlString: `SELECT * FROM daily_forecast WHERE beach_id=${distances[0].id}` })
+                        .then((res) => setClosestBeacheDetails(res.data))
+                        .catch((err) => console.log(err));
+                }
+            }
+        });
+
+
     }, [distances])
-
-
 
 
 
@@ -89,7 +102,7 @@ function HomePage() {
     }, []);
 
     let productList = products.map((product) => {
-        return (<ProductCardComponent className="id" key={product.id} data={product} />);
+        return (<ProductCardComponent hrefType='sup' className="id" key={product.id} data={product} />);
     });
 
     if (closestBeachDetails.length > 0) {

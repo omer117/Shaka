@@ -90,7 +90,7 @@ function ShopSingleViewPage(props) {
 
     return (
         <>
-            {props.user == 'admin' ? <Button className="adminFunctionsBtn"><Link to={`/shop/${catagory.catagory}/${catagory.id}/editProduct`}>Edit!</Link></Button> : <></>}
+            {props.user == 'admin' ? <Button className="ToAdd"><Link to={`/shop/${catagory.catagory}/${catagory.id}/editProduct`}>Edit!</Link></Button> : <></>}
             <div className="mainContainer">
                 <img className="productImage" src={product.image} />
                 <div className="productInfo">

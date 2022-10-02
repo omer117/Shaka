@@ -110,6 +110,7 @@ function EditPageComponent({ user }) {
                 <div id="editProductFormDiv">
                     <form onSubmit={onFormSubmit} id="EditProductForm">
                         <TextField
+                            required
                             className="text-field"
                             label="Title"
                             variant="outlined"
@@ -122,6 +123,7 @@ function EditPageComponent({ user }) {
                         />
 
                         <TextField
+                            required
                             className="text-field"
                             label="Price"
                             variant="outlined"
@@ -136,6 +138,7 @@ function EditPageComponent({ user }) {
                         />
 
                         <TextField
+                            required
                             className="text-field"
                             label="info"
                             variant="outlined"
@@ -148,6 +151,7 @@ function EditPageComponent({ user }) {
                         />
 
                         <TextField
+                            required
                             className="text-field"
                             label="sizes"
                             variant="outlined"
@@ -158,6 +162,7 @@ function EditPageComponent({ user }) {
                         />
 
                         <TextField
+                            required
                             className="text-field"
                             label="image Link"
                             variant="outlined"

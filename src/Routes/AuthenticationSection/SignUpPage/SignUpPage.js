@@ -12,14 +12,7 @@ function SignUpPage(props) {
         axios.get('https://shakaserver2.herokuapp.com/getMailUser')
             .then((res) => setDetails(res.data))
             .catch((err) => console.log(err));
-
-
     }, [])
-
-
-    useEffect(() => {
-        console.log(usersDetails);
-    }, [usersDetails])
 
     let passwordValidation = (password) => {
         const specialCharsForPassowrd = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
@@ -64,9 +57,9 @@ function SignUpPage(props) {
         formData.userName = formData.userName;
         formData.mailAddress = formData.mailAddress;
         formData.password = formData.password;
-        if (passwordValidation(formData.password) && userValidation(formData.userName)
+            if (passwordValidation(formData.password) && userValidation(formData.userName)
             && emailValidation(formData.mailAddress)) {
-            console.log(formData);
+                console.log(formData);
             await axios.post('https://shakaserver2.herokuapp.com/addUser', {
                 userDetails: formData
             }).then((res) => {
@@ -87,6 +80,7 @@ function SignUpPage(props) {
 
                     <form onSubmit={onFormSubmit} id="signUpForm">
                         <TextField
+                        required
                             className="form"
                             label="user name"
                             variant="outlined"
@@ -95,6 +89,7 @@ function SignUpPage(props) {
                             name="userName"
                         />
                         <TextField
+                        required
                             className="form"
                             id="outlined-basic"
                             label="mail address"
@@ -105,6 +100,7 @@ function SignUpPage(props) {
                         />
 
                         <TextField
+                        required
                             className="form"
                             id="password"
                             label="password"

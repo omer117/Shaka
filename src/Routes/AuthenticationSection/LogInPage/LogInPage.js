@@ -36,7 +36,6 @@ function LogInPage(props) {
             }
         }
     }
-    console.log(usersDetails);
 
 
     const onFormSubmit = async (event) => {
@@ -49,17 +48,18 @@ function LogInPage(props) {
             await axios.post('https://shakaserver2.herokuapp.com/CheckLogIn', {
                 userDetails: formData
             }).then((res) => {
-                if(res.data==='no email like this bro sorry'){
+                if (res.data === 'no email like this bro sorry') {
                     console.log('nope');
-                }else{
-                    window.sessionStorage.setItem("user",res.data)
+                } else {
+                    window.sessionStorage.setItem("user", res.data)
                 }
                 // console.log(res.data)
             }).catch((err) => {
                 console.log(err);
             });
             window.location.href = '/'
-        } else {
+        }
+        else {
             alert("Password or email validation failed");
         }
     }
@@ -67,52 +67,54 @@ function LogInPage(props) {
 
     return (
         <>
-        <div className="container">
+            <div className="container">
 
-<div className="header">Log In</div>
-            <div className='logInForm'>
+                <div className="header">Log In</div>
+                <div className='logInForm'>
 
-                <form onSubmit={onFormSubmit} id="LogInForm">
+                    <form onSubmit={onFormSubmit} id="LogInForm">
 
-                    <TextField
-                        className='form'
-                        id="outlined-basic"
-                        label="Email Address"
-                        variant="outlined"
-                        htmlFor="mailAddress"
-                        type="text"
-                        name="mailAddress"
+                        <TextField
+        required
+                            className='form'
+                            id="outlined-basic"
+                            label="Email Address"
+                            variant="outlined"
+                            htmlFor="mailAddress"
+                            type="text"
+                            name="mailAddress"
                         />
 
-                    <TextField
-                        className='form'
-                        id="outlined-password-input"
-                        label="Password"
-                        type="password"
-                        autoComplete="current-password"
-                        htmlFor="password"
-                        name="password"
+                        <TextField
+                        required
+                            className='form'
+                            id="outlined-password-input"
+                            label="Password"
+                            type="password"
+                            autoComplete="current-password"
+                            htmlFor="password"
+                            name="password"
                         />
-                </form>
-            </div>
-            <div className="formActions">
+                    </form>
+                </div>
+                <div className="formActions">
 
-                <Button
-                    variant="contained"
-                    type="submit"
-                    form="LogInForm"
-                    value="Submit"
+                    <Button
+                        variant="contained"
+                        type="submit"
+                        form="LogInForm"
+                        value="Submit"
                     >Log In
-                </Button>
-                <Button
-                 variant="contained"
-                 className='register'>
-                    <Link to="/signUp">Register</Link>
-                </Button>
+                    </Button>
+                    <Button
+                        variant="contained"
+                        className='register'>
+                        <Link to="/signUp">Register</Link>
+                    </Button>
+                </div>
             </div>
-        </div>
 
-                    </>
+        </>
     )
 
 }

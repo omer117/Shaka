@@ -10,7 +10,7 @@ function ShopHomePage(props) {
 
     return (
         <>
-            {props.user === 'admin' ? <Button className="adminFunctionsBtn"><Link to="/addProduct">Add product</Link> </Button> : <></>}
+            {props.user === 'admin' ? <Button className="ToAdd"><Link to="/addProduct">Add product</Link> </Button> : <></>}
                 
             <Grid container
 className="catagoriesDiv"
