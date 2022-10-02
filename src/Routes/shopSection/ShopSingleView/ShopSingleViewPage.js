@@ -21,7 +21,7 @@ function ShopSingleViewPage(props) {
         return specialCharsForName.test(name)
     }
 
-
+console.log(catagory);
     useEffect(() => {
         if (isNaN(Number(catagory.id)) && isValidParams(catagory.catagory)) {
             alert('no sqli in here sryyy')
@@ -47,7 +47,7 @@ function ShopSingleViewPage(props) {
     useEffect(() => {
         if (moreProducts.length > 0) {
             let productList = moreProducts.map((moreProduct) => {
-                return (<ProductCardComponent className="id" key={moreProduct.id} data={moreProduct} />);
+                return (<ProductCardComponent DoWantToRender={false} className="id" key={moreProduct.id} data={moreProduct} />);
             });
             setExtraProducts(productList)
         }

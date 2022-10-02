@@ -19,7 +19,6 @@ function AddPageComponent(props) {
         )
     })
 
-
     const handleChange = (event) => {
         setCatgory(event.target.value);
     };
@@ -27,7 +26,6 @@ function AddPageComponent(props) {
     if (props.user !== 'admin') {
         window.location.href = '/'
     }
-
 
     const onFormSubmit = async (event) => {
         event.preventDefault();
@@ -39,21 +37,18 @@ function AddPageComponent(props) {
         formData.info = formData.info;
         formData.sizes = (formData.sizes);
         formData.imgLink = formData.imgLink;
-        console.log(formData)
+        await axios.post('https://shakaserver2.herokuapp.com/addProduct', {
+            sqlString: `
+            INSERT INTO ${formData.catagory} (title,price,info,sizes,image)
+            VAlUES ('${formData.title}', ${formData.price},'${formData.info}','{${formData.sizes}}','${formData.imgLink}');                            
+            `,
+        }).then((res) => {
+            console.log(res)//TODO:add handle succes edit
+        }).catch((err) => {
+            console.log(err);
+        });
 
-
-        // await axios.post('https://shakaserver2.herokuapp.com/addProduct', {
-        //     sqlString: `
-        //     INSERT INTO ${formData.catagory} (title,price,info,sizes,image)
-        //     VAlUES ('${formData.title}', ${formData.price},'${formData.info}','{${formData.sizes}}','${formData.imgLink}');                            
-        //     `,
-        // }).then((res) => {
-        //     console.log(res)//TODO:add handle succes edit
-        // }).catch((err) => {
-        //     console.log(err);
-        // });
-
-        // window.location.href = "/";
+        window.location.href = "/";
     }
 
     if (props.user == 'admin') {
@@ -61,7 +56,7 @@ function AddPageComponent(props) {
         return (
             <>
                 <div className='formDiv'>
-                    <FormControl id="catagorySelect" variant="standard" sx={{ m: 1, minWidth: 70 }}>
+                    <FormControl required  id="catagorySelect" variant="standard" sx={{ m: 1, minWidth: 70 }}>
                         <InputLabel required>catagory</InputLabel>
                         <Select
                             onChange={handleChange}

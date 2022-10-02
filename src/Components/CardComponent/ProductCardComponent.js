@@ -30,24 +30,60 @@ function ProductCardComponent(props) {
 
     const handleChange = (event) => {
         setSize(event.target.value);
-        console.log(size)
     };
-
 
 
     //add to cart function 
     const addToCart = () => {
-        
-            let newProduct = {
-                id: props.data.id,
-                title: props.data.title,
-                price: props.data.price,
-                size: size,
-                image: props.data.image
-            }
-            props.addProducts([...props.productsInCart,newProduct])
-            console.log("added to cart")
+
+        let newProduct = {
+            id: props.data.id,
+            title: props.data.title,
+            price: props.data.price,
+            size: size,
+            image: props.data.image
         }
+        props.addProducts([...props.productsInCart, newProduct])
+        console.log("added to cart")
+    }
+
+
+    function ConditionalLink() {
+        if (catagory === undefined || props.DoWantToRender === false) {
+            return (
+                <>
+                    <Button
+                        variant='outlined'
+                        className="moreInfoButton"
+                    >
+                        <Link to={`/shop/sup/${props.data.id}`}>
+                            More Info
+                        </Link>
+                    </Button>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <Button
+                        onClick={addToCart}
+                        className="addToCartBtn"
+                        variant="contained">
+                        Add to Cart
+                    </Button>
+                    <Button
+                        variant='outlined'
+                        className="moreInfoButton"
+                    >
+                        <a href={`/shop/${catagory}/${props.data.id}`}>
+                            More Info
+                        </a>
+                    </Button>
+                </>
+            )
+        }
+    }
+
 
     return (
         <>
@@ -87,21 +123,7 @@ function ProductCardComponent(props) {
                         </FormControl>
                     </CardContent>
                     <CardActions className='card-actions'>
-                        <Button
-                            onClick={addToCart}
-                            className="addToCartBtn"
-                            variant="contained">
-
-                            Add to Cart
-                        </Button>
-                        <Button
-                            variant='outlined'
-                            className="moreInfoButton"
-                        >
-                            <Link to={`/shop/${catagory}/${props.data.id}`}>
-                                More Info
-                            </Link>
-                        </Button>
+<ConditionalLink/>
                     </CardActions>
                 </Card>
             </Grid>

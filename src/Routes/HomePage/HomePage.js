@@ -45,10 +45,6 @@ function HomePage() {
 
 
     useEffect(() => {
-
-
-
-
         axios.get(`https://shakaserver2.herokuapp.com/getBeaches`)
             .then((res) => setBeaches(res.data))
             .catch((err) => console.log(err));
@@ -89,25 +85,20 @@ function HomePage() {
                 }
             }
         });
-
-
     }, [distances])
 
 
-
     useEffect(() => {
-        axios.get(`https://shakaserver2.herokuapp.com/sideRequest`)
+        axios.post(`https://shakaserver2.herokuapp.com/everyDayGet`,
+        { sqlString: `SELECT * FROM sup ORDER BY price DESC LIMIT 3` })
             .then((res) => setProducts(res.data))
             .catch((err) => console.log(err));
     }, []);
 
     let productList = products.map((product) => {
-        return (<ProductCardComponent hrefType='sup' className="id" key={product.id} data={product} />);
+        return (<ProductCardComponent hrefType='' className="id" key={product.id} data={product} />);
     });
 
-    if (closestBeachDetails.length > 0) {
-        console.log(closestBeachDetails[0]);
-    }
 
     function Details() {
 
