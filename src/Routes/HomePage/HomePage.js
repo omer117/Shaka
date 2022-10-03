@@ -64,16 +64,14 @@ function HomePage() {
 
 
     useEffect(() => {
-        navigator.permissions.query({ name: 'geolocation' }).then((result) => {
-            if (result.state === 'granted') {
-                if (distances.length > 0) {
-                    axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
-                        { sqlString: `SELECT * FROM daily_forecast WHERE beach_id=${distances[0].id}` })
-                        .then((res) => setClosestBeacheDetails(res.data))
-                        .catch((err) => console.log(err));
-                }
+        if (!geolocation.error) {
+            if (distances.length > 0) {
+                axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
+                    { sqlString: `SELECT * FROM daily_forecast WHERE beach_id=${distances[0].id}` })
+                    .then((res) => setClosestBeacheDetails(res.data))
+                    .catch((err) => console.log(err));
             }
-        });
+        }
     }, [distances])
 
 
@@ -89,43 +87,43 @@ function HomePage() {
     });
 
     function Details() {
-            if (closestBeachDetails.length > 0) {
-                return (
-                    <div className="surfingTodayDiv">
-                        <h2>The nearest beach - {closestBeachDetails[0].beach_name} </h2>
-                        <div className="beachDetails">
-                            <div>
-                                <h4>Wind Speed</h4>
-                                <AirIcon className="detail" />
-                                <p>{closestBeachDetails[0].wind_speed} kts</p>
-                            </div>
-                            <div>
-                                <h4>Wave Height</h4>
-                                <SurfingIcon className="detail" />
-                                <p>{closestBeachDetails[0].wave_height} m</p>
-                            </div>
-                            <div>
-                                <h4>Water Temperature</h4>
-                                <ThermostatIcon className="detail" />
-                                <p>{closestBeachDetails[0].water_temperature} °C</p>
-                            </div>
+        if (closestBeachDetails.length > 0) {
+            return (
+                <div className="surfingTodayDiv">
+                    <h2>The nearest beach - {closestBeachDetails[0].beach_name} </h2>
+                    <div className="beachDetails">
+                        <div>
+                            <h4>Wind Speed</h4>
+                            <AirIcon className="detail" />
+                            <p>{closestBeachDetails[0].wind_speed} kts</p>
+                        </div>
+                        <div>
+                            <h4>Wave Height</h4>
+                            <SurfingIcon className="detail" />
+                            <p>{closestBeachDetails[0].wave_height} m</p>
+                        </div>
+                        <div>
+                            <h4>Water Temperature</h4>
+                            <ThermostatIcon className="detail" />
+                            <p>{closestBeachDetails[0].water_temperature} °C</p>
                         </div>
                     </div>
-                )
-            }
-            else if (closestBeachDetails.length === 0) {
-                return (
-                    <div className="loading"><LoadingComponent /></div>
-                )
-            }
+                </div>
+            )
         }
+        else if (closestBeachDetails.length === 0) {
+            return (
+                <div className="loading"><LoadingComponent /></div>
+            )
+        }
+    }
 
 
 
 
     return (
         <>
-            {!geolocation.error ? <Details /> :<div> <h2>please share your location,and then refresh the page in order for the weather forecast to work</h2></div>}
+            {!geolocation.error ? <Details /> : <div> <h2>please share your location,and then refresh the page in order for the weather forecast to work</h2></div>}
 
             <div className='HotNowDiv'>
                 <h1>Hot Now!</h1>
