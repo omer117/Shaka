@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import { Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
+import useGeolocation from "react-hook-geolocation";
 import { Button } from "@mui/material";
 import LoadingComponent from '../../Components/LoadingComponent/LoadingComponent'
 import ProductCardComponent from "../../Components/CardComponent/ProductCardComponent"
@@ -40,38 +41,25 @@ function HomePage() {
     let [products, setProducts] = useState([]);
     let [distances, setDistances] = useState([])
     let [closestBeachDetails, setClosestBeacheDetails] = useState([])
-    let [myLocation, setLocation] = useState([])
 
+    const geolocation = useGeolocation();
 
 
     useEffect(() => {
         axios.get(`https://shakaserver2.herokuapp.com/getBeaches`)
             .then((res) => setBeaches(res.data))
             .catch((err) => console.log(err));
-
-        navigator.geolocation.getCurrentPosition(async (position) => {
-            setLocation([position.coords.latitude, position.coords.longitude]);
-        })
-
-        navigator.permissions.query({ name: 'geolocation' }).then((result) => {
-            if (result.state === 'prompt') {
-                alert('please allow location sharing and restart the browser');
-                window.location.reload();
-            } else if (result.state === 'denied') {
-                alert('please allow location sharing and restart the browser');
-            }
-        })
     }, [])
 
     useEffect(() => {
         let orderedBeaches = beaches.map((beach) => ({
-            id: beach.beach_id, name: beach.beach_name, distance: distanceBetweenTwoPoints(beach.lat, beach.lon, myLocation[0], myLocation[1])
+            id: beach.beach_id, name: beach.beach_name, distance: distanceBetweenTwoPoints(beach.lat, beach.lon, geolocation.latitude, geolocation.longitude)
         }))
             .sort((a, b) => {
                 return a.distance - b.distance
             })
         setDistances(orderedBeaches)
-    }, [beaches])
+    }, [beaches, geolocation])
 
 
 
@@ -91,7 +79,7 @@ function HomePage() {
 
     useEffect(() => {
         axios.post(`https://shakaserver2.herokuapp.com/everyDayGet`,
-        { sqlString: `SELECT * FROM sup ORDER BY price DESC LIMIT 3` })
+            { sqlString: `SELECT * FROM sup ORDER BY price DESC LIMIT 3` })
             .then((res) => setProducts(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -100,39 +88,44 @@ function HomePage() {
         return (<ProductCardComponent hrefType='' className="id" key={product.id} data={product} />);
     });
 
-
     function Details() {
-
-        return (
-            <div className="surfingTodayDiv">
-                <h2>The nearest beach - {closestBeachDetails[0].beach_name} </h2>
-                <div className="beachDetails">
-                    <div>
-                        <h4>Wind Speed</h4>
-                        <AirIcon className="detail" />
-                        <p>{closestBeachDetails[0].wind_speed} kts</p>
+            if (closestBeachDetails.length > 0) {
+                return (
+                    <div className="surfingTodayDiv">
+                        <h2>The nearest beach - {closestBeachDetails[0].beach_name} </h2>
+                        <div className="beachDetails">
+                            <div>
+                                <h4>Wind Speed</h4>
+                                <AirIcon className="detail" />
+                                <p>{closestBeachDetails[0].wind_speed} kts</p>
+                            </div>
+                            <div>
+                                <h4>Wave Height</h4>
+                                <SurfingIcon className="detail" />
+                                <p>{closestBeachDetails[0].wave_height} m</p>
+                            </div>
+                            <div>
+                                <h4>Water Temperature</h4>
+                                <ThermostatIcon className="detail" />
+                                <p>{closestBeachDetails[0].water_temperature} °C</p>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h4>Wave Height</h4>
-                        <SurfingIcon className="detail" />
-                        <p>{closestBeachDetails[0].wave_height} m</p>
-                    </div>
-                    <div>
-                        <h4>Water Temperature</h4>
-                        <ThermostatIcon className="detail" />
-                        <p>{closestBeachDetails[0].water_temperature} °C</p>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+                )
+            }
+            else if (closestBeachDetails.length === 0) {
+                return (
+                    <div className="loading"><LoadingComponent /></div>
+                )
+            }
+        }
 
 
 
 
     return (
         <>
-            {closestBeachDetails.length > 0 ? <Details /> : <div className="loading"><LoadingComponent /></div>}
+            {!geolocation.error ? <Details /> :<div> <h2>please share your location,and then refresh the page in order for the weather forecast to work</h2></div>}
 
             <div className='HotNowDiv'>
                 <h1>Hot Now!</h1>
