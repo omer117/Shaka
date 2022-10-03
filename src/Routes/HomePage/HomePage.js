@@ -56,6 +56,7 @@ function HomePage() {
         navigator.permissions.query({ name: 'geolocation' }).then((result) => {
             if (result.state === 'prompt') {
                 alert('please allow location sharing and restart the browser');
+                window.location.reload();
             } else if (result.state === 'denied') {
                 alert('please allow location sharing and restart the browser');
             }
