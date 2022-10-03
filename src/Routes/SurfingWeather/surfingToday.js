@@ -45,22 +45,22 @@ function SurfingTodayComponent() {
         if (selectedBeachDetails.length > 0) {
 
             return (<div className="surfingTodayDiv">
-                <h2>The chosen beach - {selectedBeachDetails[0].beach_name} </h2>
+                <h2>The Waves at   <span id="beachName" className="details"> {selectedBeachDetails[0].beach_name}</span> </h2>
                 <div className="beachDetails">
                     <div>
                         <h4>Wind Speed</h4>
                         <AirIcon className="detail" />
-                        <p>{selectedBeachDetails[0].wind_speed} kts</p>
+                        <p className="details">{selectedBeachDetails[0].wind_speed} kts</p>
                     </div>
                     <div>
                         <h4>Wave Height</h4>
                         <SurfingIcon className="detail" />
-                        <p>{selectedBeachDetails[0].wave_height} m</p>
+                        <p className="details">{selectedBeachDetails[0].wave_height} m</p>
                     </div>
                     <div>
                         <h4>Water Temperature</h4>
                         <ThermostatIcon className="detail" />
-                        <p>{selectedBeachDetails[0].water_temperature} °C</p>
+                        <p className="details">{selectedBeachDetails[0].water_temperature} °C</p>
                     </div>
                 </div>
             </div>)

@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 
 
@@ -90,6 +90,7 @@ function ProductCardComponent(props) {
             <Grid item xs={12} sm={6} md={4}>
                 <Card className="product-card">
                     <CardMedia
+                    alt={props.data.title}
                         className="product-image"
                         component="img"
                         height="155"
