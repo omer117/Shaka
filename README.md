@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# SHAKA
+## _platform for surfers_
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Shaka is a platform created for surfers, based on an online store for surfing products such as surfboards, surfboards, and wetsuits.
+But with a twist, Shaka finds the user on the beach closest to his home and knows what the waves are like there.
+Also in the weather area, you can find more weather on other beaches in Israel
+(currently works only in Israel).
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Why did you choose to build Shaka?
+I chose to do this project out of a real need, it can develop into a real and great product, I don't know a platform that is both an online store and gives an accurate weather forecast.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Who are you?
+> My name is Omar Asraf, I am a full-stack programmer full of ambition and hunger to develop, personally and professionally.
+I developed Shaka out of my love for programming and surfing, and I'm more than happy that I was able to express it in a great way with the tools I learned.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## What I learned throughtout the project 
+I'll be honest, at first, I didn't think it would take me a lot of time or at least that it wouldn't be particularly difficult, a simple shopping site what could go wrong?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+So it's not exactly like that, you have to consider a lot of things,
+On the front-End, you need to build it precisely and be extremely careful to prevent over-rendering of React, you want the site to run smoothly and be beautiful.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I learned a lot of CSS for the project, and I tried a lot of new things that I didn't know at a sufficient level before, at the backend level there were quite a few attempts, with weather API which limits me in reading, I had to build a cache mechanism that would help me properly manage the withdrawals and now every day is programmed to do it by itself.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Building the interface of the client with the server and of the server with the database was very interesting, and everything now sits in the cloud (thanks to Heroku)
+And there are quite a few more, but these are the main titles that taught me.
+-------
+## Tech
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Front End
+- JS 
+- ReactJs And MUI
+- Node.js
+- SCSS/CSS
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Back End
+- TS
+- Postgres
+- Express.js
+- Heroku
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## starting 
+```sh
+npm ci 
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## building
+```sh
+npm install -g serve
+npm run build
+cd build
+serve -s build
+```
+_______________________________________________________
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Link to [Shaka](https://shaka14.netlify.app/) 
+### Link to [Design Docs](https://docs.google.com/document/d/1KrLyxLVt-aDPfAvAEvnzsZ8C9oOBnMJ8LhEDA8deqQk/edit?usp=sharing)
+_______________________________________________________
+## Contact me
+- [LinkedIn](https://www.linkedin.com/in/omer-asraf/)
+- [Github](https://github.com/omer117)
+- gmail: omerasraf91@gmail.com
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
