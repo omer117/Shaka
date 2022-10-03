@@ -19,33 +19,6 @@
     color: rgb(188, 221, 235) !important;
 }
 
-.shakaLogo {
-    @include centeringStuff;
-    width: 100%;
-    height: 100%;
-    margin: 5px 0;
-    background: rgba(105, 102, 102, 0.6) url("../../../images/photoboto.png");
-    background-position: 0px;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-blend-mode: darken;
-    span {
-        font-family: "Shadows Into Light", cursive;
-        font-size: 600%;
-        font-weight: 900;
-        color: #fff;
-    }
-}
-
-@media screen and (max-width: 678px) {
-    .shakaLogo {
-        span {
-            font-family: "Shadows Into Light", cursive;
-            font-size: 200%;
-            font-weight: 900;
-        }
-    }
-}
 
 .catagoriesDiv {
     margin-top: 20px !important;
@@ -54,39 +27,35 @@
 
     div {
         @include centeringStuff;
-
         height: 300px !important;
         margin-top: 39px !important;
-        // font-size:150%;
-        // font-weight: 900;
-        // color: rgb(188, 221, 235);
     }
 
     .boogi {
         background: rgba(105, 102, 102, 0.6)
-            url("../../../images/catagoryImages/5833ebaf95efefd0589ba275509092d0--the-beach-summer-vibes.jpg");
+            url("../../../images/imagesWebp/5833ebaf95efefd0589ba275509092d0--the-beach-summer-vibes.webp");
         @include imageStyle();
         background-position: 0px -200px 15px 0;
     }
 
     .sup {
-        background: rgba(105, 102, 102, 0.6) url("../../../images/catagoryImages/sup.jpg");
+        background: rgba(105, 102, 102, 0.6) url("../../../images/imagesWebp/sup.webp");
         @include imageStyle();
         background-position: 1px -190px;
     }
 
     .soft {
-        background: rgba(105, 102, 102, 0.6) url("../../../images/catagoryImages/soft.jpg");
+        background: rgba(105, 102, 102, 0.6) url("../../../images/imagesWebp/soft.webp");
         @include imageStyle();
     }
 
     .manSwimsuit {
-        background: rgba(105, 102, 102, 0.6) url("../../../images/catagoryImages/man.jpg");
+        background: rgba(105, 102, 102, 0.6) url("../../../images/imagesWebp/man.webp");
         @include imageStyle();
     }
 
     .womenSwimsuit {
-        background: rgba(105, 102, 102, 0.6) url("../../../images/catagoryImages/women.jpg");
+        background: rgba(105, 102, 102, 0.6) url("../../../images/imagesWebp/women.webp");
         @include imageStyle();
     }
 }

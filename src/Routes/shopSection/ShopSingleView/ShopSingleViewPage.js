@@ -92,7 +92,7 @@ console.log(catagory);
         <>
             {props.user == 'admin' ? <Button className="ToAdd"><Link to={`/shop/${catagory.catagory}/${catagory.id}/editProduct`}>Edit!</Link></Button> : <></>}
             <div className="mainContainer">
-                <img className="productImage" src={product.image} />
+                <img className="productImage" alt={product.title} src={product.image} />
                 <div className="productInfo">
                     <h1>{product.title}</h1>
                     <p>{product.info}</p>
