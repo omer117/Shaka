@@ -1,0 +1,91 @@
+.container {
+  background-color: #fbfdff;
+  width: 47%;
+  margin: 40px auto;
+  border-radius: 1px;
+}
+
+.container .signUpHeader {
+  text-align: center;
+  padding-top: 5%;
+  font-weight: 700;
+  font-size: x-large;
+  background: rgba(105, 102, 102, 0.6) url("../../../images/backgroundImg2.png");
+  background-position: 0px;
+  background-repeat: no-repeat;
+  background-size: 106%;
+  background-blend-mode: darken;
+  width: 100%;
+  height: 50px;
+  color: #fbfdff;
+  border-radius: 1.8px;
+}
+
+.container #signUpForm {
+  padding: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container #signUpForm .form:not(:last-child) {
+  margin-bottom: 5%;
+}
+
+.container .instructionsDiv {
+  padding: 4%;
+  text-align: start;
+}
+
+.container .formActions {
+  padding: 4%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container .formActions button {
+  background-color: #0f4c75;
+  margin-bottom: 3%;
+}
+
+.container .instructionsDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media screen and (max-width: 558px) {
+  .container {
+    width: 79% !important;
+  }
+}
+/*# sourceMappingURL=SignUpPage.css.map */

@@ -37,7 +37,7 @@ console.log(catagory);
 
 
     let priceLowTo = () => {
-        axios.post('/everyDayGet',
+        axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
         {sqlString:  `SELECT * FROM ${catagory} ORDER BY price DESC`})
         .then((res)=>{
         setProducts((res.data));
@@ -46,7 +46,7 @@ console.log(catagory);
 
 
     const priceHighTo = () => {
-        axios.post('/everyDayGet',
+        axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
         {sqlString:  `SELECT * FROM ${catagory} ORDER BY price ASC`})
         .then((res)=>{
             setProducts((res.data));

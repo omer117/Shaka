@@ -1,7 +1,7 @@
 import './AddPageComponent.scss'
 import axios from 'axios';
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,6 +12,8 @@ import Select from '@mui/material/Select';
 function AddPageComponent(props) {
     const [catagory, setCatgory] = useState({})
     let catagorys = ['boogi', 'mansuit', 'sup', 'soft', 'womansuit']
+    const navigate = useNavigate();
+
 
     let catagoryList = catagorys.map((catagory) => {
         return (
@@ -24,7 +26,7 @@ function AddPageComponent(props) {
     };
 
     if (props.user !== 'admin') {
-        window.location.href = '/'
+        navigate('/')
     }
 
     const onFormSubmit = async (event) => {
@@ -48,7 +50,8 @@ function AddPageComponent(props) {
             console.log(err);
         });
 
-        window.location.href = "/";
+        
+        navigate('/')
     }
 
     if (props.user == 'admin') {

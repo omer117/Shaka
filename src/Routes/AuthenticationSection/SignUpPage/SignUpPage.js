@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import "./SignUpPage.scss";
@@ -7,6 +8,8 @@ import "./SignUpPage.scss";
 
 function SignUpPage(props) {
     const [usersDetails, setDetails] = useState([])
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         axios.get('https://shakaserver2.herokuapp.com/getMailUser')
@@ -65,7 +68,8 @@ function SignUpPage(props) {
             }).then((res) => {
                 console.log(res)//TODO:add handle succes edit
             }).catch((err) => console.log(err));
-            window.location.href = "/login"
+            
+            navigate("/login",{ replace: true })
         } else {
             alert("Please enter a valid password");
         }

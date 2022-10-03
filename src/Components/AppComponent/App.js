@@ -39,7 +39,7 @@ function App() {
     }
   }
 
-console.log(user);
+  console.log(user);
 
 
   useEffect(() => {
@@ -63,17 +63,13 @@ console.log(user);
       <UserGreeting />
       <Routes>
         <Route path="/" element={<HomePage />} />
-
         <Route path="/surfingToday" element={<SurfingTodayComponent />} />
-
-        <Route path="shop" element={<ShopHomePage user={user} />} /> 
+        <Route path="shop" element={<ShopHomePage user={user} />} />
         <Route path="shop/:catagory" element={<ShopCatagoryPage productsInCart={Products} addProducts={setProducts} />} />
         <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage productsInCart={Products} addProducts={setProducts} user={user} />} />
-        <Route path="/shop/:catagory/:id/editProduct" element={<EditPageComponent user={user}/>} />
+        <Route path="/shop/:catagory/:id/editProduct" element={<EditPageComponent user={user} />} />
         <Route path="/addProduct" element={<AddPageComponent user={user} />} />
-
         <Route path="/myCart" element={<MyCart addProducts={setProducts} productsInCart={Products} />} />
-
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LogInPage />} />
       </Routes>

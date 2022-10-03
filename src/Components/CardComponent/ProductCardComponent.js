@@ -75,9 +75,9 @@ function ProductCardComponent(props) {
                         variant='outlined'
                         className="moreInfoButton"
                     >
-                        <a href={`/shop/${catagory}/${props.data.id}`}>
+                        <Link to={`/shop/${catagory}/${props.data.id}`}>
                             More Info
-                        </a>
+                        </Link>
                     </Button>
                 </>
             )

@@ -1,23 +1,25 @@
 import './NavBarComponent.scss';
 import { useRef } from "react";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import DehazeIcon from '@mui/icons-material/Dehaze';
 
-console.log(localStorage);
 function NavBarComponent(props) {
+let navigate = useNavigate()
 
 function cleanStorage(){
     window.sessionStorage.removeItem('user')
     window.location.reload()
+    navigate('/')
+
 }
 
     function IfUserLoggedIn() {
         if (props.user !== null) {
             return (
-                <a className='logOut' onClick={cleanStorage}>
+                <Link className='logOut' onClick={cleanStorage}>
                         Log Out
-                </a>
+                </Link>
             )
         } else {
             return (

@@ -1,0 +1,11 @@
+.formDataSelector {
+  width: 200px !important;
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+}
+
+.mainDiv {
+  margin-top: 40px !important;
+}
+/*# sourceMappingURL=surfingToday.css.map */

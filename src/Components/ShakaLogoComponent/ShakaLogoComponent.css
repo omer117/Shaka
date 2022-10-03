@@ -1,0 +1,52 @@
+.ShakaLogoShop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  margin: 0px 0;
+  background: rgba(105, 102, 102, 0.6) url("../../images/photoboto.png");
+  background-position: 0px;
+  background-repeat: no-repeat;
+  background-size: 106%;
+  background-blend-mode: darken;
+}
+
+.ShakaLogoShop span {
+  font-family: "Shadows Into Light", cursive;
+  font-size: 600%;
+  font-weight: 900;
+  color: #fff;
+}
+
+@media screen and (max-width: 678px) {
+  .ShakaLogoShop span {
+    font-family: "Shadows Into Light", cursive;
+    font-size: 200%;
+    font-weight: 900;
+  }
+}
+
+.SingleView {
+  background: rgba(105, 102, 102, 0.6) url("../../images/pexels-lucas-meneses-4712714.jpg") !important;
+  background-position: 0px;
+  background-repeat: no-repeat;
+  background-size: 106%;
+  background-blend-mode: darken;
+}
+
+.Home {
+  background: rgba(135, 135, 135, 0.6) url("../../images/mighty-ocean-waves-from-above-aerial-photography-jenny-rainbow.jpg") !important;
+  background-position: 0px;
+  background-repeat: no-repeat;
+  background-size: 106%;
+  background-blend-mode: darken;
+}
+/*# sourceMappingURL=ShakaLogoComponent.css.map */

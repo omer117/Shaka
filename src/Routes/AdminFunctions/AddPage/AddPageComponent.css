@@ -1,0 +1,31 @@
+.addProductFormDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 60% !important;
+}
+
+.addProductFormDiv .text-field {
+  padding-bottom: 5%;
+}
+
+#catagorySelect {
+  width: 14%;
+  margin: 4% 0;
+}
+
+.add-btn {
+  background-color: #0F4C75 !important;
+}
+
+.formDiv {
+  margin-top: 3%;
+}
+/*# sourceMappingURL=AddPageComponent.css.map */

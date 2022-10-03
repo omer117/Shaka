@@ -1,0 +1,62 @@
+.mainProductDiv {
+  height: 200px;
+  margin-top: 2%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: 1px solid #b1cdde;
+  padding: 1.5%;
+  -webkit-box-shadow: 1px 0px 12px -1px rgba(0, 0, 0, 0.88);
+  box-shadow: 1px 0px 12px -3px rgba(0, 0, 0, 0.88);
+}
+
+.mainProductDiv img {
+  width: 30% !important;
+}
+
+.mainProductDiv .productInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mainProductDiv .productInfo .productInfoSpecific {
+  padding-left: 3%;
+  font-weight: 600;
+}
+
+.mainProductDiv .productInfo .productInfoSpecific .title {
+  font-size: small;
+}
+
+.deleteBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 1.7%;
+}
+
+.deleteBtn button {
+  background-color: #2b2929;
+}
+
+.deleteBtn button:hover {
+  background-color: #5e5656 !important;
+}
+
+.buyBtn {
+  margin: 30px 0 !important;
+  width: 18%;
+  font-size: large !important;
+  background-color: #0F4C75 !important;
+}
+/*# sourceMappingURL=MyCart.css.map */

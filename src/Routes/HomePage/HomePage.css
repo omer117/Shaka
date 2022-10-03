@@ -1,0 +1,154 @@
+.surfingTodayDiv {
+  margin: 40px auto;
+  width: 85%;
+  text-align: start;
+  border: #4984ac 3px solid;
+  padding: 1.9% 20px;
+  border-radius: 1.3%;
+  -webkit-box-shadow: 1px 0px 12px -1px rgba(0, 0, 0, 0.88);
+  box-shadow: 1px 0px 12px -3px rgba(0, 0, 0, 0.88);
+}
+
+.surfingTodayDiv .beachDetails {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.surfingTodayDiv .beachDetails div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.surfingTodayDiv .beachDetails p {
+  font-weight: 700;
+}
+
+.surfingTodayDiv .beachDetails .detail {
+  width: 20%;
+  height: 30%;
+}
+
+.HotNowDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.HotNowDiv h1 {
+  margin: 0;
+}
+
+.forMore {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.forMore button {
+  border-color: #0f4c75;
+  color: #0f4c75 !important;
+}
+
+.catagoriesDiv {
+  height: 350px;
+  width: 250px;
+  margin-top: 100px;
+}
+
+.catagoriesDiv div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  width: 60%;
+  height: 90%;
+  font-size: 150%;
+  font-weight: 900;
+  color: #bcddeb;
+}
+
+.community-container {
+  margin-top: 6%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 300px;
+  color: #fff;
+  -webkit-box-shadow: 1px 0px 12px -1px rgba(0, 0, 0, 0.88);
+  box-shadow: 1px 0px 12px -3px rgba(0, 0, 0, 0.88);
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: fill;
+  background-blend-mode: darken;
+  background-color: rgba(105, 102, 102, 0.6);
+  background-image: url("../../images/community.jpg");
+}
+
+.community-container button {
+  background-color: #0f4c75;
+}
+
+.loading {
+  margin: 110px auto;
+  padding-left: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (max-width: 548px) {
+  .beachDetails {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+/*# sourceMappingURL=HomePage.css.map */
