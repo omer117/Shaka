@@ -3,11 +3,12 @@ import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 function LogInPage(props) {
+    const navigate = useNavigate()
     const [usersDetails, setDetails] = useState([])
 
     useEffect(() => {
@@ -52,14 +53,13 @@ function LogInPage(props) {
                     console.log('nope');
                 } else {
                     window.sessionStorage.setItem("user", res.data)
+                    navigate("/",{ replace: true })
+                    window.location.reload()
                 }
-                // console.log(res.data)
             }).catch((err) => {
                 console.log(err);
             });
-            window.location.href = '/'
-        }
-        else {
+        }else {
             alert("Password or email validation failed");
         }
     }

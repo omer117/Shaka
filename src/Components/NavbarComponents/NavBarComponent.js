@@ -10,16 +10,16 @@ let navigate = useNavigate()
 function cleanStorage(){
     window.sessionStorage.removeItem('user')
     window.location.reload()
-    navigate('/')
+    navigate("/",{ replace: true })
 
 }
 
     function IfUserLoggedIn() {
         if (props.user !== null) {
             return (
-                <Link className='logOut' onClick={cleanStorage}>
+                <a className='logOut' onClick={cleanStorage}>
                         Log Out
-                </Link>
+                </a>
             )
         } else {
             return (

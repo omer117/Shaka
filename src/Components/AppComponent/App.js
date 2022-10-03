@@ -23,12 +23,14 @@ function App() {
   let [Products, setProducts] = useState([])
   let [user, setUser] = useState(sessionStorage.getItem('user'))
 
+  console.log(sessionStorage.user);
+  
   function UserGreeting() {
     const user = sessionStorage.getItem('user')
     if (user !== null) {
       return (
         <>
-          <h2>Hello Back {user}</h2>
+          <h2>Hello Back <span className='userName'>{user}</span></h2>
         </>
       )
     } else {

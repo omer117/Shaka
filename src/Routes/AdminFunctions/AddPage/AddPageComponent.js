@@ -26,7 +26,7 @@ function AddPageComponent(props) {
     };
 
     if (props.user !== 'admin') {
-        navigate('/')
+        navigate("/",{ replace: true })
     }
 
     const onFormSubmit = async (event) => {
@@ -51,7 +51,7 @@ function AddPageComponent(props) {
         });
 
         
-        navigate('/')
+        navigate("/",{ replace: true })
     }
 
     if (props.user == 'admin') {

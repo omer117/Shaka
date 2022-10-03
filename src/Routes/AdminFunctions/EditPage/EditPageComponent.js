@@ -3,7 +3,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 const defaultState = {
     title: "",
@@ -18,6 +18,7 @@ function EditPageComponent({ user }) {
     const [price, setPrice] = useState(0);
     const [sizes, setSizes] = useState("");
     const details = useParams();
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (user !== "admin") {
@@ -93,7 +94,7 @@ function EditPageComponent({ user }) {
             .catch((err) => {
                 console.log(err);
             });
-        window.location.href = "/";
+            navigate("/",{ replace: true })
     };
 
     const handlePriceChange = (e) => {

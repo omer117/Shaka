@@ -131,6 +131,11 @@
   background-color: #0f4c75;
 }
 
+.details {
+  color: #41adae;
+  font-size: 23px;
+}
+
 .loading {
   margin: 110px auto;
   padding-left: 150px;
