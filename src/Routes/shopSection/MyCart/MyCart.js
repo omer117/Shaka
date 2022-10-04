@@ -8,21 +8,19 @@ function MyCart(props) {
 const navigate = useNavigate()
 
 
-console.log(sessionStorage.user_id);
+console.log(sessionStorage.getItem('user_id'));
     const buyNow = async () => {
 
 
         const todayDate = new Date()
         const queryDate = todayDate.getFullYear() + '/' + (todayDate.getMonth()+1) + '/' + todayDate.getDate()
         props.productsInCart.forEach(async product => {
-            await axios.post('https://shakaserver2.herokuapp.com/queryRequestNoReturn',
+            await axios.post(' https://shakaserver2.herokuapp.com/queryRequestNoReturn',
             {sqlString:`INSERT INTO orders (items_purchased,purchase_date,user_id) 
-            VALUES ('{"catagory": "${product.catagory}","id":${product.id}}','${queryDate}',${sessionStorage.user_id})`})
+            VALUES ('{"catagory": "${product.catagory}","id":${product.id}}','${queryDate}',${sessionStorage.getItem('user_id')})`})
             .then((res)=>console.log(res.data))
         });
-
         alert('Order is on the way!')
-        
         navigate("/",{ replace: true })
         window.location.reload();
     }
