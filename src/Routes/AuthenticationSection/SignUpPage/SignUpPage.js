@@ -57,12 +57,8 @@ function SignUpPage(props) {
         event.preventDefault();
         let formData = new FormData(event.target);
         formData = Object.fromEntries(formData)
-        formData.userName = formData.userName;
-        formData.mailAddress = formData.mailAddress;
-        formData.password = formData.password;
             if (passwordValidation(formData.password) && userValidation(formData.userName)
             && emailValidation(formData.mailAddress)) {
-                console.log(formData);
             await axios.post('https://shakaserver2.herokuapp.com/addUser', {
                 userDetails: formData
             }).then((res) => {

@@ -32,11 +32,11 @@ function ProductCardComponent(props) {
         setSize(event.target.value);
     };
 
-
     //add to cart function 
     const addToCart = () => {
 
         let newProduct = {
+            catagory:catagory,
             id: props.data.id,
             title: props.data.title,
             price: props.data.price,

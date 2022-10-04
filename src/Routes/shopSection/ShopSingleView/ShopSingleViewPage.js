@@ -57,6 +57,7 @@ console.log(catagory);
     // addToCart function, Pretty self explanatory 
     const addToCart = () => {
         let newProduct = {
+            catagory:catagory.catagory,
             id: product.id,
             title: product.title,
             price: product.price,

@@ -23,7 +23,6 @@ function App() {
   let [Products, setProducts] = useState([])
   let [user, setUser] = useState(sessionStorage.getItem('user'))
 
-  console.log(sessionStorage.user);
   
   function UserGreeting() {
     const user = sessionStorage.getItem('user')
@@ -40,8 +39,6 @@ function App() {
       )
     }
   }
-
-  console.log(user);
 
 
   useEffect(() => {
@@ -71,7 +68,7 @@ function App() {
         <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage productsInCart={Products} addProducts={setProducts} user={user} />} />
         <Route path="/shop/:catagory/:id/editProduct" element={<EditPageComponent user={user} />} />
         <Route path="/addProduct" element={<AddPageComponent user={user} />} />
-        <Route path="/myCart" element={<MyCart addProducts={setProducts} productsInCart={Products} />} />
+        <Route path="/myCart" element={<MyCart user={user} addProducts={setProducts} productsInCart={Products} />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LogInPage />} />
       </Routes>
