@@ -44,7 +44,7 @@ function LogInPage(props) {
         let formData = new FormData(event.target);
         formData = Object.fromEntries(formData)
         if (emailValidation(formData.mailAddress) && passwordValidation(formData.password)) {
-            await axios.post(' http://localhost:5006/CheckLogIn', {
+            await axios.post(' https://shakaserver2.herokuapp.com/CheckLogIn', {
                 userDetails: formData
             }).then((res) => {
                 if (res.data === 'no email like this bro sorry') {
