@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 
 
@@ -32,11 +32,11 @@ function ProductCardComponent(props) {
         setSize(event.target.value);
     };
 
-
     //add to cart function 
     const addToCart = () => {
 
         let newProduct = {
+            catagory:catagory,
             id: props.data.id,
             title: props.data.title,
             price: props.data.price,

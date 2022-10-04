@@ -43,16 +43,15 @@ function LogInPage(props) {
         event.preventDefault();
         let formData = new FormData(event.target);
         formData = Object.fromEntries(formData)
-        formData.mailAddress = formData.mailAddress;
-        formData.password = formData.password;
         if (emailValidation(formData.mailAddress) && passwordValidation(formData.password)) {
-            await axios.post('https://shakaserver2.herokuapp.com/CheckLogIn', {
+            await axios.post(' http://localhost:5006/CheckLogIn', {
                 userDetails: formData
             }).then((res) => {
                 if (res.data === 'no email like this bro sorry') {
                     console.log('nope');
                 } else {
-                    window.sessionStorage.setItem("user", res.data)
+                    window.sessionStorage.setItem("user", res.data.user[0])
+                    window.sessionStorage.setItem("user_id", res.data.user[1])
                     navigate("/",{ replace: true })
                     window.location.reload()
                 }
