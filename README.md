@@ -10,7 +10,7 @@ Also in the weather area, you can find more weather on other beaches in Israel
 
 
 ## Why did you choose to build Shaka?
-I chose to do this project out of a real need, it can develop into a real and great product, I don't know a platform that is both an online store and gives an accurate weather forecast.
+I chose to do this project out of a real need, it can develop into a real and great product, I don't know a platform that is both an online store and an accurate weather forecast .
 
 
 ## Who are you?
