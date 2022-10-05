@@ -34,17 +34,21 @@ function ProductCardComponent(props) {
 
     //add to cart function 
     const addToCart = () => {
+if(!(typeof size === 'object')){
 
-        let newProduct = {
-            catagory:catagory,
-            id: props.data.id,
-            title: props.data.title,
-            price: props.data.price,
-            size: size,
-            image: props.data.image
-        }
-        props.addProducts([...props.productsInCart, newProduct])
-        console.log("added to cart")
+    let newProduct = {
+        catagory:catagory,
+        id: props.data.id,
+        title: props.data.title,
+        price: props.data.price,
+        size: size,
+        image: props.data.image
+    }
+    props.addProducts([...props.productsInCart, newProduct])
+    console.log("added to cart")
+}else{
+    alert('please pick a size')
+}
     }
 
 

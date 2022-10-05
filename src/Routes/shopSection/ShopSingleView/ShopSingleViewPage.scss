@@ -1,15 +1,23 @@
-.mainContainer {
+.productSingleViewContainer{
+    background-color: #fff;
+    padding: 30px;    
+    border-radius: 3px;
+    border: 1px solid rgb(145, 141, 141);
+    -webkit-box-shadow: 1px 0px 12px -1px rgba(0, 0, 0, 0.88);
+    box-shadow: 1px 0px 12px -3px rgba(0, 0, 0, 0.88);
     display: flex;
     margin-top: 9%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 30px;    
-    border-radius: 3px;
-    border: 1px solid rgb(145, 141, 141);
-    -webkit-box-shadow: 1px 0px 12px -1px rgba(0, 0, 0, 0.88);
-    box-shadow: 1px 0px 12px -3px rgba(0, 0, 0, 0.88);
+}
+
+.addToBtn{
+    margin-top: 3% !important;
+    background-color: #41adae !important;
+}
+.mainContainer {
 
     .productImage {
         width: 40%;
@@ -28,13 +36,8 @@
     display: flex;
     flex-direction:column;
     justify-content:start;
-    margin: 3% 0 ;
 }
 
-.addToCartBtn{
-    margin-top: 30px;
-    height: 14%;
-}
 
 .pressed{
     background-color: #324f89 !important;
@@ -42,5 +45,12 @@
 }
 
 .sizeBtn{
+    color: #41adae !important;
     margin-right: 2% !important;
+}
+
+.productSizes{
+    button{
+        margin: 2.3%;
+    }
 }
