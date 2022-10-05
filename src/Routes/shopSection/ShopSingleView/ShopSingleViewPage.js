@@ -54,19 +54,23 @@ console.log(catagory);
     }, [moreProducts])
 
 
+    console.log(Chosensize.length);
     // addToCart function, Pretty self explanatory 
     const addToCart = () => {
-        let newProduct = {
-            catagory:catagory.catagory,
-            id: product.id,
-            title: product.title,
-            price: product.price,
-            size: Chosensize,
-            image: product.image
+        if(Chosensize.length !==undefined){
+            let newProduct = {
+                catagory:catagory.catagory,
+                id: product.id,
+                title: product.title,
+                price: product.price,
+                size: Chosensize,
+                image: product.image
+            }
+            props.addProducts([...props.productsInCart, newProduct])
+            console.log("added to cart")
+        }else{
+            alert('please chooshe size')
         }
-        props.addProducts([...props.productsInCart, newProduct])
-        console.log("added to cart")
-
     }
 
 
@@ -92,6 +96,8 @@ console.log(catagory);
     return (
         <>
             {props.user == 'admin' ? <Button className="ToAdd"><Link to={`/shop/${catagory.catagory}/${catagory.id}/editProduct`}>Edit!</Link></Button> : <></>}
+            <div className="productSingleViewContainer">
+
             <div className="mainContainer">
                 <img className="productImage" src={product.image} />
                 <div className="productInfo">
@@ -110,10 +116,11 @@ console.log(catagory);
             </div>
             <Button
                 onClick={addToCart}
-                className="adminFunctionsBtn"
+                className="addToBtn"
                 variant="contained">
                 Add to Cart
             </Button>
+                    </div>
             <div className="youMayDiv">
                 <h2>Things you may like</h2>
                 <Grid container
