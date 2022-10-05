@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { isNumber } from 'util';
 
 
 
@@ -32,19 +33,24 @@ function ProductCardComponent(props) {
         setSize(event.target.value);
     };
 
+    console.log(!(typeof size === 'object'));
     //add to cart function 
     const addToCart = () => {
+if(!(typeof size === 'object')){
 
-        let newProduct = {
-            catagory:catagory,
-            id: props.data.id,
-            title: props.data.title,
-            price: props.data.price,
-            size: size,
-            image: props.data.image
-        }
-        props.addProducts([...props.productsInCart, newProduct])
-        console.log("added to cart")
+    let newProduct = {
+        catagory:catagory,
+        id: props.data.id,
+        title: props.data.title,
+        price: props.data.price,
+        size: size,
+        image: props.data.image
+    }
+    props.addProducts([...props.productsInCart, newProduct])
+    console.log("added to cart")
+}else{
+    alert('please pick a size')
+}
     }
 
 
@@ -109,7 +115,7 @@ function ProductCardComponent(props) {
                             variant="body1">
                             {`price: $${props.data.price}`}
                         </Typography>
-                        <FormControl variant="standard" sx={{ m: 1, minWidth: 70 }}>
+                        <FormControl required variant="standard" sx={{ m: 1, minWidth: 70 }}>
                             <InputLabel id="demo-simple-select-standard-label">size</InputLabel>
                             <Select
                                 labelId="demo-simple-select-standard-label"
