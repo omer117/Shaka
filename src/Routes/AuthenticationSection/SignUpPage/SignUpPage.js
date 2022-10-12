@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import "./SignUpPage.scss";
@@ -11,60 +11,51 @@ function SignUpPage(props) {
     const navigate = useNavigate();
 
 
-    useEffect(() => {
-        axios.get('https://shakaserver2.herokuapp.com/getMailUser')
-            .then((res) => setDetails(res.data))
-            .catch((err) => console.log(err));
-    }, [])
 
     let passwordValidation = (password) => {
         const specialCharsForPassowrd = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
-        if (password.length < 8 || specialCharsForPassowrd.test(password)) return false
+        if (specialCharsForPassowrd.test(password)) return false
         else return true
     }
 
     let emailValidation = (email) => {
         const specialCharsForEmail = /[`!#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/;
 
-        for (let i = 0; i < usersDetails.length; i++) {
-            if (email === usersDetails[i].email || specialCharsForEmail.test(email)) {
-                return false
-            }
-            else {
-                return true;
-            }
+        if (specialCharsForEmail.test(email)) {
+            return false
+        }
+        else {
+            return true;
         }
     }
 
     let userValidation = (user) => {
         const specialCharsForName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-
-
-        for (let i = 0; i < usersDetails.length; i++) {
-            if (user === usersDetails[i].user || specialCharsForName.test(user)) {
-                return false
-            }
-            else {
-                return true;
-            }
+        if (specialCharsForName.test(user)) {
+            return false
+        }
+        else {
+            return true;
         }
     }
 
 
     const onFormSubmit = async (event) => {
-
         event.preventDefault();
         let formData = new FormData(event.target);
         formData = Object.fromEntries(formData)
-            if (passwordValidation(formData.password) && userValidation(formData.userName)
+        console.log(userValidation(formData.userName));
+        if (passwordValidation(formData.password) && userValidation(formData.userName)
             && emailValidation(formData.mailAddress)) {
-            await axios.post('https://shakaserver2.herokuapp.com/addUser', {
-                userDetails: formData
+            await axios.post('http://localhost:9001/auth/signUp', {
+                username: formData.userName,
+                email: formData.mailAddress,
+                password: formData.password
             }).then((res) => {
                 console.log(res)//TODO:add handle succes edit
-            }).catch((err) => console.log(err));
-            
+            }).catch((err) => alert(err.response.data.message));
+
             navigate("/login",{ replace: true })
         } else {
             alert("Please enter a valid password");
@@ -80,16 +71,16 @@ function SignUpPage(props) {
 
                     <form onSubmit={onFormSubmit} id="signUpForm">
                         <TextField
-                        required
+                            required
                             className="form"
-                            label="user name"
+                            label="userName"
                             variant="outlined"
                             htmlFor="userName"
                             type="text"
                             name="userName"
                         />
                         <TextField
-                        required
+                            required
                             className="form"
                             id="outlined-basic"
                             label="mail address"
@@ -100,7 +91,7 @@ function SignUpPage(props) {
                         />
 
                         <TextField
-                        required
+                            required
                             className="form"
                             id="password"
                             label="password"

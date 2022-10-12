@@ -21,20 +21,18 @@ function SurfingTodayComponent() {
 
 
     useEffect(() => {
-        axios.get(`https://shakaserver2.herokuapp.com/getBeaches`)
+        axios.get(`http://localhost:9001/beaches`)
             .then((res) => setBeaches(res.data))
             .catch((err) => console.log(err))
     }, [])
 
 
     useEffect(() => {
-        axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
-            { sqlString: `SELECT * FROM daily_forecast WHERE beach_id=${selectedBeach}` })
+        axios.get(`http://localhost:9001/daily-forecast/${selectedBeach}`)
             .then((res) => setSelectedBeachDetails(res.data))
             .catch((err) => console.log(err));
     }, [selectedBeach])
 
-    console.log(selectedBeachDetails);
 
 
     const beachesList = beaches.map((beach) => {
@@ -42,25 +40,25 @@ function SurfingTodayComponent() {
     })
 
     function WeatherDiv() {
-        if (selectedBeachDetails.length > 0) {
+        if (Object.keys(selectedBeachDetails).length > 0) {
 
             return (<div className="surfingTodayDiv">
-                <h2>The Waves at   <span id="beachName" className="details"> {selectedBeachDetails[0].beach_name}</span> </h2>
+                <h2>The Waves at   <span id="beachName" className="details"> {selectedBeachDetails.beach_name}</span> </h2>
                 <div className="beachDetails">
                     <div>
                         <h4>Wind Speed</h4>
                         <AirIcon className="detail" />
-                        <p className="details">{selectedBeachDetails[0].wind_speed} kts</p>
+                        <p className="details">{selectedBeachDetails.wind_speed} kts</p>
                     </div>
                     <div>
                         <h4>Wave Height</h4>
                         <SurfingIcon className="detail" />
-                        <p className="details">{selectedBeachDetails[0].wave_height} m</p>
+                        <p className="details">{selectedBeachDetails.wave_height} m</p>
                     </div>
                     <div>
                         <h4>Water Temperature</h4>
                         <ThermostatIcon className="detail" />
-                        <p className="details">{selectedBeachDetails[0].water_temperature} °C</p>
+                        <p className="details">{selectedBeachDetails.water_temperature} °C</p>
                     </div>
                 </div>
             </div>)
@@ -68,9 +66,9 @@ function SurfingTodayComponent() {
         else {
             return (
 
-               <div className="loading">
-                   <LoadingComponent />
-               </div>
+                <div className="loading">
+                    <LoadingComponent />
+                </div>
             )
         }
     }
@@ -79,9 +77,7 @@ function SurfingTodayComponent() {
     return (
         <>
             <div className="mainDiv">
-
                 <div className="form">
-
                     <FormControl>
                         <InputLabel id="form">beach </InputLabel>
                         <Select
@@ -95,7 +91,7 @@ function SurfingTodayComponent() {
                         </Select>
                     </FormControl>
                 </div>
-                 <WeatherDiv details={selectedBeachDetails[0]}/>
+                <WeatherDiv details={selectedBeachDetails} />
             </div>
         </>
     )

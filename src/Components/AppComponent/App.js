@@ -14,7 +14,7 @@ import EditPageComponent from "../../Routes/AdminFunctions/EditPage/EditPageComp
 import SurfingTodayComponent from "../../Routes/SurfingWeather/surfingToday"
 import FooterComponent from "../../Components/FooterComponent/FooterComponent"
 import { useState, useEffect } from "react";
-import axios from 'axios';
+import  {checkAndUpdateDailyForecast}  from '../../scripts/weatherScript';
 
 
 
@@ -42,10 +42,7 @@ function App() {
 
 
   useEffect(() => {
-    axios.get('https://shakaserver2.herokuapp.com/new')
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err))
-
+   checkAndUpdateDailyForecast()
   }, [])
 
 

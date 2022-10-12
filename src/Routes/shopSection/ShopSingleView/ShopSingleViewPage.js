@@ -21,16 +21,14 @@ function ShopSingleViewPage(props) {
         return specialCharsForName.test(name)
     }
 
-console.log(catagory);
     useEffect(() => {
         if (isNaN(Number(catagory.id)) && isValidParams(catagory.catagory)) {
             alert('no sqli in here sryyy')
             window.location.href = "/"
         }
         else {
-            axios.post('https://shakaserver2.herokuapp.com/getProduct',
-                [catagory.id, catagory.catagory])
-                .then((response) => setProducts(JSON.parse(response.data)))
+            axios.get(`http://localhost:9001/products/${catagory.id}`)
+                .then((response) => setProducts(response.data))
                 .catch((err) => console.log(err))
         }
     }, [])
@@ -38,8 +36,11 @@ console.log(catagory);
 
     useEffect(() => {
         if (!isValidParams(catagory.catagory)) {
-            axios.post('https://shakaserver2.herokuapp.com/youMayLike', [catagory.catagory])
-                .then((response) => setMoreProducts(JSON.parse(response.data)))
+            axios.post('http://localhost:9001/products/youMayLike',
+                {
+                    catagory:catagory.catagory
+                })
+                .then((response) => setMoreProducts(response.data))
                 .catch((err) => console.log(err))
         }
     }, [])
@@ -57,9 +58,9 @@ console.log(catagory);
     console.log(Chosensize.length);
     // addToCart function, Pretty self explanatory 
     const addToCart = () => {
-        if(Chosensize.length !==undefined){
+        if (Chosensize.length !== undefined) {
             let newProduct = {
-                catagory:catagory.catagory,
+                catagory: catagory.catagory,
                 id: product.id,
                 title: product.title,
                 price: product.price,
@@ -68,7 +69,7 @@ console.log(catagory);
             }
             props.addProducts([...props.productsInCart, newProduct])
             console.log("added to cart")
-        }else{
+        } else {
             alert('please chooshe size')
         }
     }
@@ -98,29 +99,29 @@ console.log(catagory);
             {props.user == 'admin' ? <Button className="ToAdd"><Link to={`/shop/${catagory.catagory}/${catagory.id}/editProduct`}>Edit!</Link></Button> : <></>}
             <div className="productSingleViewContainer">
 
-            <div className="mainContainer">
-                <img className="productImage" alt={product.title} src={product.image} />
-                <div className="productInfo">
-                    <h1>{product.title}</h1>
-                    <p>{product.info}</p>
-                </div>
-            </div>
-            <div className="productMoreInfo">
-                <h2>price: {product.price}$</h2>
-                <div className="productSizes">
-                    <p>
-                        please choose a size:
-                    </p>
-                    {sizeList}
-                </div>
-            </div>
-            <Button
-                onClick={addToCart}
-                className="addToBtn"
-                variant="contained">
-                Add to Cart
-            </Button>
+                <div className="mainContainer">
+                    <img className="productImage" alt={product.title} src={product.image} />
+                    <div className="productInfo">
+                        <h1>{product.title}</h1>
+                        <p>{product.info}</p>
                     </div>
+                </div>
+                <div className="productMoreInfo">
+                    <h2>price: {product.price}$</h2>
+                    <div className="productSizes">
+                        <p>
+                            please choose a size:
+                        </p>
+                        {sizeList}
+                    </div>
+                </div>
+                <Button
+                    onClick={addToCart}
+                    className="addToBtn"
+                    variant="contained">
+                    Add to Cart
+                </Button>
+            </div>
             <div className="youMayDiv">
                 <h2>Things you may like</h2>
                 <Grid container

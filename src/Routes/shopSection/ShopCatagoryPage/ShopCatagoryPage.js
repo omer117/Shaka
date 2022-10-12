@@ -17,13 +17,15 @@ function ShopCatagoryPage(props) {
         return !specialCharsForName.test(name)
     }
 
-console.log(catagory);
+    console.log(catagory);
     useEffect(() => {
 
         if (isValidParams(catagory)) {
-            axios.post('https://shakaserver2.herokuapp.com/getAll', [catagory])
+            axios.post('http://localhost:9001/products/getCatagory', {
+                catagory: catagory
+            })
                 .then((res) => {
-                    setProducts(JSON.parse(res.data))//TODO:add handle succes edit
+                    setProducts((res.data))//TODO:add handle succes edit
                 });
         } else {
             alert('no sqli here boi')
@@ -31,26 +33,27 @@ console.log(catagory);
     }, []);
 
 
-    // useEffect(() => {
-    //     setProducts(products)
-    // }, [products])
-
-
     let priceLowTo = () => {
-        axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
-        {sqlString:  `SELECT * FROM ${catagory} ORDER BY price DESC`})
-        .then((res)=>{
-        setProducts((res.data));
-        })
+        axios.post('http://localhost:9001/products/getCatagoryFilteredByPrice',
+            {
+                catagory: catagory,
+                filter: "DESC"
+            })
+            .then((res) => {
+                setProducts((res.data));
+            })
     }
 
 
     const priceHighTo = () => {
-        axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
-        {sqlString:  `SELECT * FROM ${catagory} ORDER BY price ASC`})
-        .then((res)=>{
-            setProducts((res.data));
-        })
+        axios.post('http://localhost:9001/products/getCatagoryFilteredByPrice',
+            {
+                catagory: catagory,
+                filter: "ASC"
+            })
+            .then((res) => {
+                setProducts((res.data));
+            })
 
     }
 

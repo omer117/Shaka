@@ -1,7 +1,7 @@
 import './AddPageComponent.scss'
 import axios from 'axios';
 import { useState } from 'react'
-import { useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -26,7 +26,7 @@ function AddPageComponent(props) {
     };
 
     if (props.user !== 'admin') {
-        navigate("/",{ replace: true })
+        navigate("/", { replace: true })
     }
 
     const onFormSubmit = async (event) => {
@@ -34,32 +34,30 @@ function AddPageComponent(props) {
         let formData = new FormData(event.target);
         formData = Object.fromEntries(formData)
         formData.catagory = catagory
-        formData.title = formData.title;
         formData.price = Number(formData.price);
-        formData.info = formData.info;
-        formData.sizes = (formData.sizes);
-        formData.imgLink = formData.imgLink;
-        await axios.post('https://shakaserver2.herokuapp.com/addProduct', {
-            sqlString: `
-            INSERT INTO ${formData.catagory} (title,price,info,sizes,image)
-            VAlUES ('${formData.title}', ${formData.price},'${formData.info}','{${formData.sizes}}','${formData.imgLink}');                            
-            `,
+        await axios.post('http://localhost:9001/products', {
+            catagory: formData.catagory,
+            title: formData.title,
+            price: formData.price,
+            info: formData.info,
+            sizes: (formData.sizes).split(','),
+            image: formData.image,
         }).then((res) => {
             console.log(res)//TODO:add handle succes edit
         }).catch((err) => {
             console.log(err);
         });
 
-        
-        navigate("/",{ replace: true })
+
+        navigate("/", { replace: true })
     }
 
-    if (props.user == 'admin') {
+    if (props.user === 'admin') {
 
         return (
             <>
                 <div className='formDiv'>
-                    <FormControl required  id="catagorySelect" variant="standard" sx={{ m: 1, minWidth: 70 }}>
+                    <FormControl required id="catagorySelect" variant="standard" sx={{ m: 1, minWidth: 70 }}>
                         <InputLabel required>catagory</InputLabel>
                         <Select
                             onChange={handleChange}
@@ -71,11 +69,11 @@ function AddPageComponent(props) {
                         <TextField
                             required
                             className='text-field'
-                            label="Title"
+                            label="title"
                             variant="outlined"
-                            htmlFor="Title"
+                            htmlFor="title"
                             type="text"
-                            name="Title"
+                            name="title"
                             multiline
                             maxRows={2}
                         />
@@ -117,12 +115,12 @@ function AddPageComponent(props) {
 
                         <TextField
                             className='text-field'
-                            label="Image Link"
+                            label="image"
                             required
                             variant="outlined"
-                            htmlFor="imgLink"
+                            htmlFor="image"
                             type="text"
-                            name="imgLink"
+                            name="image"
                         />
 
                     </form>
