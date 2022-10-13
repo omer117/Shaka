@@ -35,7 +35,7 @@ function LogInPage(props) {
         let formData = new FormData(event.target);
         formData = Object.fromEntries(formData)
         if (userValidation(formData.userName) && passwordValidation(formData.password)) {
-            await axios.post('http://localhost:9001/auth/signIn', {
+            await axios.post('https://shakanest14.herokuapp.com/auth/signIn', {
                 username: formData.userName,
                 password: formData.password
             }).then((res) => {

@@ -21,7 +21,7 @@ function ShopCatagoryPage(props) {
     useEffect(() => {
 
         if (isValidParams(catagory)) {
-            axios.post('http://localhost:9001/products/getCatagory', {
+            axios.post('https://shakanest14.herokuapp.com/products/getCatagory', {
                 catagory: catagory
             })
                 .then((res) => {
@@ -34,7 +34,7 @@ function ShopCatagoryPage(props) {
 
 
     let priceLowTo = () => {
-        axios.post('http://localhost:9001/products/getCatagoryFilteredByPrice',
+        axios.post('https://shakanest14.herokuapp.com/products/getCatagoryFilteredByPrice',
             {
                 catagory: catagory,
                 filter: "DESC"
@@ -46,7 +46,7 @@ function ShopCatagoryPage(props) {
 
 
     const priceHighTo = () => {
-        axios.post('http://localhost:9001/products/getCatagoryFilteredByPrice',
+        axios.post('https://shakanest14.herokuapp.com/products/getCatagoryFilteredByPrice',
             {
                 catagory: catagory,
                 filter: "ASC"

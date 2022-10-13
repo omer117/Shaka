@@ -7,17 +7,19 @@ import { useNavigate } from "react-router-dom";
 function MyCart(props) {
 const navigate = useNavigate()
 
-
-console.log(sessionStorage.getItem('user_id'));
+console.log(props.productsInCart);
+console.log(props.user);
     const buyNow = async () => {
-
 
         const todayDate = new Date()
         const queryDate = todayDate.getFullYear() + '/' + (todayDate.getMonth()+1) + '/' + todayDate.getDate()
         props.productsInCart.forEach(async product => {
-            await axios.post(' https://shakaserver2.herokuapp.com/queryRequestNoReturn',
-            {sqlString:`INSERT INTO orders (items_purchased,purchase_date,user_id) 
-            VALUES ('{"catagory": "${product.catagory}","id":${product.id}}','${queryDate}',${sessionStorage.getItem('user_id')})`})
+            await axios.post(' https://shakanest14.herokuapp.com/queryRequestNoReturn',
+            {
+                items_purchased:{id:product.id,catagory:product.catagory},
+                purchase_date:queryDate,
+                user_id:props.user
+            })
             .then((res)=>console.log(res.data))
         });
         alert('Order is on the way!')

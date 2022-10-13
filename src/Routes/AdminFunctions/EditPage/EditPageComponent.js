@@ -24,7 +24,7 @@ function EditPageComponent({ user }) {
         if (user !== "admin") {
             window.location.href = "404";
         }
-        axios.get(`http://localhost:9001/products/${details.id}`)
+        axios.get(`https://shakanest14.herokuapp.com/products/${details.id}`)
             .then((response) => setProduct(response.data))
             .catch((err) => console.log(err));
     }, [user, details]);
@@ -44,7 +44,7 @@ function EditPageComponent({ user }) {
         formData = Object.fromEntries(formData);
         formData.catagory = details.catagory;
         formData.price = Number(formData.price);
-        await axios.patch(`http://localhost:9001/products/${details.id}`, {
+        await axios.patch(`https://shakanest14.herokuapp.com/products/${details.id}`, {
             catagory: formData.catagory,
             title: formData.title,
             price: formData.price,
@@ -62,7 +62,7 @@ function EditPageComponent({ user }) {
     };
 
     const deleteHandler = async () => {
-        await axios.delete(`http://localhost:9001/products/${details.id}`)
+        await axios.delete(`https://shakanest14.herokuapp.com/products/${details.id}`)
             .then((res) => {
                 console.log(res); //TODO:add handle succes edit
             })

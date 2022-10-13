@@ -21,14 +21,14 @@ function SurfingTodayComponent() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:9001/beaches`)
+        axios.get(`https://shakanest14.herokuapp.com/beaches`)
             .then((res) => setBeaches(res.data))
             .catch((err) => console.log(err))
     }, [])
 
 
     useEffect(() => {
-        axios.get(`http://localhost:9001/daily-forecast/${selectedBeach}`)
+        axios.get(`https://shakanest14.herokuapp.com/daily-forecast/${selectedBeach}`)
             .then((res) => setSelectedBeachDetails(res.data))
             .catch((err) => console.log(err));
     }, [selectedBeach])

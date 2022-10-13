@@ -48,7 +48,7 @@ function SignUpPage(props) {
         console.log(userValidation(formData.userName));
         if (passwordValidation(formData.password) && userValidation(formData.userName)
             && emailValidation(formData.mailAddress)) {
-            await axios.post('http://localhost:9001/auth/signUp', {
+            await axios.post('https://shakanest14.herokuapp.com/auth/signUp', {
                 username: formData.userName,
                 email: formData.mailAddress,
                 password: formData.password

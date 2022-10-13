@@ -35,7 +35,7 @@ function AddPageComponent(props) {
         formData = Object.fromEntries(formData)
         formData.catagory = catagory
         formData.price = Number(formData.price);
-        await axios.post('http://localhost:9001/products', {
+        await axios.post('https://shakanest14.herokuapp.com/products', {
             catagory: formData.catagory,
             title: formData.title,
             price: formData.price,

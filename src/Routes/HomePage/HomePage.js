@@ -46,7 +46,7 @@ function HomePage() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:9001/beaches`)
+        axios.get(`https://shakanest14.herokuapp.com/beaches`)
             .then((res) => setBeaches(res.data))
             .catch((err) => console.log(err));
     }, [])
@@ -66,7 +66,7 @@ function HomePage() {
     useEffect(() => {
         if (!geolocation.error) {
             if (distances.length > 0) {
-                axios.get(`http://localhost:9001/daily-forecast/${distances[0].id}`)
+                axios.get(`https://shakanest14.herokuapp.com/daily-forecast/${distances[0].id}`)
                     .then((res) => setClosestBeacheDetails(res.data))
                     .catch((err) => console.log(err));
             }
@@ -75,7 +75,7 @@ function HomePage() {
 
 
     useEffect(() => {
-        axios.post(`http://localhost:9001/products/youMayLike`, {
+        axios.post(`https://shakanest14.herokuapp.com/products/youMayLike`, {
             catagory:'sup'
         })
             .then((res) => setProducts(res.data))
