@@ -46,7 +46,7 @@ function HomePage() {
 
 
     useEffect(() => {
-        axios.get(`https://shakaserver2.herokuapp.com/getBeaches`)
+        axios.get(`https://shakanest14.herokuapp.com/beaches`)
             .then((res) => setBeaches(res.data))
             .catch((err) => console.log(err));
     }, [])
@@ -54,10 +54,10 @@ function HomePage() {
     useEffect(() => {
         let orderedBeaches = beaches.map((beach) => ({
             id: beach.beach_id, name: beach.beach_name, distance: distanceBetweenTwoPoints(beach.lat, beach.lon, geolocation.latitude, geolocation.longitude)
-        }))
-            .sort((a, b) => {
-                return a.distance - b.distance
-            })
+        })).sort((a, b) => {
+            return a.distance - b.distance
+        })
+        console.log(orderedBeaches);
         setDistances(orderedBeaches)
     }, [beaches, geolocation])
 
@@ -66,8 +66,7 @@ function HomePage() {
     useEffect(() => {
         if (!geolocation.error) {
             if (distances.length > 0) {
-                axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
-                    { sqlString: `SELECT * FROM daily_forecast WHERE beach_id=${distances[0].id}` })
+                axios.get(`https://shakanest14.herokuapp.com/daily-forecast/${distances[0].id}`)
                     .then((res) => setClosestBeacheDetails(res.data))
                     .catch((err) => console.log(err));
             }
@@ -76,42 +75,48 @@ function HomePage() {
 
 
     useEffect(() => {
-        axios.post(`https://shakaserver2.herokuapp.com/everyDayGet`,
-            { sqlString: `SELECT * FROM sup ORDER BY price DESC LIMIT 3` })
+        axios.post(`https://shakanest14.herokuapp.com/products/youMayLike`, {
+            catagory:'sup'
+        })
             .then((res) => setProducts(res.data))
             .catch((err) => console.log(err));
-    }, []);
+    }, [closestBeachDetails]);
+
+
+
+
 
     let productList = products.map((product) => {
-        return (<ProductCardComponent hrefType='' className="id" key={product.id} data={product} />);
-    });
+        return (<ProductCardComponent hrefType='' className="id" key={product.Products_product_id} data={product} />);
+    })
+
 
     function Details() {
-        if (closestBeachDetails.length > 0) {
+        if (Object.keys(closestBeachDetails).length > 0) {
             return (
                 <div className="surfingTodayDiv">
-                    <h2>The nearest beach - <span className="details">{closestBeachDetails[0].beach_name}</span> </h2>
+                    <h2>The nearest beach - <span className="details">{closestBeachDetails.beach_name}</span> </h2>
                     <div className="beachDetails">
                         <div>
                             <h4>Wind Speed</h4>
                             <AirIcon className="detail" />
-                            <p className="details">{closestBeachDetails[0].wind_speed} kts</p>
+                            <p className="details">{closestBeachDetails.wind_speed} kts</p>
                         </div>
                         <div>
                             <h4>Wave Height</h4>
                             <SurfingIcon className="detail" />
-                            <p className="details">{closestBeachDetails[0].wave_height} m</p>
+                            <p className="details">{closestBeachDetails.wave_height} m</p>
                         </div>
                         <div>
                             <h4>Water Temperature</h4>
                             <ThermostatIcon className="detail" />
-                            <p className="details">{closestBeachDetails[0].water_temperature} °C</p>
+                            <p className="details">{closestBeachDetails.water_temperature} °C</p>
                         </div>
                     </div>
                 </div>
             )
         }
-        else if (closestBeachDetails.length === 0) {
+        else if (Object.keys(closestBeachDetails).length === 0) {
             return (
                 <div className="loading"><LoadingComponent /></div>
             )

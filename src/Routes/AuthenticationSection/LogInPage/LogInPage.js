@@ -1,3 +1,4 @@
+import jwt_decode from "jwt-decode";
 import "./LogInPage.scss"
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
@@ -9,32 +10,22 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function LogInPage(props) {
     const navigate = useNavigate()
-    const [usersDetails, setDetails] = useState([])
-
-    useEffect(() => {
-        axios.get('https://shakaserver2.herokuapp.com/getMailUser')
-            .then((res) => setDetails(res.data))
-            .catch((err) => console.log(err));
-    }, [])
-
 
     let passwordValidation = (password) => {
         const specialCharsForPassowrd = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
-        if (password.length < 8 || specialCharsForPassowrd.test(password)) return false
+        if (specialCharsForPassowrd.test(password)) return false
         else return true
     }
 
-    let emailValidation = (email) => {
-        const specialCharsForEmail = /[`!#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/;
 
-        for (let i = 0; i < usersDetails.length; i++) {
-            if (email === usersDetails[i].email || !specialCharsForEmail.test(email)) {
-                return true
-            }
-            else {
-                return false;
-            }
+    let userValidation = (user) => {
+        const specialCharsForName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        if (specialCharsForName.test(user)) {
+            return false
+        }
+        else {
+            return true;
         }
     }
 
@@ -43,22 +34,19 @@ function LogInPage(props) {
         event.preventDefault();
         let formData = new FormData(event.target);
         formData = Object.fromEntries(formData)
-        if (emailValidation(formData.mailAddress) && passwordValidation(formData.password)) {
-            await axios.post(' https://shakaserver2.herokuapp.com/CheckLogIn', {
-                userDetails: formData
+        if (userValidation(formData.userName) && passwordValidation(formData.password)) {
+            await axios.post('https://shakanest14.herokuapp.com/auth/signIn', {
+                username: formData.userName,
+                password: formData.password
             }).then((res) => {
-                if (res.data === 'no email like this bro sorry') {
-                    console.log('nope');
-                } else {
-                    window.sessionStorage.setItem("user", res.data.user[0])
-                    window.sessionStorage.setItem("user_id", res.data.user[1])
-                    navigate("/",{ replace: true })
-                    window.location.reload()
-                }
+                let ses = jwt_decode(res.data.accessToken)
+                window.sessionStorage.setItem('user', ses.username)
+                navigate("/", { replace: true })
+                window.location.reload()
             }).catch((err) => {
                 console.log(err);
             });
-        }else {
+        } else {
             alert("Password or email validation failed");
         }
     }
@@ -74,18 +62,18 @@ function LogInPage(props) {
                     <form onSubmit={onFormSubmit} id="LogInForm">
 
                         <TextField
-        required
+                            required
                             className='form'
                             id="outlined-basic"
-                            label="Email Address"
+                            label="user name"
                             variant="outlined"
-                            htmlFor="mailAddress"
+                            htmlFor="userName"
                             type="text"
-                            name="mailAddress"
+                            name="userName"
                         />
 
                         <TextField
-                        required
+                            required
                             className='form'
                             id="outlined-password-input"
                             label="Password"

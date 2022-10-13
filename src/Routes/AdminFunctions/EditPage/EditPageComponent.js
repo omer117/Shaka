@@ -3,7 +3,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const defaultState = {
     title: "",
@@ -24,13 +24,8 @@ function EditPageComponent({ user }) {
         if (user !== "admin") {
             window.location.href = "404";
         }
-
-        axios
-            .post("https://shakaserver2.herokuapp.com/getProduct", [
-                details.id,
-                details.catagory,
-            ])
-            .then((response) => setProduct(JSON.parse(response.data)))
+        axios.get(`https://shakanest14.herokuapp.com/products/${details.id}`)
+            .then((response) => setProduct(response.data))
             .catch((err) => console.log(err));
     }, [user, details]);
 
@@ -42,38 +37,21 @@ function EditPageComponent({ user }) {
         setSizes(product.sizes?.join(","));
     }, [product.sizes]);
 
-    console.log(product);
 
     const onFormSubmit = async (event) => {
         event.preventDefault();
         let formData = new FormData(event.target);
         formData = Object.fromEntries(formData);
         formData.catagory = details.catagory;
-        formData.title = formData.title;
         formData.price = Number(formData.price);
-        formData.info = formData.info;
-        formData.sizes = formData.sizes;
-        formData.imgLink = formData.imgLink;
-        console.log(formData);
-
-        await axios
-            .post("https://shakaserver2.herokuapp.com/deleteProduct", {
-                sqlString: `DELETE FROM ${details.catagory} WHERE id=${details.id}`,
-            })
-            .then((res) => {
-                console.log(res); //TODO:add handle succes edit
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
-        await axios
-            .post("https://shakaserver2.herokuapp.com/addProduct", {
-                sqlString: `
-            INSERT INTO ${formData.catagory} (title,price,info,sizes,image)
-            VAlUES ('${formData.title}', ${formData.price},'${formData.info}','{${formData.sizes}}','${formData.imgLink}');                            
-            `,
-            })
+        await axios.patch(`https://shakanest14.herokuapp.com/products/${details.id}`, {
+            catagory: formData.catagory,
+            title: formData.title,
+            price: formData.price,
+            info: formData.info,
+            sizes: (formData.sizes).split(','),
+            image: formData.image,
+        })
             .then((res) => {
                 console.log(res); //TODO:add handle succes edit
             })
@@ -84,17 +62,14 @@ function EditPageComponent({ user }) {
     };
 
     const deleteHandler = async () => {
-        await axios
-            .post("https://shakaserver2.herokuapp.com/deleteProduct", {
-                sqlString: `DELETE FROM ${details.catagory} WHERE id=${details.id}`,
-            })
+        await axios.delete(`https://shakanest14.herokuapp.com/products/${details.id}`)
             .then((res) => {
                 console.log(res); //TODO:add handle succes edit
             })
             .catch((err) => {
                 console.log(err);
             });
-            navigate("/",{ replace: true })
+        navigate("/", { replace: true })
     };
 
     const handlePriceChange = (e) => {
@@ -113,11 +88,11 @@ function EditPageComponent({ user }) {
                         <TextField
                             required
                             className="text-field"
-                            label="Title"
+                            label="title"
                             variant="outlined"
                             InputLabelProps={{ shrink: true }}
                             type="text"
-                            name="Title"
+                            name="title"
                             multiline
                             maxRows={2}
                             defaultValue={product.title}
@@ -126,14 +101,14 @@ function EditPageComponent({ user }) {
                         <TextField
                             required
                             className="text-field"
-                            label="Price"
+                            label="price"
                             variant="outlined"
                             inputProps={{
                                 inputMode: "numeric",
                                 pattern: "[0-9]*",
                                 shrink: true,
                             }}
-                            name="Price"
+                            name="price"
                             value={price}
                             onChange={handlePriceChange}
                         />
@@ -159,13 +134,14 @@ function EditPageComponent({ user }) {
                             InputLabelProps={{ shrink: true }}
                             type="text"
                             name="sizes"
-                            defaultvalue={sizes}
+                            value={sizes}
                         />
 
                         <TextField
                             required
+                            name="image"
                             className="text-field"
-                            label="image Link"
+                            label="image"
                             variant="outlined"
                             InputLabelProps={{ shrink: true }}
                             type="text"
