@@ -7,7 +7,6 @@ import "./SignUpPage.scss";
 
 
 function SignUpPage(props) {
-    const [usersDetails, setDetails] = useState([])
     const navigate = useNavigate();
 
 
@@ -45,7 +44,6 @@ function SignUpPage(props) {
         event.preventDefault();
         let formData = new FormData(event.target);
         formData = Object.fromEntries(formData)
-        console.log(userValidation(formData.userName));
         if (passwordValidation(formData.password) && userValidation(formData.userName)
             && emailValidation(formData.mailAddress)) {
             await axios.post('https://shakanest14.herokuapp.com/auth/signUp', {
@@ -54,9 +52,10 @@ function SignUpPage(props) {
                 password: formData.password
             }).then((res) => {
                 console.log(res)//TODO:add handle succes edit
+                navigate("/login",{ replace: true })
+
             }).catch((err) => alert(err.response.data.message));
 
-            navigate("/login",{ replace: true })
         } else {
             alert("Please enter a valid password");
         }

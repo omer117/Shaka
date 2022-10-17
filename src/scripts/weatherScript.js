@@ -21,8 +21,6 @@ export async function checkAndUpdateDailyForecast() {
     await axios.get('https://shakanest14.herokuapp.com/daily-forecast/1')
         .then((response) => {
             let lastDate = (Number(response.data.last_updated.substring(8, 10)));
-            console.log(lastDate);
-            console.log(orgDate);
             if (lastDate !== orgDate) {
                 axios.delete('https://shakanest14.herokuapp.com/daily-forecast')
                     .then(() => {

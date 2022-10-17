@@ -22,6 +22,7 @@ function App() {
   let [numberOfProducts, setNumberOfProducts] = useState(0)
   let [Products, setProducts] = useState([])
   let [user, setUser] = useState(sessionStorage.getItem('user'))
+  let [user_id, setUserId] = useState(sessionStorage.getItem('user_id'))
 
   
   function UserGreeting() {
@@ -65,7 +66,7 @@ function App() {
         <Route path="/shop/:catagory/:id" element={<ShopSingleViewPage productsInCart={Products} addProducts={setProducts} user={user} />} />
         <Route path="/shop/:catagory/:id/editProduct" element={<EditPageComponent user={user} />} />
         <Route path="/addProduct" element={<AddPageComponent user={user} />} />
-        <Route path="/myCart" element={<MyCart user={user} addProducts={setProducts} productsInCart={Products} />} />
+        <Route path="/myCart" element={<MyCart user={user_id} addProducts={setProducts} productsInCart={Products} />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LogInPage />} />
       </Routes>

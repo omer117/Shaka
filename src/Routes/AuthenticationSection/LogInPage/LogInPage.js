@@ -41,10 +41,11 @@ function LogInPage(props) {
             }).then((res) => {
                 let ses = jwt_decode(res.data.accessToken)
                 window.sessionStorage.setItem('user', ses.username)
+                window.sessionStorage.setItem('user_id', ses.user_id)
                 navigate("/", { replace: true })
                 window.location.reload()
             }).catch((err) => {
-                console.log(err);
+                console.log(err)
             });
         } else {
             alert("Password or email validation failed");

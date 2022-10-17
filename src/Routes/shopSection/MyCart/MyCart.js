@@ -12,12 +12,12 @@ console.log(props.user);
     const buyNow = async () => {
 
         const todayDate = new Date()
-        const queryDate = todayDate.getFullYear() + '/' + (todayDate.getMonth()+1) + '/' + todayDate.getDate()
+        const queryDate = todayDate.getFullYear() + '-' + (todayDate.getMonth()+1) + '-' + todayDate.getDate()
         props.productsInCart.forEach(async product => {
-            await axios.post(' https://shakanest14.herokuapp.com/queryRequestNoReturn',
+            await axios.post(' https://shakanest14.herokuapp.com/orders',
             {
                 items_purchased:{id:product.id,catagory:product.catagory},
-                purchase_date:queryDate,
+                purchase_date:(queryDate).toString(),
                 user_id:props.user
             })
             .then((res)=>console.log(res.data))

@@ -1,10 +1,7 @@
-import { useRef } from "react";
-import { useParams } from "react-router-dom";
 import "./ShakaLogoComponent.scss";
 
 
 function ShakaLogoComponent(props){
-const pageSelector = useRef();
 
 
     return(

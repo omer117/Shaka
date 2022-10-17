@@ -33,11 +33,19 @@ function cleanStorage(){
     const responsive = () => {
         if (responsiveRef.current.className === "topnav") {
             responsiveRef.current.className += " responsive";
-        } else {
-            responsiveRef.current.className = "topnav";
+        }else{
+            responsiveRef.current.className = 'topnav' 
         }
     }
 
+    document.addEventListener('click',()=>{
+        if (responsiveRef.current.className == "topnav responsive"){
+                console.log(responsiveRef.current.className)
+                responsiveRef.current.className = 'topnav' 
+            }
+
+        }
+    )
 
     return (
         <>

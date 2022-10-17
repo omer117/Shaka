@@ -11,7 +11,7 @@ function FooterComponent() {
     return (
         <>
             <div className='icons'>
-                <a href="https://github.com/omer117">
+                <a alt="" href="https://github.com/omer117">
                     <GitHubIcon />
                 </a>
                 <a href="https://www.linkedin.com/in/omer-asraf/">
