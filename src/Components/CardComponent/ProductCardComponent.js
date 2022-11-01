@@ -20,6 +20,7 @@ function ProductCardComponent(props) {
     const [size, setSize] = useState({});
 
 
+    console.log(props.data.product_id);
     //here we are handeling the size of the product
     //by 2 functions
     let sizeList = props.data.sizes.map((size) => {
@@ -37,7 +38,7 @@ function ProductCardComponent(props) {
 
         let newProduct = {
             catagory:catagory,
-            id: props.data.id,
+            id: props.data.product_id,
             title: props.data.title,
             price: props.data.price,
             size: size,
@@ -56,7 +57,7 @@ function ProductCardComponent(props) {
                         variant='outlined'
                         className="moreInfoButton"
                     >
-                        <Link to={`/shop/sup/${props.data.id}`}>
+                        <Link to={`/shop/sup/${props.data.product_id}`}>
                             More Info
                         </Link>
                     </Button>
@@ -75,7 +76,7 @@ function ProductCardComponent(props) {
                         variant='outlined'
                         className="moreInfoButton"
                     >
-                        <Link to={`/shop/${catagory}/${props.data.id}`}>
+                        <Link to={`/shop/${catagory}/${props.data.product_id}`}>
                             More Info
                         </Link>
                     </Button>

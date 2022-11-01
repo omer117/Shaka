@@ -21,16 +21,14 @@ function ShopSingleViewPage(props) {
         return specialCharsForName.test(name)
     }
 
-console.log(catagory);
     useEffect(() => {
         if (isNaN(Number(catagory.id)) && isValidParams(catagory.catagory)) {
             alert('no sqli in here sryyy')
             window.location.href = "/"
         }
         else {
-            axios.post('https://shakaserver2.herokuapp.com/getProduct',
-                [catagory.id, catagory.catagory])
-                .then((response) => setProducts(JSON.parse(response.data)))
+            axios.post('https://shakaserver2.herokuapp.com/getProduct',{ id:catagory.id})
+                .then((response) => setProducts((response.data)))
                 .catch((err) => console.log(err))
         }
     }, [])
@@ -38,8 +36,8 @@ console.log(catagory);
 
     useEffect(() => {
         if (!isValidParams(catagory.catagory)) {
-            axios.post('https://shakaserver2.herokuapp.com/youMayLike', [catagory.catagory])
-                .then((response) => setMoreProducts(JSON.parse(response.data)))
+            axios.post('https://shakaserver2.herokuapp.com/youMayLike', {catagory:catagory.catagory})
+                .then((response) => setMoreProducts((response.data)))
                 .catch((err) => console.log(err))
         }
     }, [])
@@ -57,7 +55,7 @@ console.log(catagory);
     // addToCart function, Pretty self explanatory 
     const addToCart = () => {
         let newProduct = {
-            catagory:catagory.catagory,
+            catagory: catagory.catagory,
             id: product.id,
             title: product.title,
             price: product.price,
@@ -91,7 +89,7 @@ console.log(catagory);
 
     return (
         <>
-            {props.user == 'admin' ? <Button className="ToAdd"><Link to={`/shop/${catagory.catagory}/${catagory.id}/editProduct`}>Edit!</Link></Button> : <></>}
+            {props.user === 'admin' ? <Button className="ToAdd"><Link to={`/shop/${catagory.catagory}/${catagory.id}/editProduct`}>Edit!</Link></Button> : <></>}
             <div className="mainContainer">
                 <img className="productImage" alt={product.title} src={product.image} />
                 <div className="productInfo">

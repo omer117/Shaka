@@ -42,7 +42,7 @@ function SignUpPage(props) {
 
 
         for (let i = 0; i < usersDetails.length; i++) {
-            if (user === usersDetails[i].user || specialCharsForName.test(user)) {
+            if (specialCharsForName.test(user)) {
                 return false
             }
             else {
@@ -53,9 +53,9 @@ function SignUpPage(props) {
 
 
     const onFormSubmit = async (event) => {
-
         event.preventDefault();
         let formData = new FormData(event.target);
+        console.log(formData.password);
         formData = Object.fromEntries(formData)
             if (passwordValidation(formData.password) && userValidation(formData.userName)
             && emailValidation(formData.mailAddress)) {

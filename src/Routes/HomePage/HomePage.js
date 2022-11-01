@@ -77,7 +77,7 @@ function HomePage() {
 
     useEffect(() => {
         axios.post(`https://shakaserver2.herokuapp.com/everyDayGet`,
-            { sqlString: `SELECT * FROM sup ORDER BY price DESC LIMIT 3` })
+            { sqlString: `SELECT * FROM products WHERE catagory='sup' ORDER BY price DESC LIMIT 3` })
             .then((res) => setProducts(res.data))
             .catch((err) => console.log(err));
     }, []);
