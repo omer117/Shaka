@@ -41,19 +41,22 @@ function HomePage() {
     let [products, setProducts] = useState([]);
     let [distances, setDistances] = useState([])
     let [closestBeachDetails, setClosestBeacheDetails] = useState([])
+    let [ProductsList, setProductsList] = useState()
+
 
     const geolocation = useGeolocation();
 
 
     useEffect(() => {
-        axios.get(`https://shakaserver2.herokuapp.com/getBeaches`)
+        axios.get(`http://localhost:9001/beaches`)
             .then((res) => setBeaches(res.data))
             .catch((err) => console.log(err));
+
     }, [])
 
     useEffect(() => {
         let orderedBeaches = beaches.map((beach) => ({
-            id: beach.beach_id, name: beach.beach_name, distance: distanceBetweenTwoPoints(beach.lat, beach.lon, geolocation.latitude, geolocation.longitude)
+            id: beach.beach_id, name: beach.beach_name, distance: distanceBetweenTwoPoints(Number(beach.lat), Number(beach.lon), geolocation.latitude, geolocation.longitude)
         }))
             .sort((a, b) => {
                 return a.distance - b.distance
@@ -66,8 +69,7 @@ function HomePage() {
     useEffect(() => {
         if (!geolocation.error) {
             if (distances.length > 0) {
-                axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
-                    { sqlString: `SELECT * FROM daily_forecast WHERE beach_id=${distances[0].id}` })
+                axios.get(`http://localhost:9001/daily-forecast/${distances[0].id}`)
                     .then((res) => setClosestBeacheDetails(res.data))
                     .catch((err) => console.log(err));
             }
@@ -76,42 +78,68 @@ function HomePage() {
 
 
     useEffect(() => {
-        axios.post(`https://shakaserver2.herokuapp.com/everyDayGet`,
-            { sqlString: `SELECT * FROM products WHERE catagory='sup' ORDER BY price DESC LIMIT 3` })
+        axios.post(`http://localhost:9001/products/youMayLike`,
+            { catagory: "sup" })
             .then((res) => setProducts(res.data))
             .catch((err) => console.log(err));
+
     }, []);
 
-    let productList = products.map((product) => {
+console.log(products);
+
+    function HotNow() {
+        if (products.length>0) {
+            return (
+
+                <div className='HotNowDiv'>
+                    <h1>Hot Now!</h1>
+                    <Grid container
+                        spacing={4}
+                        className="specific-catagory-container"
+                        style={{
+                            marginTop: '10px',
+                            marginBottom: '10px',
+                            alignItems: 'center',
+                        }}
+                    >
+                        {products.map((product) => {
         return (<ProductCardComponent hrefType='' className="id" key={product.id} data={product} />);
-    });
+    })}
+                    </Grid>
+                </div>
+            )
+        }else{
+            return <></>
+        }
+    }
+
 
     function Details() {
-        if (closestBeachDetails.length > 0) {
+        if (closestBeachDetails) {
             return (
                 <div className="surfingTodayDiv">
-                    <h2>The nearest beach - <span className="details">{closestBeachDetails[0].beach_name}</span> </h2>
+                    <h2>The nearest beach - <span className="details">{closestBeachDetails.beach_name}</span> </h2>
                     <div className="beachDetails">
                         <div>
                             <h4>Wind Speed</h4>
                             <AirIcon className="detail" />
-                            <p className="details">{closestBeachDetails[0].wind_speed} kts</p>
+                            <p className="details">{closestBeachDetails.wind_speed} kts</p>
                         </div>
                         <div>
                             <h4>Wave Height</h4>
                             <SurfingIcon className="detail" />
-                            <p className="details">{closestBeachDetails[0].wave_height} m</p>
+                            <p className="details">{closestBeachDetails.wave_height} m</p>
                         </div>
                         <div>
                             <h4>Water Temperature</h4>
                             <ThermostatIcon className="detail" />
-                            <p className="details">{closestBeachDetails[0].water_temperature} °C</p>
+                            <p className="details">{closestBeachDetails.water_temperature} °C</p>
                         </div>
                     </div>
                 </div>
             )
         }
-        else if (closestBeachDetails.length === 0) {
+        else if (!closestBeachDetails) {
             return (
                 <div className="loading"><LoadingComponent /></div>
             )
@@ -125,20 +153,8 @@ function HomePage() {
         <>
             {!geolocation.error ? <Details /> : <div> <h2>please share your location,and then refresh the page in order for the weather forecast to work</h2></div>}
 
-            <div className='HotNowDiv'>
-                <h1>Hot Now!</h1>
-                <Grid container
-                    spacing={4}
-                    className="specific-catagory-container"
-                    style={{
-                        marginTop: '10px',
-                        marginBottom: '10px',
-                        alignItems: 'center',
-                    }}
-                >
-                    {productList}
-                </Grid>
-            </div>
+{            products? <HotNow/> : <></> }
+
             <div className="forMore">
 
                 <Button

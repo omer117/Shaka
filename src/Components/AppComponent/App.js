@@ -40,13 +40,13 @@ function App() {
     }
   }
 
+  // todo: PUT NEW UPDATE FUNCTION HERE FOR THE FORECAST
+  // useEffect(() => {
+  //   axios.get('https://shakaserver2.herokuapp.com/new')
+  //     .then((res) => console.log(res.data))
+  //     .catch((err) => console.log(err))
 
-  useEffect(() => {
-    axios.get('https://shakaserver2.herokuapp.com/new')
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err))
-
-  }, [])
+  // }, [])
 
 
   useEffect(() => {
