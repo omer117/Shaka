@@ -22,12 +22,13 @@
 
 .catagoriesDiv {
     margin-top: 20px !important;
-    height: fit-content !important;
     margin-bottom: 15vh !important;
+    height: 800px;
 
     div {
         @include centeringStuff;
         height: 300px !important;
+        width: 700px ;
         margin-top: 39px !important;
     }
 

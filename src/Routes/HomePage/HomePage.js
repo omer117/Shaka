@@ -41,7 +41,6 @@ function HomePage() {
     let [products, setProducts] = useState([]);
     let [distances, setDistances] = useState([])
     let [closestBeachDetails, setClosestBeacheDetails] = useState([])
-    let [ProductsList, setProductsList] = useState()
 
 
     const geolocation = useGeolocation();
@@ -85,10 +84,10 @@ function HomePage() {
 
     }, []);
 
-console.log(products);
+console.log(products !== undefined);
 
     function HotNow() {
-        if (products.length>0) {
+        if (products !== undefined) {
             return (
 
                 <div className='HotNowDiv'>
@@ -102,9 +101,9 @@ console.log(products);
                             alignItems: 'center',
                         }}
                     >
-                        {products.map((product) => {
+                        {/* { products?.map((product) => {
         return (<ProductCardComponent hrefType='' className="id" key={product.id} data={product} />);
-    })}
+    })} */}
                     </Grid>
                 </div>
             )
@@ -153,7 +152,7 @@ console.log(products);
         <>
             {!geolocation.error ? <Details /> : <div> <h2>please share your location,and then refresh the page in order for the weather forecast to work</h2></div>}
 
-{            products? <HotNow/> : <></> }
+{            products !== undefined? <HotNow/> : <></> }
 
             <div className="forMore">
 

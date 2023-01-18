@@ -15,7 +15,10 @@ function ShopHomePage(props) {
             <Grid container
 className="catagoriesDiv"
 >
-                <Grid item xs={12} md={6}>
+                <Grid 
+                item xs={12} 
+                md={6}
+                >
                     <div className="boogi">
                         <Link to="/shop/boogi">Boogi</Link>
                     </div>
