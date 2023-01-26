@@ -23,7 +23,6 @@
 .catagoriesDiv {
     margin-top: 20px !important;
     margin-bottom: 15vh !important;
-    height: 800px;
 
     div {
         @include centeringStuff;
@@ -32,6 +31,7 @@
         margin-top: 39px !important;
     }
 
+    
     .boogi {
         background: rgba(105, 102, 102, 0.6)
             url("../../../images/imagesWebp/5833ebaf95efefd0589ba275509092d0--the-beach-summer-vibes.webp");

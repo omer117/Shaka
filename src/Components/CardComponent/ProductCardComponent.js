@@ -20,10 +20,9 @@ function ProductCardComponent(props) {
     const [size, setSize] = useState({});
 
 
-    console.log(props.data.Product_product_id);
     //here we are handeling the size of the product
     //by 2 functions
-    let sizeList = props.data.sizes.map((size) => {
+    let sizeList = props.data?.Product_sizes.map((size) => {
         return (
             <MenuItem value={size} key={size}>{Number(size)}</MenuItem>
         )
@@ -57,7 +56,7 @@ function ProductCardComponent(props) {
                         variant='outlined'
                         className="moreInfoButton"
                     >
-                        <Link to={`/shop/sup/${props.data.product_id}`}>
+                        <Link to={`/shop/sup/${props.data?.Product_product_id}`}>
                             More Info
                         </Link>
                     </Button>
@@ -76,7 +75,7 @@ function ProductCardComponent(props) {
                         variant='outlined'
                         className="moreInfoButton"
                     >
-                        <Link to={`/shop/${catagory}/${props.data.product_id}`}>
+                        <Link to={`/shop/${catagory}/${props.data?.Product_product_id}`}>
                             More Info
                         </Link>
                     </Button>
@@ -91,25 +90,25 @@ function ProductCardComponent(props) {
             <Grid item xs={12} sm={6} md={4}>
                 <Card className="product-card">
                     <CardMedia
-                        alt={props.data.title}
+                        alt={props.data?.title}
                         className="product-image"
                         component="img"
                         height="155"
-                        image={props.data.Product_image}
+                        image={props.data?.Product_image}
                     />
                     <CardContent>
                         <Typography
                             variant="h1"
                             className="product-title"
                             component="div">
-                            {props.data.Product_title}
+                            {props.data?.Product_title}
                         </Typography>
                     </CardContent>
                     <CardContent className="priceAndSizeDiv">
                         <Typography
                             className="product-price"
                             variant="body1">
-                            {`price: $${props.data.Product_price}`}
+                            {`price: $${props.data?.Product_price}`}
                         </Typography>
                         <FormControl variant="standard" sx={{ m: 1, minWidth: 70 }}>
                             <InputLabel id="demo-simple-select-standard-label">size</InputLabel>

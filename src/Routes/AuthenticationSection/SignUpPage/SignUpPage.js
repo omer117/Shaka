@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
@@ -7,15 +8,9 @@ import "./SignUpPage.scss";
 
 
 function SignUpPage(props) {
-    const [usersDetails, setDetails] = useState([])
     const navigate = useNavigate();
 
 
-    useEffect(() => {
-        axios.get('https://shakaserver2.herokuapp.com/getMailUser')
-            .then((res) => setDetails(res.data))
-            .catch((err) => console.log(err));
-    }, [])
 
     let passwordValidation = (password) => {
         const specialCharsForPassowrd = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
@@ -25,48 +20,32 @@ function SignUpPage(props) {
     }
 
     let emailValidation = (email) => {
-        const specialCharsForEmail = /[`!#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/;
-
-        for (let i = 0; i < usersDetails.length; i++) {
-            if (email === usersDetails[i].email || specialCharsForEmail.test(email)) {
-                return false
-            }
-            else {
-                return true;
-            }
-        }
+        const specialCharsForEmail = /[`!#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/;   
+        specialCharsForEmail.test(email) ?  false :  true
     }
 
     let userValidation = (user) => {
         const specialCharsForName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-
-
-        for (let i = 0; i < usersDetails.length; i++) {
-            if (specialCharsForName.test(user)) {
-                return false
-            }
-            else {
-                return true;
-            }
-        }
+        specialCharsForName.test(user) ? false : true
     }
 
 
     const onFormSubmit = async (event) => {
         event.preventDefault();
         let formData = new FormData(event.target);
-        console.log(formData.password);
-        formData = Object.fromEntries(formData)
-            if (passwordValidation(formData.password) && userValidation(formData.userName)
-            && emailValidation(formData.mailAddress)) {
-            await axios.post('https://shakaserver2.herokuapp.com/addUser', {
-                userDetails: formData
-            }).then((res) => {
-                console.log(res)//TODO:add handle succes edit
-            }).catch((err) => console.log(err));
-            
-            navigate("/login",{ replace: true })
-        } else {
+        let realFormData = Object.fromEntries(formData)
+        console.log(realFormData);
+            if(passwordValidation(realFormData.password)&&emailValidation(realFormData.mailAddress)&&userValidation(realFormData.userName)){
+                await axios.post('https://shaka-nest-remastered.onrender.com/users', {
+                    username:realFormData.userName,
+                    email:realFormData.mailAddress,
+                    password:realFormData.password
+                }).then((res) => {
+                    console.log(res)//TODO:add handle succes edit
+                }).catch((err) => console.log(err));   
+                navigate("/login",{ replace: true })
+            }
+        else {
             alert("Please enter a valid password");
         }
     }

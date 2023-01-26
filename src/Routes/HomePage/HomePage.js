@@ -47,7 +47,7 @@ function HomePage() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:9001/beaches`)
+        axios.get(`https://shaka-nest-remastered.onrender.com/beaches`)
             .then((res) => setBeaches(res.data))
             .catch((err) => console.log(err));
 
@@ -68,23 +68,22 @@ function HomePage() {
     useEffect(() => {
         if (!geolocation.error) {
             if (distances.length > 0) {
-                axios.get(`http://localhost:9001/daily-forecast/${distances[0].id}`)
+                axios.get(`https://shaka-nest-remastered.onrender.com/daily-forecast/${distances[0].id}`)
                     .then((res) => setClosestBeacheDetails(res.data))
                     .catch((err) => console.log(err));
             }
         }
-    }, [distances])
+    }, [distances, geolocation.error])
 
 
     useEffect(() => {
-        axios.post(`http://localhost:9001/products/youMayLike`,
+        axios.post(`https://shaka-nest-remastered.onrender.com/products/youMayLike`,
             { catagory: "sup" })
             .then((res) => setProducts(res.data))
             .catch((err) => console.log(err));
 
     }, []);
 
-console.log(products !== undefined);
 
     function HotNow() {
         if (products !== undefined) {
@@ -101,16 +100,14 @@ console.log(products !== undefined);
                             alignItems: 'center',
                         }}
                     >
-                        {/* { products?.map((product) => {
+                        { products?.map((product) => {
         return (<ProductCardComponent hrefType='' className="id" key={product.id} data={product} />);
-    })} */}
+    })}
                     </Grid>
                 </div>
             )
-        }else{
-            return <></>
-        }
     }
+}
 
 
     function Details() {

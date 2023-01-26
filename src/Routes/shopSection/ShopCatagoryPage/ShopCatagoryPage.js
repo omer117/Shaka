@@ -10,6 +10,7 @@ import LoadingComponent from "../../../Components/LoadingComponent/LoadingCompon
 function ShopCatagoryPage(props) {
     let { catagory } = useParams();
     let [products, setProducts] = useState([]);
+    let [filter, setFilter] = useState();
 
 
     function isValidParams(name) {
@@ -17,11 +18,10 @@ function ShopCatagoryPage(props) {
         return !specialCharsForName.test(name)
     }
 
-    console.log(catagory);
-    useEffect(() => {
 
-        if (isValidParams(catagory)) { 
-            axios.post('https://shakaserver2.herokuapp.com/getAll', {product:catagory})
+    useEffect(() => {
+        if (isValidParams(catagory)) {
+            axios.post('https://shaka-nest-remastered.onrender.com/products/getCatagory', { catagory: catagory })
                 .then((res) => {
                     setProducts((res.data))//TODO:add handle succes edit
                 });
@@ -31,9 +31,11 @@ function ShopCatagoryPage(props) {
     }, []);
 
 
+
     let priceLowTo = () => {
-        axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
-            { sqlString: `SELECT * FROM products WHERE catagory='${catagory}' ORDER BY price DESC` })
+        setFilter("DESC")
+        axios.post('https://shaka-nest-remastered.onrender.com/products/getCatagoryFilteredByPrice',
+            { catagory: catagory, filter: filter })
             .then((res) => {
                 setProducts((res.data));
             })
@@ -41,17 +43,20 @@ function ShopCatagoryPage(props) {
 
 
     const priceHighTo = () => {
-        axios.post('https://shakaserver2.herokuapp.com/everyDayGet',
-            { sqlString: `SELECT * FROM products WHERE catagory='${catagory}' ORDER BY price ASC` })
+        setFilter("ASC")
+        axios.post('https://shaka-nest-remastered.onrender.com/products/getCatagoryFilteredByPrice'
+            , { catagory: catagory, filter: filter })
             .then((res) => {
                 setProducts((res.data));
             })
 
     }
 
-
-    let productList = products.map((product) => {
-        return (<ProductCardComponent productsInCart={props.productsInCart} addProducts={props.addProducts} myCartFunction={props.myCartFunction} key={product.id} data={product} />);
+    let productList = products?.map((product) => {
+        return (<ProductCardComponent
+            productsInCart={props.productsInCart}
+            addProducts={props.addProducts} myCartFunction={props.myCartFunction}
+            key={product.id} data={product} />);
     });
 
     return (

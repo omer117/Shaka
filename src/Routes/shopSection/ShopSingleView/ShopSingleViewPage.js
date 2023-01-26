@@ -5,6 +5,7 @@ import { useParams, Link } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { Grid } from '@mui/material';
+import LoadingComponent from "../../../Components/LoadingComponent/LoadingComponent";
 
 
 
@@ -27,7 +28,8 @@ function ShopSingleViewPage(props) {
             window.location.href = "/"
         }
         else {
-            axios.post('https://shakaserver2.herokuapp.com/getProduct',{ id:catagory.id})
+            axios.get(
+                `https://shaka-nest-remastered.onrender.com/products/${catagory.id}`)
                 .then((response) => setProducts((response.data)))
                 .catch((err) => console.log(err))
         }
@@ -36,7 +38,7 @@ function ShopSingleViewPage(props) {
 
     useEffect(() => {
         if (!isValidParams(catagory.catagory)) {
-            axios.post('https://shakaserver2.herokuapp.com/youMayLike', {catagory:catagory.catagory})
+            axios.post('https://shaka-nest-remastered.onrender.com/products/youMayLike', {catagory:catagory.catagory})
                 .then((response) => setMoreProducts((response.data)))
                 .catch((err) => console.log(err))
         }
@@ -56,7 +58,7 @@ function ShopSingleViewPage(props) {
     const addToCart = () => {
         let newProduct = {
             catagory: catagory.catagory,
-            id: product.id,
+            id: product.product_id,
             title: product.title,
             price: product.price,
             size: Chosensize,
@@ -74,6 +76,7 @@ function ShopSingleViewPage(props) {
         setSize(e.target.innerText)
     }
 
+    console.log(product);
 
     let sizeList = product.sizes.map((size) => {
         return (
@@ -123,7 +126,7 @@ function ShopSingleViewPage(props) {
                         alignItems: 'center',
                     }}
                 >
-                    {extraproducts.length !== undefined ? extraproducts : <div>s</div>}
+                    {extraproducts.length !== undefined ? extraproducts : <LoadingComponent/>}
                 </Grid>
             </div>
         </>
