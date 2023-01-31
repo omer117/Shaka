@@ -37,11 +37,11 @@ function ProductCardComponent(props) {
 
         let newProduct = {
             catagory: catagory,
-            id: props.data.product_id,
-            title: props.data.title,
-            price: props.data.price,
+            id: props.data.Product_product_id,
+            title: props.data.Product_title,
+            price: props.data.Product_price,
             size: size,
-            image: props.data.image
+            image: props.data.Product_image
         }
         props.addProducts([...props.productsInCart, newProduct])
         console.log("added to cart")

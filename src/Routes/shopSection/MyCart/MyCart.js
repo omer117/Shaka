@@ -5,24 +5,32 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function MyCart(props) {
-const navigate = useNavigate()
+    const navigate = useNavigate()
 
 
-console.log(sessionStorage.getItem('user_id'));
+    console.log(sessionStorage.getItem('user_id'));
+    const todayDate = new Date()
+    let queryDate;
+    if(Number(todayDate.getMonth() + 1)<10){
+        queryDate = todayDate.getFullYear() + '-' + "0"+(todayDate.getMonth() + 1) + '-' + todayDate.getDate()
+    }else{
+        queryDate = todayDate.getFullYear() + '-' + (todayDate.getMonth() + 1) + '-' + todayDate.getDate()
+    }
+    console.log(queryDate);
+    
     const buyNow = async () => {
-
-
-        const todayDate = new Date()
-        const queryDate = todayDate.getFullYear() + '/' + (todayDate.getMonth()+1) + '/' + todayDate.getDate()
         props.productsInCart.forEach(async product => {
-            await axios.post(' https://shakaserver2.herokuapp.com/queryRequestNoReturn',
-            {sqlString:`INSERT INTO orders (items_purchased,purchase_date,user_id) 
-            VALUES ('{"catagory": "${product.catagory}","id":${product.id}}','${queryDate}',${sessionStorage.getItem('user_id')})`})
-            .then((res)=>console.log(res.data))
+            await axios.post('https://shaka-nest-remastered.onrender.com/orders',
+                {
+                    items_purchased: `{"catagory":${product.catagory},"id":${product.id}}`,
+                    purchase_date: toString(queryDate),
+                    user_id: sessionStorage.getItem('user_id')
+                })
+                .then((res) => console.log(res.data))
         });
         alert('Order is on the way!')
-        navigate("/",{ replace: true })
-        window.location.reload();
+        // navigate("/", { replace: true })
+        // window.location.reload();
     }
 
 

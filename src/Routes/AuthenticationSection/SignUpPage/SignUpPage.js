@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import axios from 'axios';
-import { useEffect, useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import "./SignUpPage.scss";
@@ -14,19 +13,26 @@ function SignUpPage(props) {
 
     let passwordValidation = (password) => {
         const specialCharsForPassowrd = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-
         if (password.length < 8 || specialCharsForPassowrd.test(password)) return false
         else return true
     }
 
     let emailValidation = (email) => {
-        const specialCharsForEmail = /[`!#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/;   
-        specialCharsForEmail.test(email) ?  false :  true
+        const specialCharsForEmail = /[`!#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/;
+        if (specialCharsForEmail.test(email)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     let userValidation = (user) => {
         const specialCharsForName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-        specialCharsForName.test(user) ? false : true
+        if (specialCharsForName.test(user)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 
@@ -34,17 +40,16 @@ function SignUpPage(props) {
         event.preventDefault();
         let formData = new FormData(event.target);
         let realFormData = Object.fromEntries(formData)
-        console.log(realFormData);
-            if(passwordValidation(realFormData.password)&&emailValidation(realFormData.mailAddress)&&userValidation(realFormData.userName)){
-                await axios.post('https://shaka-nest-remastered.onrender.com/users', {
-                    username:realFormData.userName,
-                    email:realFormData.mailAddress,
-                    password:realFormData.password
-                }).then((res) => {
-                    console.log(res)//TODO:add handle succes edit
-                }).catch((err) => console.log(err));   
-                navigate("/login",{ replace: true })
-            }
+        if (passwordValidation(realFormData.password) && emailValidation(realFormData.mailAddress) && userValidation(realFormData.userName)) {
+            await axios.post('https://shaka-nest-remastered.onrender.com/users', {
+                username: realFormData.userName,
+                email: realFormData.mailAddress,
+                password: realFormData.password
+            }).then((res) => {
+                console.log(res)//TODO:add handle succes edit
+            }).catch((err) => console.log(err));
+            navigate("/login", { replace: true })
+        }
         else {
             alert("Please enter a valid password");
         }
@@ -59,7 +64,7 @@ function SignUpPage(props) {
 
                     <form onSubmit={onFormSubmit} id="signUpForm">
                         <TextField
-                        required
+                            required
                             className="form"
                             label="user name"
                             variant="outlined"
@@ -68,7 +73,7 @@ function SignUpPage(props) {
                             name="userName"
                         />
                         <TextField
-                        required
+                            required
                             className="form"
                             id="outlined-basic"
                             label="mail address"
@@ -79,7 +84,7 @@ function SignUpPage(props) {
                         />
 
                         <TextField
-                        required
+                            required
                             className="form"
                             id="password"
                             label="password"

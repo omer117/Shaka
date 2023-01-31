@@ -9,13 +9,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function LogInPage(props) {
     const navigate = useNavigate()
-    const [usersDetails, setDetails] = useState([])
-
-    useEffect(() => {
-        axios.get('https://shakaserver2.herokuapp.com/getMailUser')
-            .then((res) => setDetails(res.data))
-            .catch((err) => console.log(err));
-    }, [])
 
 
     let passwordValidation = (password) => {
@@ -25,40 +18,36 @@ function LogInPage(props) {
         else return true
     }
 
-    let emailValidation = (email) => {
-        const specialCharsForEmail = /[`!#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/;
-
-        for (let i = 0; i < usersDetails.length; i++) {
-            if (email === usersDetails[i].email || !specialCharsForEmail.test(email)) {
-                return true
-            }
-            else {
-                return false;
-            }
+    let userValidation = (user) => {
+        const specialCharsForuser = /[`!#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~]/;
+        if (!specialCharsForuser.test(user)) {
+            return true
+        }
+        else {
+            return false;
         }
     }
+
 
 
     const onFormSubmit = async (event) => {
         event.preventDefault();
         let formData = new FormData(event.target);
         formData = Object.fromEntries(formData)
-        if (emailValidation(formData.mailAddress) && passwordValidation(formData.password)) {
-            await axios.post(' https://shakaserver2.herokuapp.com/CheckLogIn', {
-                userDetails: formData
+        console.log(passwordValidation(formData.password));
+        if (userValidation(formData.username) && passwordValidation(formData.password)) {
+            await axios.post('https://shaka-nest-remastered.onrender.com/users/validation', {
+                username:formData.username,
+                password:formData.password
             }).then((res) => {
-                if (res.data === 'no email like this bro sorry') {
-                    console.log('nope');
-                } else {
-                    window.sessionStorage.setItem("user", res.data.user[0])
-                    window.sessionStorage.setItem("user_id", res.data.user[1])
-                    navigate("/",{ replace: true })
+                    window.sessionStorage.setItem("user", res.data[1])
+                    window.sessionStorage.setItem("user_id", res.data[0])
+                    navigate("/", { replace: true })
                     window.location.reload()
-                }
             }).catch((err) => {
                 console.log(err);
             });
-        }else {
+        } else {
             alert("Password or email validation failed");
         }
     }
@@ -74,18 +63,18 @@ function LogInPage(props) {
                     <form onSubmit={onFormSubmit} id="LogInForm">
 
                         <TextField
-        required
+                            required
                             className='form'
                             id="outlined-basic"
-                            label="Email Address"
+                            label="Username"
                             variant="outlined"
-                            htmlFor="mailAddress"
+                            htmlFor="username"
                             type="text"
-                            name="mailAddress"
+                            name="username"
                         />
 
                         <TextField
-                        required
+                            required
                             className='form'
                             id="outlined-password-input"
                             label="Password"
